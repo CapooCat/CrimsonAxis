@@ -12,7 +12,7 @@
 	        <ul class="navbar-nav ml-auto">
 	          <li class="nav-item"><a href="Home.aspx" class="nav-link">Trang chủ</a></li>
 	          <li class="nav-item"><a href="Blog.aspx" class="nav-link">Guild Blog</a></li>
-	          <li class="nav-item active"><a href="About.aspx" class="nav-link">Giới thiệu</a></li>
+	          <li class="nav-item active"><a href="About.aspx" class="nav-link">Thư viện</a></li>
 	        </ul>
 	      </div>
 		  </div>

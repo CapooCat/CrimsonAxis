@@ -47,27 +47,29 @@
 
 	var carousel = function() {
 		$('.home-slider').owlCarousel({
+		touchDrag  : false,
+		mouseDrag  : false,
 	    loop:true,
 	    autoplay: true,
 	    margin:0,
 	    animateOut: 'fadeOut',
 	    animateIn: 'fadeIn',
-	    nav:false,
-	    autoplayHoverPause: false,
+	    nav:true,
+	    autoplayHoverPause: true,
 	    items: 1,
-	    navText : ["<span class='ion-md-arrow-back'></span>","<span class='ion-chevron-right'></span>"],
+	    navText : ["<span class='icon-chevron-left'></span>","<span class='icon-chevron-right'></span>"],
 	    responsive:{
 	      0:{
 	        items:1,
-	        nav:false
+
 	      },
 	      600:{
 	        items:1,
-	        nav:false
+
 	      },
 	      1000:{
 	        items:1,
-	        nav:false
+
 	      }
 	    }
 		});

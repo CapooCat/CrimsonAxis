@@ -12,28 +12,11 @@
 	        <ul class="navbar-nav ml-auto">
 	          <li class="nav-item"><a href="Home.aspx" class="nav-link">Trang chủ</a></li>
 	          <li class="nav-item active"><a href="Blog.aspx" class="nav-link">Guild Blog</a></li>
-	          <li class="nav-item"><a href="About.aspx" class="nav-link">Giới thiệu</a></li>
+	          <li class="nav-item"><a href="About.aspx" class="nav-link">Thư viện</a></li>
 	        </ul>
 	      </div>
 		  </div>
 	  </nav>
-
-    <section class="home-slider owl-carousel">
-      <div class="slider-item" style="background-image: url(images/bg-5.jpg);">
-          <div class="overlay"></div>
-        <div class="container">
-          <div class="row slider-text justify-content-center align-items-center">
-            <div class="col-md-7 col-sm-12 text-center ftco-animate">
-            	<h1 class="mb-3 mt-5 bread">Guild Blog</h1>
-	            <p class="breadcrumbs"><span class="mr-2"><a href="Home.aspx">Home</a></span> <span>Blog</span></p>
-            </div>
-
-          </div>
-        </div>
-      </div>
-    </section>
-
-    
 
     <section class="ftco-gallery ftco-section" style="margin-top:80px">
         <div class="container">
