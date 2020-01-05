@@ -1,0 +1,9 @@
+D:\DoAn\CrimsonAxis\BUS\bin\Debug\BUS.dll
+D:\DoAn\CrimsonAxis\BUS\bin\Debug\BUS.pdb
+D:\DoAn\CrimsonAxis\BUS\bin\Debug\DAO.dll
+D:\DoAn\CrimsonAxis\BUS\bin\Debug\DTO.dll
+D:\DoAn\CrimsonAxis\BUS\bin\Debug\DAO.pdb
+D:\DoAn\CrimsonAxis\BUS\bin\Debug\DTO.pdb
+D:\DoAn\CrimsonAxis\BUS\obj\Debug\BUS.csprojResolveAssemblyReference.cache
+D:\DoAn\CrimsonAxis\BUS\obj\Debug\BUS.dll
+D:\DoAn\CrimsonAxis\BUS\obj\Debug\BUS.pdb

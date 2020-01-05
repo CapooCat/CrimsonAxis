@@ -64,3 +64,9 @@ D:\DoAn\CrimsonAxis\CrimsonAxis\bin\Microsoft.CodeDom.Providers.DotNetCompilerPl
 D:\DoAn\CrimsonAxis\CrimsonAxis\obj\Debug\GUI.csprojResolveAssemblyReference.cache
 D:\DoAn\CrimsonAxis\CrimsonAxis\obj\Debug\CrimsonAxis.dll
 D:\DoAn\CrimsonAxis\CrimsonAxis\obj\Debug\CrimsonAxis.pdb
+D:\DoAn\CrimsonAxis\CrimsonAxis\bin\BUS.dll
+D:\DoAn\CrimsonAxis\CrimsonAxis\bin\DTO.dll
+D:\DoAn\CrimsonAxis\CrimsonAxis\bin\DAO.dll
+D:\DoAn\CrimsonAxis\CrimsonAxis\bin\BUS.pdb
+D:\DoAn\CrimsonAxis\CrimsonAxis\bin\DTO.pdb
+D:\DoAn\CrimsonAxis\CrimsonAxis\bin\DAO.pdb

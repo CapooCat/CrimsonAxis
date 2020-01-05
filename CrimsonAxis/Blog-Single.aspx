@@ -12,7 +12,7 @@
 	        <ul class="navbar-nav ml-auto">
 	          <li class="nav-item"><a href="Home.aspx" class="nav-link">Trang chủ</a></li>
 	          <li class="nav-item active"><a href="Blog.aspx" class="nav-link">Guild Blog</a></li>
-	          <li class="nav-item"><a href="About.aspx" class="nav-link">Thư viện</a></li>
+	          <li class="nav-item"><a href="ThuVien.aspx" class="nav-link">Thư viện</a></li>
 	        </ul>
 	      </div>
 		  </div>
@@ -21,18 +21,15 @@
     <section class="ftco-section">
       <div class="container">
         <div class="row">
-          <div class="col-md-8 ftco-animate">
-            <h2 class="mb-3">A - Những chỉ số cơ bản</h2>
-              <img src="images/Basic-1.jpg" class="img-fluid">
+          <div class="col-md-8 ftco-animate" style="font-size:16px;color:#ced3d6;">
+           <h2>A - Những chỉ số cơ bản</h2>
+            <img src="images/Basic-1.jpg" class="img-fluid">
             <p style="font-size:16px">(1) Level Cũng như đa số các game MMORPG khác, bạn có thể nhận exp để lên Level thông qua chạy quest, đánh quái và life skill</p>
-	<p style="font-size:16px">(2) Skill Point Cái tên nói lên tất cả, dùng để tăng skill cho nhân vật, Skill Point sẽ không tăng khi lên Level mà chỉ có thể có được thông qua đánh quái</p>
-              <p></p>
-             <img src="images/Basic-2.jpg" alt="" class="img-fluid">
-              <p style="font-size:16px">(3) Energy
-Một chỉ số khá quan trọng trong việc mở node, life skill, thuê worker, … tùy vào việc sử dụng mà sẽ mất 1 lượng energy tương ứng, energy sẽ hồi lại 1 điểm mỗi 3 phút. Bạn có thể tăng lượng energy tối đa bằng cách tìm kiếm knowledge.
-</p><p style="font-size:16px">(4) Contribution Point
-Một chỉ số nữa cũng quan trọng không kém là CP, chủ yếu dùng để mở node, mua nhà, … Bạn có thể tăng điểm CP thông qua làm quest
-</p>
+	        <p>(2) Skill Point Cái tên nói lên tất cả, dùng để tăng skill cho nhân vật, Skill Point sẽ không tăng khi lên Level mà chỉ có thể có được thông qua đánh quái</p>
+            <p></p>
+            <img src="images/Basic-2.jpg" alt="" class="img-fluid">
+            <p>(3) Energy Một chỉ số khá quan trọng trong việc mở node, life skill, thuê worker, … tùy vào việc sử dụng mà sẽ mất 1 lượng energy tương ứng, energy sẽ hồi lại 1 điểm mỗi 3 phút. Bạn có thể tăng lượng energy tối đa bằng cách tìm kiếm knowledge.
+            </p><p style="font-size:16px">(4) Contribution Point Một chỉ số nữa cũng quan trọng không kém là CP, chủ yếu dùng để mở node, mua nhà, … Bạn có thể tăng điểm CP thông qua làm quest</p>
           </div> <!-- .col-md-8 -->
           <div class="col-md-4 sidebar ftco-animate">
             <div class="sidebar-box">
@@ -56,37 +53,21 @@ Một chỉ số nữa cũng quan trọng không kém là CP, chủ yếu dùng 
             </div>
 
             <div class="sidebar-box ftco-animate">
-              <h3>Bài được xem nhiều nhất</h3>
+              <h3>Bài gần đây</h3>
+              <asp:Repeater ID="rpt_Recent" runat="server">
+              <ItemTemplate>
               <div class="block-21 mb-4 d-flex">
-                <a class="blog-img mr-4" style="background-image: url(images/image_1.jpg);"></a>
+                <a class="blog-img mr-4" style="<%# Eval("Image") %>"></a>
                 <div class="text">
-                  <h3 class="heading"><a href="#">Tổng hợp những khu vực grinding tốt nhất cho các gear từ thấp đến cao</a></h3>
+                  <h3 class="heading"><a href="<%# Eval("Link") %>"><%# Eval("Description") %></a></h3>
                   <div class="meta">
-                    <div><span class="icon-calendar"> </span> July 12, 2018</div>
-                    <div><span class="icon-person"> </span> Admin</div>
+                    <div><span class="icon-calendar"> </span> <%# Eval("DateAdded") %></div>
+                    <div><span class="icon-title"> </span> <%# Eval("TenLoai") %></div>
                   </div>
                 </div>
               </div>
-              <div class="block-21 mb-4 d-flex">
-                <a class="blog-img mr-4" style="background-image: url(images/image_2.jpg);"></a>
-                <div class="text">
-                  <h3 class="heading"><a href="#">Hướng dẫn chạy GRAB ship hàng kiếm tiền bằng xuồng</a></h3>
-                  <div class="meta">
-                    <div><span class="icon-calendar"> </span> July 12, 2018</div>
-                    <div><span class="icon-person"> </span> Admin</div>
-                  </div>
-                </div>
-              </div>
-              <div class="block-21 mb-4 d-flex">
-                <a class="blog-img mr-4" style="background-image: url(images/image_3.jpg);"></a>
-                <div class="text">
-                  <h3 class="heading"><a href="#">Hướng dẫn chọn Worker Node lợi nhuận cao, AFK kiếm tiền triệu mỗi ngày</a></h3>
-                  <div class="meta">
-                    <div><span class="icon-calendar"> </span> July 12, 2018</div>
-                    <div><span class="icon-person"> </span> Admin</div>
-                  </div>
-                </div>
-              </div>
+              </ItemTemplate>
+              </asp:Repeater>
             </div>
 
             <div class="sidebar-box ftco-animate">

@@ -94,7 +94,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="About.aspx" />
+    <Content Include="ThuVien.aspx" />
     <Content Include="Blog-Single.aspx" />
     <Content Include="Blog.aspx" />
     <Content Include="packages.config" />
@@ -119,12 +119,12 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="About.aspx.cs">
-      <DependentUpon>About.aspx</DependentUpon>
+    <Compile Include="ThuVien.aspx.cs">
+      <DependentUpon>ThuVien.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="About.aspx.designer.cs">
-      <DependentUpon>About.aspx</DependentUpon>
+    <Compile Include="ThuVien.aspx.designer.cs">
+      <DependentUpon>ThuVien.aspx</DependentUpon>
     </Compile>
     <Compile Include="Blog-Single.aspx.cs">
       <DependentUpon>Blog-Single.aspx</DependentUpon>
@@ -162,6 +162,16 @@
     <Folder Include="images\" />
     <Folder Include="js\" />
     <Folder Include="scss\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BUS\BUS.csproj">
+      <Project>{2b0165e4-b4be-4ee1-b350-8fdfc1015c04}</Project>
+      <Name>BUS</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DTO\DTO.csproj">
+      <Project>{fc455815-5d29-463f-abed-1d4b789c4eca}</Project>
+      <Name>DTO</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

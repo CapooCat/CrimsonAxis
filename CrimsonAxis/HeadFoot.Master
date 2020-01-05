@@ -21,7 +21,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
-    <link rel="icon" href="images/about.png">
+    <link rel="icon" href="https://lh3.googleusercontent.com/YFdfJEbBHt5TpXIpn3QQNA8UADUMFNfBXCcpjK3h6AMTBxmv8l-dZLjNd3P71dFOTU9LHE3lKS_wTsWevo1jOaIpvNPdYHZmoH8Pe3AFHuksROjsK89jWrEqqFHV3442PKib0Fcc=w2400">
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:400,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Great+Vibes" rel="stylesheet">
@@ -47,7 +47,7 @@
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
-<body>
+<body style="color:#949494">
     <button onclick="topFunction()" id="myBtn" style="width:auto;" class="btn btn-primary ftco-animate icon-arrow-up px-xl-4"></button>
         <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
         
@@ -65,29 +65,22 @@
           </div>
             <div class="col-lg-4 col-md-6 mb-5 mb-md-5">
             <div class="ftco-footer-widget mb-4">
-              <h2 class="ftco-heading-2">Bài được xem nhiều nhất</h2>
+              <h2 class="ftco-heading-2">Bài gần đây</h2>
+              <asp:Repeater ID="rpt_Recent" runat="server">
+                  <ItemTemplate>
               <div class="block-21 mb-4 d-flex">
-                <a class="blog-img mr-4" style="background-image: url(images/image_1.jpg);"></a>
+                <a class="blog-img mr-4" style="<%# Eval("Image") %>"></a>
                 <div class="text">
-                  <h3 class="heading"><a href="#">Tổng hợp những khu vực grinding tốt nhất cho các gear từ thấp đến cao</a></h3>
+                  <h3 class="heading"><a href="<%# Eval("Link") %>"><%# Eval("Description") %></a></h3>
                   <div class="meta">
-                    <div><span class="icon-calendar"> </span> Sept 15, 2018</div>
-                    <div><span class="icon-person"> </span> Admin</div>
+                    <div style="font-size:15px;color:#949494"><span class="icon-calendar"> </span> <%# Eval("DateAdded") %></div>
+                    <div style="font-size:15px;color:#949494"><span class="icon-title"> </span> <%# Eval("TenLoai") %></div>
                     <div></div>
                   </div>
                 </div>
               </div>
-              <div class="block-21 mb-4 d-flex">
-                <a class="blog-img mr-4" style="background-image: url(images/image_2.jpg);"></a>
-                <div class="text">
-                  <h3 class="heading"><a href="#">Hướng dẫn chạy GRAB ship hàng kiếm tiền bằng xuồng</a></h3>
-                  <div class="meta">
-                    <div><span class="icon-calendar"> </span> Sept 15, 2018</div>
-                    <div><span class="icon-person"> </span> Admin</div>
-                    <div></div>
-                  </div>
-                </div>
-              </div>
+              </ItemTemplate>
+              </asp:Repeater>
             </div>
           </div>
             <div class="col-lg-4 col-md-6 mb-5 mb-md-5">

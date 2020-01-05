@@ -12,7 +12,7 @@
 	        <ul class="navbar-nav ml-auto">
 	          <li class="nav-item"><a href="Home.aspx" class="nav-link">Trang chủ</a></li>
 	          <li class="nav-item active"><a href="Blog.aspx" class="nav-link">Guild Blog</a></li>
-	          <li class="nav-item"><a href="About.aspx" class="nav-link">Thư viện</a></li>
+	          <li class="nav-item"><a href="ThuVien.aspx" class="nav-link">Thư viện</a></li>
 	        </ul>
 	      </div>
 		  </div>
@@ -24,7 +24,7 @@
           <div class="col-md-7 heading-section ftco-animate text-center">
           	<span class="subheading" style="margin-bottom:5px">Crimson Axis</span>
             <h2 class="mb-4">Guide</h2>
-              <img class="mb-4" style="max-width:300px;" src="images/underline.png">
+              <img class="mb-4" style="max-width:300px;" src="https://lh3.googleusercontent.com/hRLkDL15CbsrAzc5T9UV9E6tVM3SA0SLYb2xn6B0fKFX8rr4-hCi0PLbkNgsYfxEWl9z0a5Rq5WTOAk8VbqtMvFcM894mo8OyTcfNY_RIwvN7QwSIYMSzoEOhXPjCvYKquc74iE7=w2400">
           </div>
             <div class="sidebar-box ftco-animate">
               <form action="#" class="search-form">
@@ -44,49 +44,21 @@
         <asp:Panel ID="Panel1" runat="server">
     	<div class="container-wrap" style="margin-left:100px; margin-right:100px;" >
     		<div class="row">
+                <asp:Repeater ID="rpt_Loai" runat="server">
+                <ItemTemplate>
 					<div class="blog-entry col-md-3 ftco-animate">
                         <h3 class="text py-4 d-block heading mt-2 text-center">
-                            <a id ="lnkA" href ="javascript:"  onclick ="Hide(this);"  style="color:#fff;">Basic</a></h3>
-						<a id ="lnkA" href ="javascript:"  onclick ="Hide(this);" class="block-20 img d-flex align-items-center" style="background-image: url(images/G1.png);">
+                            <a style="color:#fff;"><%# Eval("TenLoai") %></a></h3>
+						<a id ="lnkA" href ="javascript:"  onclick ="Hide(this);" class="block-20 img d-flex align-items-center" style="<%# Eval("Image") %>"> 
 							<div class="icon mb-4 d-flex align-items-center justify-content-center">   
-                                <div><h3 class="text-center" style="margin-left: 10px;margin-right:10px; color: #dc3545;">Hướng dẫn basic về game</h3>
-                                    <h6 class="text-center" style="margin-left: 15px;margin-right:10px; color:#fff;">Bạn là người mới ? bạn vẫn mơ hồ về những thứ cơ bản của game ? đây sẽ là hướng dẫn dành cho bạn</h6>
+                                <div><h3 class="text-center" style="margin-left: 10px;margin-right:10px; color: #dc3545;"><%# Eval("Title") %></h3>
+                                    <h6 class="text-center" style="margin-left: 15px;margin-right:10px; color:#fff;"><%# Eval("Description") %></h6>
                                 </div>
     					</div>
 						</a>
 					</div>
-					<div class="blog-entry col-md-3 ftco-animate">
-                        <h3 class="text py-4 d-block heading mt-2 text-center"><a id ="lnkA" href ="javascript:"  onclick ="Hide(this);" style="color:#fff;">Life Skill</a></h3>
-						<a id ="lnkA" href ="javascript:"  onclick ="Hide(this);" class="block-20 img d-flex align-items-center" style="background-image: url(images/G2.jpg);">
-							<div class="icon mb-4 d-flex align-items-center justify-content-center">
-                                <div><h3 class="text-center" style="margin-left: 10px;margin-right:10px; color: #dc3545;">Hướng dẫn về Life Skill</h3>
-                                    <h6 class="text-center" style="margin-left: 10px;margin-right:10px; color:#fff;">Bạn là người mới ? bạn vẫn mơ hồ về những thứ cơ bản của game ? đây sẽ là hướng dẫn dành cho bạn</h6>
-                                </div>
-    					</div>
-						</a>
-                        
-					</div>
-                
-					<div class="blog-entry col-md-3 ftco-animate">
-                        <h3 class="text py-4 d-block heading mt-2 text-center"><a id ="lnkA" href ="javascript:"  onclick ="Hide(this);" style="color:#fff;">Grinding</a></h3>
-						<a id ="lnkA" href ="javascript:"  onclick ="Hide(this);" class="block-20 img d-flex align-items-center" style="background-image: url(images/G3.jpg);">
-							<div class="icon mb-4 d-flex align-items-center justify-content-center">
-                                <div><h3 class="text-center" style="margin-left: 10px;margin-right:10px; color: #dc3545;">Hướng dẫn về Grinding</h3>
-                                    <h6 class="text-center" style="margin-left: 10px;margin-right:10px; color:#fff;">Bạn là người mới ? bạn vẫn mơ hồ về những thứ cơ bản của game ? đây sẽ là hướng dẫn dành cho bạn</h6>
-                                </div>
-    					</div>
-						</a>
-					</div>
-					<div class="blog-entry col-md-3 ftco-animate">
-                        <h3 class="text py-4 d-block heading mt-2 text-center"><a id ="lnkA" href ="javascript:"  onclick ="Hide(this);" style="color:#fff;">Boss</a></h3>
-						<a id ="lnkA" href ="javascript:"  onclick ="Hide(this);" class="block-20 img d-flex align-items-center" style="background-image: url(images/G4.jpg);">
-							<div class="icon mb-4 d-flex align-items-center justify-content-center">
-                                <div><h3 class="text-center" style="margin-left: 10px;margin-right:10px;color: #dc3545;">Hướng dẫn về Boss</h3>
-                                    <h6 class="text-center" style="margin-left: 10px;margin-right:10px; color:#fff;">Bạn là người mới ? bạn vẫn mơ hồ về những thứ cơ bản của game ? đây sẽ là hướng dẫn dành cho bạn</h6>
-                                </div>
-    					</div>
-						</a>  
-					</div>
+                    </ItemTemplate>
+                    </asp:Repeater>
         </div>
     	</div>
             </asp:Panel>
@@ -94,96 +66,24 @@
         <asp:Panel ID="Panel2" Style="display: none;" runat="server">
         <div class="container ftco-animate">
         <div class="row d-flex">
+         <asp:Repeater ID="rpt_Blog" runat="server">
+             <ItemTemplate>
           <div class="col-md-4 d-flex ">
           	<div class="blog-entry align-self-stretch">
-              <a href="Blog-Single.aspx" class="Hinh-20" style="background-image: url('images/image_1.jpg');">
-              </a>
+              <a href="Blog-Single.aspx" class="Hinh-20" style="<%# Eval("Image") %>"></a>
               <div class="text py-4 d-block">
               	<div class="meta">
-                  <div><span class="icon-calendar"> </span>Sept 28, 2018</div>
-                  <div><span class="icon-user"> </span>Admin</div>
+                  <div><span class="icon-calendar"> </span><%# Eval("DateAdded") %></div>
+                  <div><span class="icon-title"> </span><%# Eval("TenLoai") %></div>
                   <div></div>
                 </div>
-                <h3 class="heading mt-2"><a href="#">Grinding spot</a></h3>
-                <p>Tổng hợp những khu vực grinding tốt nhất cho các gear từ thấp đến cao</p>
+                <h3 class="heading mt-2"><a href="<%# Eval("Link") %>"><%# Eval("Title") %></a></h3>
+                <p><%# Eval("Description") %></p>
               </div>
             </div>
           </div>
-          <div class="col-md-4 d-flex">
-          	<div class="blog-entry align-self-stretch">
-              <a href="Blog-Single.aspx" class="Hinh-20" style="background-image: url('images/image_2.jpg');">
-              </a>
-              <div class="text py-4 d-block">
-              	<div class="meta">
-                  <div><span class="icon-calendar"> </span>Sept 28, 2018</div>
-                  <div><span class="icon-user"> </span>Admin</div>
-                  <div></div>
-                </div>
-                <h3 class="heading mt-2"><a href="#">Bartering</a></h3>
-                <p>Hướng dẫn chạy GRAB ship hàng kiếm tiền bằng xuồng</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4 d-flex">
-          	<div class="blog-entry align-self-stretch">
-              <a href="Blog-Single.aspx" class="Hinh-20" style="background-image: url('images/image_3.jpg');">
-              </a>
-              <div class="text py-4 d-block">
-              	<div class="meta">
-                  <div><span class="icon-calendar"> </span>Sept 28, 2018</div>
-                  <div><span class="icon-user"> </span>Admin</div>
-                  <div></div>
-                </div>
-                <h3 class="heading mt-2"><a href="#">Worker</a></h3>
-                <p>Hướng dẫn chọn Worker Node lợi nhuận cao, AFK kiếm tiền triệu mỗi ngày</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4 d-flex">
-          	<div class="blog-entry align-self-stretch">
-              <a href="Blog-Single.aspx" class="Hinh-20" style="background-image: url('images/image_4.jpg');">
-              </a>
-              <div class="text py-4 d-block">
-              	<div class="meta">
-                  <div><span class="icon-calendar"> </span>Sept 28, 2018</div>
-                  <div><span class="icon-user"> </span>Admin</div>
-                  <div></div>
-                </div>
-                <h3 class="heading mt-2"><a href="#">Cooking</a></h3>
-                <p>Hướng dẫn nấu ăn, công thức, nguyên liệu chế biến</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4 d-flex">
-          	<div class="blog-entry align-self-stretch">
-              <a href="Blog-Single.aspx" class="Hinh-20" style="background-image: url('images/image_5.jpg');">
-              </a>
-              <div class="text py-4 d-block">
-              	<div class="meta">
-                  <div><span class="icon-calendar"> </span>Sept 28, 2018</div>
-                  <div><span class="icon-user"> </span>Admin</div>
-                  <div></div>
-                </div>
-                <h3 class="heading mt-2"><a href="#">Fishing</a></h3>
-                <p>Hướng dẫn AFK câu cá, khu vực câu relic tốt nhất, chọn cần câu</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4 d-flex">
-          	<div class="blog-entry align-self-stretch">
-              <a href="Blog-Single.aspx" class="Hinh-20" style="background-image: url('images/image_6.jpg');">
-              </a>
-              <div class="text py-4 d-block">
-              	<div class="meta">
-                  <div><span class="icon-calendar"> </span>Sept 28, 2018</div>
-                  <div><span class="icon-user"> </span>Admin</div>
-                  <div></div>
-                </div>
-                <h3 class="heading mt-2"><a href="#">Gathering</a></h3>
-                <p>Hướng dẫn thu thập nguyên liệu ,và những nguyên liệu worker ko thể kiếm đc</p>
-              </div>
-            </div>
-          </div>
+                 </ItemTemplate>
+          </asp:Repeater>
         </div>
       </div>
             </asp:Panel>
