@@ -237,28 +237,28 @@
     	<div class="container-wrap">
     		<div class="row no-gutters">
 					<div class="col-md-3 ftco-animate">
-						<a data-target="#myModal" data-toggle="modal" class="gallery img d-flex align-items-center" style="background-image: url(images/gallery-1.jpg);" href="#myModal">
+						<a data-target="#myModal" data-toggle="modal" class="gallery img d-flex align-items-center" style="background-image: url(https://lh3.googleusercontent.com/6TJAzrVbd_c944E0Sz2zs9eD7oMyZsaalLCYpi5tttGkUj0feLEjJVL7dH7cFCzNnFvUMFKUaJPDOoDvTUHfPyZKyAul-US4FqzpE6AseZtDGABEAwbw8s_rOmZwOMsN378dWzEJYA=w2400);" href="#myModal">
 							<div class="icon mb-4 d-flex align-items-center justify-content-center">
     						<span class="icon-search"></span>
     					</div>
 						</a>
 					</div>
 					<div class="col-md-3 ftco-animate">
-						<a data-target="#myModal2" data-toggle="modal" class="gallery img d-flex align-items-center" style="background-image: url(images/gallery-2.jpg);" href="#myModal">
+						<a data-target="#myModal2" data-toggle="modal" class="gallery img d-flex align-items-center" style="background-image: url(https://lh3.googleusercontent.com/KaIN1NpF9cYCgTfKnDWIxfEw5oKDvOQTjqOUgbGDNWbgqyiD_ADoOMyCCWSIVVemrBifap19cwVwWX5DEbJPSboIQ8Q-r8Ev9ODAu0_lRA56nbLDyzjXuKOjJppeMG0iss3ZyB2eKQ=w2400);" href="#myModal">
 							<div class="icon mb-4 d-flex align-items-center justify-content-center">
     						<span class="icon-search"></span>
     					</div>
 						</a>
 					</div>
 					<div class="col-md-3 ftco-animate">
-						<a data-target="#myModal3" data-toggle="modal" class="gallery img d-flex align-items-center" style="background-image: url(images/gallery-3.jpg);" href="#myModal">
+						<a data-target="#myModal3" data-toggle="modal" class="gallery img d-flex align-items-center" style="background-image: url(https://lh3.googleusercontent.com/DfjqT71ty9SyPnaFZMOHPErZ7udxSstumvOqFEjp6XUnuiGteduzAMm4fJ4vPQ-aQbGt_3DhQyp7GH7rLLSF4CfmfXCTg-mwE4iB9O5HshrWqMmmZuijkf5YFLg3HbMl7Zxi2hyiEQ=w2400);" href="#myModal">
 							<div class="icon mb-4 d-flex align-items-center justify-content-center">
     						<span class="icon-search"></span>
     					</div>
 						</a>
 					</div>
 					<div class="col-md-3 ftco-animate">
-						<a data-target="#myModal4" data-toggle="modal" class="gallery img d-flex align-items-center" style="background-image: url(images/gallery-4.jpg);" href="#myModal">
+						<a data-target="#myModal4" data-toggle="modal" class="gallery img d-flex align-items-center" style="background-image: url(https://lh3.googleusercontent.com/IIwvSThradbXRNIifjD5KRPtqWpIFhzeilyCXB3XClCHnUfMD4X1yt5lJZ1lGlIJ_inoMA_T0ziIGV1rph0HSnwAMUTlWhs4PuHAPgOJfrhSu5C1i8GYuMqYcGUMn3mgrSJ9KsTFYw=w2400);" href="#myModal">
 							<div class="icon mb-4 d-flex align-items-center justify-content-center">
     						<span class="icon-search"></span>
     					</div>
@@ -269,20 +269,16 @@
         
 
         <div id="myModal" class="container-wrap modal ftco-animate">
-            <span class="close" data-dismiss="modal">&times;</span>
-       <img style="width:100%;height:100%;" class="modal-content" src="images/gallery-1.jpg">
+       <img style="width:100%;height:100%;" class="modal-content" src="https://lh3.googleusercontent.com/6TJAzrVbd_c944E0Sz2zs9eD7oMyZsaalLCYpi5tttGkUj0feLEjJVL7dH7cFCzNnFvUMFKUaJPDOoDvTUHfPyZKyAul-US4FqzpE6AseZtDGABEAwbw8s_rOmZwOMsN378dWzEJYA=w2400">
             </div>
         <div id="myModal2" class="container-wrap modal ftco-animate">
-            <span class="close" data-dismiss="modal">&times;</span>
-       <img style="width:100%;height:100%;" class="modal-content" src="images/gallery-2.jpg">
+       <img style="width:100%;height:100%;" class="modal-content" src="https://lh3.googleusercontent.com/KaIN1NpF9cYCgTfKnDWIxfEw5oKDvOQTjqOUgbGDNWbgqyiD_ADoOMyCCWSIVVemrBifap19cwVwWX5DEbJPSboIQ8Q-r8Ev9ODAu0_lRA56nbLDyzjXuKOjJppeMG0iss3ZyB2eKQ=w2400">
             </div>
         <div id="myModal3" class="container-wrap modal ftco-animate">
-            <span class="close" data-dismiss="modal">&times;</span>
-       <img style="width:100%;height:100%;" class="modal-content" src="images/gallery-3.jpg">
+       <img style="width:100%;height:100%;" class="modal-content" src="https://lh3.googleusercontent.com/DfjqT71ty9SyPnaFZMOHPErZ7udxSstumvOqFEjp6XUnuiGteduzAMm4fJ4vPQ-aQbGt_3DhQyp7GH7rLLSF4CfmfXCTg-mwE4iB9O5HshrWqMmmZuijkf5YFLg3HbMl7Zxi2hyiEQ=w2400">
             </div>
         <div id="myModal4" class="container-wrap modal ftco-animate">
-            <span class="close" data-dismiss="modal">&times;</span>
-       <img style="width:100%;height:100%;" class="modal-content" src="images/gallery-4.jpg">
+       <img style="width:100%;height:100%;" class="modal-content" src="https://lh3.googleusercontent.com/IIwvSThradbXRNIifjD5KRPtqWpIFhzeilyCXB3XClCHnUfMD4X1yt5lJZ1lGlIJ_inoMA_T0ziIGV1rph0HSnwAMUTlWhs4PuHAPgOJfrhSu5C1i8GYuMqYcGUMn3mgrSJ9KsTFYw=w2400">
             </div>
     </section>
 

@@ -46,7 +46,6 @@
         <asp:Repeater ID="rpt_LoadAnh" runat="server">
             <ItemTemplate>
                 <div id="myModal<%# Eval("ImageID") %>" class="container-wrap modal ftco-animate">
-                    <span class="close" data-dismiss="modal">&times;</span>
                     <img style="width: 100%; height: 100%;" class="modal-content" src="<%# Eval("Image") %>">
                 </div>
             </ItemTemplate>

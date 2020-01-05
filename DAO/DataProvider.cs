@@ -11,7 +11,7 @@ namespace DAO
     public class DataProvider
     {
         private static SqlDataAdapter adapter = new SqlDataAdapter();
-        private static SqlConnection conn = new SqlConnection("Data Source=localhost;Initial Catalog=CrimsonData;Integrated Security=True");
+        private static SqlConnection conn = new SqlConnection("workstation id=CrimsonData.mssql.somee.com;packet size=4096;user id=CapooCat_SQLLogin_1;pwd=zfa2rd9kvs;data source=CrimsonData.mssql.somee.com;persist security info=False;initial catalog=CrimsonData");
 
         public DataProvider()
         {
