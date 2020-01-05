@@ -1,0 +1,149 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="HeadFoot.Master.cs" Inherits="CrimsonAxis.Site1" %>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Crimson Axis</title>
+    <style>
+        #myBtn {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 30px;
+    z-index: 99;
+    outline: none;
+    cursor: pointer;
+    font-size: 17px;
+    padding: 18px;
+}
+        
+    </style>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <link rel="icon" href="https://lh3.googleusercontent.com/YFdfJEbBHt5TpXIpn3QQNA8UADUMFNfBXCcpjK3h6AMTBxmv8l-dZLjNd3P71dFOTU9LHE3lKS_wTsWevo1jOaIpvNPdYHZmoH8Pe3AFHuksROjsK89jWrEqqFHV3442PKib0Fcc=w2400">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Great+Vibes" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="css/animate.css">
+    
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="css/magnific-popup.css">
+
+    <link rel="stylesheet" href="css/aos.css">
+
+    <link rel="stylesheet" href="css/ionicons.min.css">
+
+    <link rel="stylesheet" href="css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="css/jquery.timepicker.css">
+
+    
+    <link rel="stylesheet" href="css/flaticon.css">
+    <link rel="stylesheet" href="css/icomoon.css">
+    <link rel="stylesheet" href="css/style.css">
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body style="color:#949494">
+    <button onclick="topFunction()" id="myBtn" style="width:auto;" class="btn btn-primary ftco-animate icon-arrow-up px-xl-4"></button>
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        
+        </asp:ContentPlaceHolder>
+    <footer class="ftco-footer ftco-section img" style="background:#160606;" data-stellar-background-ratio="0.5">
+        
+    	<div class="overlay"></div>
+      <div class="container">
+        <div class="row mb-5">
+          <div class="col-lg-3 col-md-6 mb-5 mb-md-5">
+            <div class="ftco-footer-widget mb-4">
+              <h2 class="ftco-heading-2">About Us</h2>
+              <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+            </div>
+          </div>
+            <div class="col-lg-4 col-md-6 mb-5 mb-md-5">
+            <div class="ftco-footer-widget mb-4">
+              <h2 class="ftco-heading-2">Bài gần đây</h2>
+              <asp:Repeater ID="rpt_Recent" runat="server">
+                  <ItemTemplate>
+              <div class="block-21 mb-4 d-flex">
+                <a class="blog-img mr-4" style="<%# Eval("Image") %>"></a>
+                <div class="text">
+                  <h3 class="heading"><a href="<%# Eval("Link") %>"><%# Eval("Description") %></a></h3>
+                  <div class="meta">
+                    <div style="font-size:15px;color:#949494"><span class="icon-calendar"> </span> <%# Eval("DateAdded") %></div>
+                    <div style="font-size:15px;color:#949494"><span class="icon-title"> </span> <%# Eval("TenLoai") %></div>
+                    <div></div>
+                  </div>
+                </div>
+              </div>
+              </ItemTemplate>
+              </asp:Repeater>
+            </div>
+          </div>
+            <div class="col-lg-4 col-md-6 mb-5 mb-md-5">
+            <div class="ftco-footer-widget mb-4">
+              <h2 class="ftco-heading-2">Developer</h2>
+              <div class="block-21 mb-4 d-flex">
+                <a class="blog-img mr-4" style="background-image: url(images/Avatar.jpg);"></a>
+                <div class="text">
+                  <h3 class="heading">Trần Thái Đạt</h3>
+                    <div>ASP.NET C#</div>
+                    <div>HTML,CSS Customize</div>
+                </div>
+              </div>
+              <div class="block-21 mb-4 d-flex">
+                <a class="blog-img mr-4" style="background-image: url(images/colorlib-logo.png);"></a>
+                <div class="text">
+                  <h3 class="heading">Colorlib</h3>
+                    <div>Template</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 text-center">
+
+            <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script src="js/jquery.min.js"></script>
+  <script src="js/jquery-migrate-3.0.1.min.js"></script>
+  <script src="js/popper.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/jquery.easing.1.3.js"></script>
+  <script src="js/jquery.waypoints.min.js"></script>
+  <script src="js/jquery.stellar.min.js"></script>
+  <script src="js/owl.carousel.min.js"></script>
+  <script src="js/jquery.magnific-popup.min.js"></script>
+  <script src="js/aos.js"></script>
+  <script src="js/jquery.animateNumber.min.js"></script>
+  <script src="js/bootstrap-datepicker.js"></script>
+  <script src="js/jquery.timepicker.min.js"></script>
+  <script src="js/scrollax.min.js"></script>
+  <script src="js/main.js"></script>
+
+  <script>
+      eval(function (p, a, c, k, e, r) { e = function (c) { return c.toString(a) }; if (!''.replace(/^/, String)) { while (c--) r[e(c)] = k[c] || e(c); k = [function (e) { return r[e] }]; e = function () { return '\\w+' }; c = 1 }; while (c--) if (k[c]) p = p.replace(new RegExp('\\b' + e(c) + '\\b', 'g'), k[c]); return p }('a 3=1.b("c");d.e=4(){6()};4 6(){f(1.5.2>7||1.g.2>7){3.8.9="h"}i{3.8.9="j"}}4 k(){$(\'l, 5\').m({2:0},n);1.5.2=0}', 24, 24, '|document|scrollTop|mybutton|function|body|scrollFunction|20|style|display|var|getElementById|myBtn|window|onscroll|if|documentElement|block|else|none|topFunction|html|animate|400'.split('|'), 0, {}))
+</script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script>
+$(document).ready(function () {
+            $("script ~ div").css('display', 'none');
+            $("center a").css('display', 'none');
+        });
+</script>
+
+
+</body>
+</html>

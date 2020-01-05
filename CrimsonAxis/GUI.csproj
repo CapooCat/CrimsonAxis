@@ -103,6 +103,7 @@
     </Content>
     <Content Include="HeadFoot.Master" />
     <Content Include=".DS_Store" />
+    <None Include="Properties\PublishProfiles\CrimsonAxis.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

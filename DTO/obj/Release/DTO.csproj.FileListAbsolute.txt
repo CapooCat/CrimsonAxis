@@ -1,0 +1,5 @@
+D:\DoAn\CrimsonAxis\DTO\bin\Release\DTO.dll
+D:\DoAn\CrimsonAxis\DTO\bin\Release\DTO.pdb
+D:\DoAn\CrimsonAxis\DTO\obj\Release\DTO.csprojResolveAssemblyReference.cache
+D:\DoAn\CrimsonAxis\DTO\obj\Release\DTO.dll
+D:\DoAn\CrimsonAxis\DTO\obj\Release\DTO.pdb

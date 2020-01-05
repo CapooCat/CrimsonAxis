@@ -1,0 +1,7 @@
+D:\DoAn\CrimsonAxis\DAO\bin\Release\DAO.dll
+D:\DoAn\CrimsonAxis\DAO\bin\Release\DAO.pdb
+D:\DoAn\CrimsonAxis\DAO\bin\Release\DTO.dll
+D:\DoAn\CrimsonAxis\DAO\bin\Release\DTO.pdb
+D:\DoAn\CrimsonAxis\DAO\obj\Release\DAO.csprojResolveAssemblyReference.cache
+D:\DoAn\CrimsonAxis\DAO\obj\Release\DAO.dll
+D:\DoAn\CrimsonAxis\DAO\obj\Release\DAO.pdb
