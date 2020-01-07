@@ -94,6 +94,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Boss-Timer.aspx" />
     <Content Include="ThuVien.aspx" />
     <Content Include="Blog-Single.aspx" />
     <Content Include="Blog.aspx" />
@@ -120,6 +121,13 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Boss-Timer.aspx.cs">
+      <DependentUpon>Boss-Timer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Boss-Timer.aspx.designer.cs">
+      <DependentUpon>Boss-Timer.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ThuVien.aspx.cs">
       <DependentUpon>ThuVien.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

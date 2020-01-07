@@ -13,6 +13,7 @@
 	          <li class="nav-item active"><a href="Home.aspx" class="nav-link">Trang chủ</a></li>
 	          <li class="nav-item"><a href="Blog.aspx" class="nav-link">Guild Blog</a></li>
 	          <li class="nav-item"><a href="ThuVien.aspx" class="nav-link">Thư viện</a></li>
+              <li class="nav-item"><a href="Boss-Timer.aspx" class="nav-link">World Boss</a></li>
 	        </ul>
 	      </div>
 		  </div>
@@ -26,7 +27,7 @@
             <div class="col-md-8 col-sm-12 text-center ftco-animate">
             	<span class="subheading" style="font-size:50px">Welcome</span>
               <h1 class="mb-4">To the Crimson family</h1>
-              <p><a href="https://discord.gg/Fs6y2bP" class="btn btn-primary p-3 px-xl-4 py-xl-3">Tham gia ngay</a>
+              <p><a href="https://discord.gg/Fs6y2bP" class="btn btn-primary p-3 px-xl-4 py-xl-3">Tham gia ngay</a></p>
             </div>
 
           </div>

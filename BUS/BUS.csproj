@@ -44,6 +44,7 @@
     <Compile Include="ThuVienBUS.cs" />
     <Compile Include="LoaiGuideBUS.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WorldBossBUS.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DAO\DAO.csproj">
