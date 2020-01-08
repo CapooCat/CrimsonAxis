@@ -40,6 +40,15 @@ namespace CrimsonAxis {
         protected global::System.Web.UI.WebControls.Label Store2;
         
         /// <summary>
+        /// Store3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Store3;
+        
+        /// <summary>
         /// ScriptManager1 control.
         /// </summary>
         /// <remarks>
@@ -67,6 +76,15 @@ namespace CrimsonAxis {
         protected global::System.Web.UI.WebControls.Image AnhWorldBoss;
         
         /// <summary>
+        /// AnhWorldBoss3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image AnhWorldBoss3;
+        
+        /// <summary>
         /// BossName control.
         /// </summary>
         /// <remarks>
@@ -74,6 +92,15 @@ namespace CrimsonAxis {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label BossName;
+        
+        /// <summary>
+        /// BossName3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label BossName3;
         
         /// <summary>
         /// Label1 control.
@@ -94,13 +121,13 @@ namespace CrimsonAxis {
         protected global::System.Web.UI.WebControls.Image AnhWorldBoss2;
         
         /// <summary>
-        /// After control.
+        /// AnhWorldBoss4 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label After;
+        protected global::System.Web.UI.WebControls.Image AnhWorldBoss4;
         
         /// <summary>
         /// BossName2 control.
@@ -110,6 +137,15 @@ namespace CrimsonAxis {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label BossName2;
+        
+        /// <summary>
+        /// BossName4 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label BossName4;
         
         /// <summary>
         /// Label2 control.

@@ -105,6 +105,7 @@
     <Content Include="HeadFoot.Master" />
     <Content Include=".DS_Store" />
     <None Include="Properties\PublishProfiles\CrimsonAxis.pubxml" />
+    <Content Include="Timer.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -163,6 +164,13 @@
     </Compile>
     <Compile Include="HeadFoot.Master.designer.cs">
       <DependentUpon>HeadFoot.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Timer.Master.cs">
+      <DependentUpon>Timer.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Timer.Master.designer.cs">
+      <DependentUpon>Timer.Master</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

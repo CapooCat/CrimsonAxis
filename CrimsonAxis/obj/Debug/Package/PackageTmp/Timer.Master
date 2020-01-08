@@ -1,5 +1,7 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="HeadFoot.Master.cs" Inherits="CrimsonAxis.Site1"  %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Timer.master.cs" Inherits="CrimsonAxis.Timer" %>
+
 <!DOCTYPE html>
+
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Crimson Axis</title>
@@ -47,11 +49,11 @@
     </asp:ContentPlaceHolder>
 </head>
 <body style="color:#949494">
-    <button onclick="topFunction()" id="myBtn" style="width:auto;" class="btn btn-primary ftco-animate icon-arrow-up px-xl-4"></button>
+        <button onclick="topFunction()" id="myBtn" style="width:auto;" class="btn btn-primary ftco-animate icon-arrow-up px-xl-4"></button>
         <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
         
         </asp:ContentPlaceHolder>
-    <footer class="ftco-footer ftco-section img" style="background:#160606;" data-stellar-background-ratio="0.5">
+        <footer class="ftco-footer ftco-section img" style="background:#160606;" data-stellar-background-ratio="0.5">
     	<div class="overlay"></div>
       <div class="container">
         <div class="row mb-5">
@@ -59,26 +61,6 @@
             <div class="ftco-footer-widget mb-4">
               <h2 class="ftco-heading-2">About Us</h2>
               <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-            </div>
-          </div>
-            <div class="col-lg-4 col-md-6 mb-5 mb-md-5">
-            <div class="ftco-footer-widget mb-4">
-              <h2 class="ftco-heading-2">Bài gần đây</h2>
-              <asp:Repeater ID="rpt_Recent" runat="server">
-                  <ItemTemplate>
-              <div class="block-21 mb-4 d-flex">
-                <a class="blog-img mr-4" style="<%# Eval("Image") %>"></a>
-                <div class="text">
-                  <h3 class="heading"><a href="<%# Eval("Link") %>"><%# Eval("Description") %></a></h3>
-                  <div class="meta">
-                    <div style="font-size:15px;color:#949494"><span class="icon-calendar"> </span> <%# Eval("DateAdded") %></div>
-                    <div style="font-size:15px;color:#949494"><span class="icon-title"> </span> <%# Eval("TenLoai") %></div>
-                    <div></div>
-                  </div>
-                </div>
-              </div>
-              </ItemTemplate>
-              </asp:Repeater>
             </div>
           </div>
             <div class="col-lg-4 col-md-6 mb-5 mb-md-5">
@@ -145,7 +127,5 @@
             $("div[style='height: 65px;']").remove();
         });
 </script>
-
-
 </body>
 </html>

@@ -15,6 +15,9 @@ namespace DTO
         private string time2;
         private string name2;
         private string anhBoss2;
+        private string name3;
+        private string time3;
+        private string anhBoss3;
 
         public string Time
         {
@@ -104,6 +107,45 @@ namespace DTO
             set
             {
                 anhBoss2 = value;
+            }
+        }
+
+        public string Name3
+        {
+            get
+            {
+                return name3;
+            }
+
+            set
+            {
+                name3 = value;
+            }
+        }
+
+        public string Time3
+        {
+            get
+            {
+                return time3;
+            }
+
+            set
+            {
+                time3 = value;
+            }
+        }
+
+        public string AnhBoss3
+        {
+            get
+            {
+                return anhBoss3;
+            }
+
+            set
+            {
+                anhBoss3 = value;
             }
         }
     }

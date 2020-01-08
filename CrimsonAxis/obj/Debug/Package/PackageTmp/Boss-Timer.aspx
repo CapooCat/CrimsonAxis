@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/HeadFoot.Master" AutoEventWireup="true" CodeBehind="Boss-Timer.aspx.cs" Inherits="CrimsonAxis.Boss_Timer" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Timer.Master" AutoEventWireup="true" CodeBehind="Boss-Timer.aspx.cs" Inherits="CrimsonAxis.Boss_Timer" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -21,11 +21,14 @@
 
     
     <form id="form1" runat="server">
-        <section class="ftco-gallery ftco-section" style="margin-top: 80px">
+        <section class="ftco-gallery ftco-section">
             <div class="container">
                 <div class="row justify-content-center">
-                    <div class="col-md-7 heading-section ftco-animate text-center">
+                    <div class="col-md-7 heading-section ftco-animate text-center" style="margin-top:30px;">
                         <h2><span>Boss Tiếp theo</span></h2>
+                        <asp:Label ID="Store1" runat="server" style="display:none;"></asp:Label>
+                        <asp:Label ID="Store2" runat="server" style="display:none;"></asp:Label>
+                        <asp:Label ID="Store3" runat="server" style="display:none;"></asp:Label>
                         <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
                         <script type="text/javascript">
                             var prm = Sys.WebForms.PageRequestManager.getInstance();
@@ -40,10 +43,39 @@
                             </Triggers>
 
                             <ContentTemplate>
-                                <span><asp:Image ID="AnhWorldBoss" runat="server"/></span>
-                                <h1><asp:Label ID="BossName" runat="server"/></h1>
+                                <div class="row justify-content-center align-items-center">
+                                    <asp:Image ID="AnhWorldBoss" CssClass="col-sm-6" runat="server" />
+                                    <asp:Image ID="AnhWorldBoss3" CssClass="col-sm-6" runat="server"/>
+                                </div>
+                                <h1 class="row justify-content-center align-items-center">
+                                    <asp:Label ID="BossName" CssClass="col-sm-6" runat="server"/>
+                                    <asp:Label CssClass="col-sm-6" ID="BossName3" runat="server"/>
+                                </h1>
                                 <h1 style="font-size: 100px;"><asp:Label ID="Label1" runat="server" ></asp:Label></h1>
-                                <div class="row justify-content-center align-items-center"><asp:Image ID="AnhWorldBoss2" style="height:25%; width:25%" runat="server"/><h4><div class="col-sm-6"><asp:Label ID="BossName2" runat="server" Text=""></asp:Label></div><div class="col-sm-6"><asp:Label ID="Label2" runat="server" Text=""></asp:Label></div></div></h4>
+                                
+                                <h2 style="margin-bottom: 30px"><span>Boss sau</span></h2>
+                                
+                                <div class="row justify-content-center align-items-center col-sm-12">
+                                        <div class="row align-items-center col-sm-12">
+                                            <div class="row justify-content-center align-items-center col-sm-8">
+                                            <asp:Image ID="AnhWorldBoss2" Style="height: 25%; width: 25%" CssClass="col-sm-6" runat="server" />
+                                            <asp:Image ID="AnhWorldBoss4" Style="height: 25%; width: 25%" CssClass="col-sm-6"  runat="server" />
+                                        </div>
+                                        <h4>
+                                                <div class="col-sm-12">
+                                                <asp:Label ID="BossName2" runat="server"></asp:Label>
+                                            </div>
+                                            <div class="col-sm-12">
+                                                <asp:Label ID="BossName4" runat="server"></asp:Label>
+                                            </div>
+                                            <div class="col-sm-12">
+                                                <asp:Label ID="Label2" runat="server"></asp:Label>
+                                            </div>
+                                            </h4>
+                                        </div>
+                                </div>
+                                    
+                                    
                             </ContentTemplate>
                         </asp:UpdatePanel>
 
