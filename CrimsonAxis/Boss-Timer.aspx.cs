@@ -19,6 +19,12 @@ namespace CrimsonAxis
             {
                 rpt_LichBoss.DataSource = WorldBossBUS.LichBoss();
                 rpt_LichBoss.DataBind();
+                int TotalRow = 0;
+                DataTable TotalTime = WorldBossBUS.GetTotal(TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.UtcNow, "SE Asia Standard Time"));
+                foreach (DataRow row in TotalTime.Rows)
+                {
+                    TotalRow++;
+                }
                 DateTime Now = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.UtcNow, "SE Asia Standard Time");
                 DateTime A = GetThisDay("00:30:00");
                 DateTime B = GetThisDay("06:00:00");
@@ -36,7 +42,7 @@ namespace CrimsonAxis
                 Label Boss6 = item.FindControl("txt_BossTime6") as Label;
                 Label Boss7 = item.FindControl("txt_BossTime7") as Label;
 
-                    if ((GetThisDay("23:00:00") < Now && Now < GetThisDay("23:59:59"))|| Boss7.Text == "" || (Boss7.Text=="" && Boss6.Text ==""))
+                    if (GetThisDay(TotalTime.Rows[TotalRow-1][0].ToString()) < Now && Now < GetThisDay("23:59:59"))
                     {
                         if (Now.Month == 12 && Now.Day == ConvertToLastDayOfMonth(Now).Day)
                         {
@@ -57,7 +63,7 @@ namespace CrimsonAxis
                         E = MoveNextDay(E.Hour, E.Minute, E.Second);
                         F = MoveNextDay(F.Hour, F.Minute, F.Second);
                         Y = MoveNextDay(Y.Hour, Y.Minute, Y.Second);
-                    item = rpt_LichBoss.Items[(int)Now.DayOfWeek - 1];
+                    item = rpt_LichBoss.Items[(int)Now.DayOfWeek-1];
                     Boss1 = item.FindControl("txt_BossTime1") as Label;
                     Boss2 = item.FindControl("txt_BossTime2") as Label;
                     Boss3 = item.FindControl("txt_BossTime3") as Label;
@@ -192,6 +198,14 @@ namespace CrimsonAxis
                             DateTime Next = GetThisDay(BossData.Rows[1][0].ToString());
                             Next = MoveNextDay(Next.Hour, Next.Minute, Next.Second);
                             Store2.Text = Next.ToString();
+                        } else if (TotalTime.Rows[i][0].ToString() == BossData.Rows[0][0].ToString() && i == 0 && TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.UtcNow, "SE Asia Standard Time") > GetThisDay(BossData.Rows[0][0].ToString()))
+                        {
+                                DateTime Next = GetThisDay(BossData.Rows[0][0].ToString());
+                                Next = MoveNextDay(Next.Hour, Next.Minute, Next.Second);
+                                Store1.Text = Next.ToString();
+                                DateTime Next1 = GetThisDay(BossData.Rows[1][0].ToString());
+                                Next1 = MoveNextDay(Next1.Hour, Next1.Minute, Next1.Second);
+                                Store2.Text = Next1.ToString();
                         }
                     }
                 } else if (RowCout == 3)
@@ -220,6 +234,15 @@ namespace CrimsonAxis
                                 Next = MoveNextDay(Next.Hour, Next.Minute, Next.Second);
                                 Store2.Text = Next.ToString();
                             }
+                            else if (TotalTime.Rows[i][0].ToString() == BossData.Rows[0][0].ToString() && i == 0 && TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.UtcNow, "SE Asia Standard Time") > GetThisDay(BossData.Rows[0][0].ToString()))
+                            {
+                                DateTime Next = GetThisDay(BossData.Rows[0][0].ToString());
+                                Next = MoveNextDay(Next.Hour, Next.Minute, Next.Second);
+                                Store1.Text = Next.ToString();
+                                DateTime Next1 = GetThisDay(BossData.Rows[2][0].ToString());
+                                Next1 = MoveNextDay(Next1.Hour, Next1.Minute, Next1.Second);
+                                Store2.Text = Next1.ToString();
+                            }
                         }
                     }
                     //If second "Time" row equal to third "Time" row then Load 1 upcoming Boss and 2 Boss after
@@ -245,6 +268,15 @@ namespace CrimsonAxis
                                 DateTime Next = GetThisDay(BossData.Rows[1][0].ToString());
                                 Next = MoveNextDay(Next.Hour, Next.Minute, Next.Second);
                                 Store2.Text = Next.ToString();
+                            }
+                            else if (TotalTime.Rows[i][0].ToString() == BossData.Rows[0][0].ToString() && i == 0 && TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.UtcNow, "SE Asia Standard Time") > GetThisDay(BossData.Rows[0][0].ToString()))
+                            {
+                                DateTime Next = GetThisDay(BossData.Rows[0][0].ToString());
+                                Next = MoveNextDay(Next.Hour, Next.Minute, Next.Second);
+                                Store1.Text = Next.ToString();
+                                DateTime Next1 = GetThisDay(BossData.Rows[1][0].ToString());
+                                Next1 = MoveNextDay(Next1.Hour, Next1.Minute, Next1.Second);
+                                Store2.Text = Next1.ToString();
                             }
                         }
                     }
@@ -272,6 +304,15 @@ namespace CrimsonAxis
                             DateTime Next = GetThisDay(BossData.Rows[2][0].ToString());
                             Next = MoveNextDay(Next.Hour, Next.Minute, Next.Second);
                             Store2.Text = Next.ToString();
+                        }
+                        else if (TotalTime.Rows[i][0].ToString() == BossData.Rows[0][0].ToString() && i == 0 && TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.UtcNow, "SE Asia Standard Time") > GetThisDay(BossData.Rows[0][0].ToString()))
+                        {
+                            DateTime Next = GetThisDay(BossData.Rows[0][0].ToString());
+                            Next = MoveNextDay(Next.Hour, Next.Minute, Next.Second);
+                            Store1.Text = Next.ToString();
+                            DateTime Next1 = GetThisDay(BossData.Rows[2][0].ToString());
+                            Next1 = MoveNextDay(Next1.Hour, Next1.Minute, Next1.Second);
+                            Store2.Text = Next1.ToString();
                         }
                     }
                 }

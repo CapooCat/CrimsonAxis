@@ -11,7 +11,6 @@
 	      <div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav ml-auto">
 	          <li class="nav-item"><a href="http://crimsonaxis.somee.com/" class="nav-link">Trang chủ</a></li>
-	          <li class="nav-item"><a href="Blog.aspx" class="nav-link">Guild Blog (Đang thi công)</a></li>
 	          <li class="nav-item"><a href="ThuVien.aspx" class="nav-link">Thư viện</a></li>
               <li class="nav-item active"><a href="Boss-Timer.aspx" class="nav-link">World Boss</a></li>
 	        </ul>
@@ -62,8 +61,8 @@
                                 
                                 <div class="row justify-content-center align-items-center">
                                             <div class="row align-items-center justify-content-center col-md-12">
-                                            <asp:Image ID="AnhWorldBoss2" style="width: 33%; height: 33%" CssClass="col-md-4" runat="server" />
-                                            <asp:Image ID="AnhWorldBoss4" style="width: 33%; height: 33%;" CssClass="col-md-4"  runat="server" />
+                                            <asp:Image ID="AnhWorldBoss2" style="width: 30%; height: 30%" CssClass="col-md-4" runat="server" />
+                                            <asp:Image ID="AnhWorldBoss4" style="width: 30%; height: 30%;" CssClass="col-md-4"  runat="server" />
                                         
                                         <h4>
                                                 <div class="col-md-12">
