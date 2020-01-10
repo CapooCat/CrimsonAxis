@@ -19,10 +19,9 @@ namespace BUS
         {
             return WolrdBossDAO.GetTotal(Now);
         }
-        //public static DataTable GetNext(DateTime Now)
-        //{
-        //    return WolrdBossDAO.GetNext(Now);
-        //}
-
+        public static List<WorldBossDTO> LichBoss()
+        {
+            return WolrdBossDAO.LichBoss();
+        }
     }
 }

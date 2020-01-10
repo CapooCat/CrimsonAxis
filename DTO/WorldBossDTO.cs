@@ -8,144 +8,116 @@ namespace DTO
 {
     public class WorldBossDTO
     {
-        private string time;
-        private int iD;
-        private string name;
-        private string anhBoss;
-        private string time2;
-        private string name2;
-        private string anhBoss2;
-        private string name3;
-        private string time3;
-        private string anhBoss3;
+        private string thu;
+        private string bossTime1;
+        private string bossTime2;
+        private string bossTime3;
+        private string bossTime4;
+        private string bossTime5;
+        private string bossTime6;
+        private string bossTime7;
 
-        public string Time
+        public string Thu
         {
             get
             {
-                return time;
+                return thu;
             }
 
             set
             {
-                time = value;
+                thu = value;
             }
         }
 
-        public int ID
+        public string BossTime1
         {
             get
             {
-                return iD;
+                return bossTime1;
             }
 
             set
             {
-                iD = value;
+                bossTime1 = value;
             }
         }
 
-        public string Name
+        public string BossTime2
         {
             get
             {
-                return name;
+                return bossTime2;
             }
 
             set
             {
-                name = value;
+                bossTime2 = value;
             }
         }
 
-        public string AnhBoss
+        public string BossTime3
         {
             get
             {
-                return anhBoss;
+                return bossTime3;
             }
 
             set
             {
-                anhBoss = value;
+                bossTime3 = value;
             }
         }
 
-        public string Time2
+        public string BossTime4
         {
             get
             {
-                return time2;
+                return bossTime4;
             }
 
             set
             {
-                time2 = value;
+                bossTime4 = value;
             }
         }
 
-        public string Name2
+        public string BossTime5
         {
             get
             {
-                return name2;
+                return bossTime5;
             }
 
             set
             {
-                name2 = value;
+                bossTime5 = value;
             }
         }
 
-        public string AnhBoss2
+        public string BossTime6
         {
             get
             {
-                return anhBoss2;
+                return bossTime6;
             }
 
             set
             {
-                anhBoss2 = value;
+                bossTime6 = value;
             }
         }
 
-        public string Name3
+        public string BossTime7
         {
             get
             {
-                return name3;
+                return bossTime7;
             }
 
             set
             {
-                name3 = value;
-            }
-        }
-
-        public string Time3
-        {
-            get
-            {
-                return time3;
-            }
-
-            set
-            {
-                time3 = value;
-            }
-        }
-
-        public string AnhBoss3
-        {
-            get
-            {
-                return anhBoss3;
-            }
-
-            set
-            {
-                anhBoss3 = value;
+                bossTime7 = value;
             }
         }
     }

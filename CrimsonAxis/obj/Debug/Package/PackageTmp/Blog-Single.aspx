@@ -10,8 +10,8 @@
 	      </button>
 	      <div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav ml-auto">
-	          <li class="nav-item"><a href="Home.aspx" class="nav-link">Trang chủ</a></li>
-	          <li class="nav-item active"><a href="Blog.aspx" class="nav-link">Guild Blog</a></li>
+	          <li class="nav-item"><a href="http://crimsonaxis.somee.com/" class="nav-link">Trang chủ</a></li>
+	          <li class="nav-item active"><a href="Blog.aspx" class="nav-link">Guild Blog (Đang thi công)</a></li>
 	          <li class="nav-item"><a href="ThuVien.aspx" class="nav-link">Thư viện</a></li>
               <li class="nav-item"><a href="Boss-Timer.aspx" class="nav-link">World Boss</a></li>
 	        </ul>

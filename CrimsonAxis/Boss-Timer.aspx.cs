@@ -12,20 +12,121 @@ namespace CrimsonAxis
 {
     public partial class Boss_Timer : System.Web.UI.Page
     {
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
             {
+                rpt_LichBoss.DataSource = WorldBossBUS.LichBoss();
+                rpt_LichBoss.DataBind();
+                DateTime Now = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.UtcNow, "SE Asia Standard Time");
+                DateTime A = GetThisDay("00:30:00");
+                DateTime B = GetThisDay("06:00:00");
+                DateTime C = GetThisDay("10:00:00");
+                DateTime D = GetThisDay("14:00:00");
+                DateTime E = GetThisDay("15:00:00");
+                DateTime F = GetThisDay("19:00:00");
+                DateTime Y = GetThisDay("23:30:00");
+                RepeaterItem item = rpt_LichBoss.Items[(int)Now.DayOfWeek - 1];
+                Label Boss1 = item.FindControl("txt_BossTime1") as Label;
+                Label Boss2 = item.FindControl("txt_BossTime2") as Label;
+                Label Boss3 = item.FindControl("txt_BossTime3") as Label;
+                Label Boss4 = item.FindControl("txt_BossTime4") as Label;
+                Label Boss5 = item.FindControl("txt_BossTime5") as Label;
+                Label Boss6 = item.FindControl("txt_BossTime6") as Label;
+                Label Boss7 = item.FindControl("txt_BossTime7") as Label;
+
+                    if ((GetThisDay("23:00:00") < Now && Now < GetThisDay("23:59:59"))|| Boss7.Text == "" || (Boss7.Text=="" && Boss6.Text ==""))
+                    {
+                        if (Now.Month == 12 && Now.Day == ConvertToLastDayOfMonth(Now).Day)
+                        {
+                            Now = new DateTime((Now.Year) + 1, 1, 1, 0, 0, 0);
+                        }
+                        else if (Now.Day == ConvertToLastDayOfMonth(Now).Day)
+                        {
+                            Now = new DateTime(Now.Year, (Now.Month) + 1, 1, 0, 0, 0);
+                        }
+                        else
+                        {
+                            Now = new DateTime(Now.Year, Now.Month, (Now.Day) + 1, 0, 0, 0);
+                        }
+                        A = MoveNextDay(A.Hour, A.Minute, A.Second);
+                        B = MoveNextDay(B.Hour, B.Minute, B.Second);
+                        C = MoveNextDay(C.Hour, C.Minute, C.Second);
+                        D = MoveNextDay(D.Hour, D.Minute, D.Second);
+                        E = MoveNextDay(E.Hour, E.Minute, E.Second);
+                        F = MoveNextDay(F.Hour, F.Minute, F.Second);
+                        Y = MoveNextDay(Y.Hour, Y.Minute, Y.Second);
+                    item = rpt_LichBoss.Items[(int)Now.DayOfWeek - 1];
+                    Boss1 = item.FindControl("txt_BossTime1") as Label;
+                    Boss2 = item.FindControl("txt_BossTime2") as Label;
+                    Boss3 = item.FindControl("txt_BossTime3") as Label;
+                    Boss4 = item.FindControl("txt_BossTime4") as Label;
+                    Boss5 = item.FindControl("txt_BossTime5") as Label;
+                    Boss6 = item.FindControl("txt_BossTime6") as Label;
+                    Boss7 = item.FindControl("txt_BossTime7") as Label;
+                }
+                
+                Label lab = item.FindControl("txt_Thu") as Label;
+                lab.CssClass = "GoLiveGlow";
+
+                if (Now < A && Boss1.Text != "")
+                {
+                    Boss1.CssClass = "GoLiveGlow";
+                }
+                else if (Now < B && Boss2.Text != "")
+                {
+                    Boss2.CssClass = "GoLiveGlow";
+                }
+                else if (Now < C && Boss3.Text != "")
+                {
+                    Boss3.CssClass = "GoLiveGlow";
+                }
+                else if (Now < D && Boss4.Text != "")
+                {
+                    Boss4.CssClass = "GoLiveGlow";
+                }
+                else if (Now < E && Boss5.Text != "")
+                {
+                    Boss5.CssClass = "GoLiveGlow";
+                }
+                else if (Now < F && Boss6.Text != "")
+                {
+                    Boss6.CssClass = "GoLiveGlow";
+                }
+                else if (Now < Y && Boss7.Text != "")
+                {
+                    Boss7.CssClass = "GoLiveGlow";
+                }
             }
         }
+        public static String ConvertSecondToClock(int Total)
+        {
+            int Hour = Total / 3600;
+            int Minute = Total / 60 % 60;
+            int Second = Total % 60;
+            string Hours = Hour.ToString();
+            string Minutes = Minute.ToString();
+            string Seconds = Second.ToString();
+            if (Hour < 10)
+                Hours = "0" + Hour.ToString();
+            if (Minute < 10)
+                Minutes = "0" + Minute.ToString();
+            if (Second < 10)
+                Seconds = "0" + Second.ToString();
+            string x = Hours + ":" + Minutes + ":" + Seconds;
+            return x;
+        }
+        
 
         public static DateTime ConvertToLastDayOfMonth(DateTime date)
         {
             return new DateTime(date.Year, date.Month, DateTime.DaysInMonth(date.Year, date.Month));
         }
 
-        public static DateTime MoveNextDay(DateTime date,int Hour,int Min,int Second)
+        public static DateTime MoveNextDay(int Hour,int Min,int Second)
         {
+            DateTime date = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.UtcNow, "SE Asia Standard Time");
             if (date.Month == 12 && date.Day == ConvertToLastDayOfMonth(date).Day)
             {
                 return new DateTime((date.Year) + 1, 1, 1, Hour, Min, Second);
@@ -40,69 +141,42 @@ namespace CrimsonAxis
             }
         }
 
-        public static DateTime GetThisDay(int Hour, int Min, int Second)
+        public static DateTime GetThisDay(string Time)
         {
-            DateTime Now =TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.UtcNow, "SE Asia Standard Time");
-            return new DateTime(Now.Year, Now.Month, Now.Day, Hour, Min, Second);
+            DateTime Now = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.UtcNow, "SE Asia Standard Time");
+            DateTime Next = DateTime.Parse(Time, System.Globalization.CultureInfo.CurrentCulture);
+            return new DateTime(Now.Year, Now.Month, Now.Day, Next.Hour, Next.Minute, Next.Second);
         }
 
         protected void Timer1_Tick(object sender, EventArgs e)
         {
+            txt_BossTiepTheo.Text = "Boss Tiếp Theo";
+            txt_BossSau.Text = "Boss sau";
             if (Store1.Text == "" && Store2.Text == "")
             {
                 int TotalRow = 0;
                 int RowCout = 0;
                 DataTable TotalTime;
                 DataTable BossData;
-                if (Store3.Text != "")
+                TotalTime = WorldBossBUS.GetTotal(TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.UtcNow, "SE Asia Standard Time"));
+                foreach (DataRow row in TotalTime.Rows)
                 {
-                    DateTime Now = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.UtcNow, "SE Asia Standard Time");
-                    if (Now.Month == 12 && Now.Day == ConvertToLastDayOfMonth(Now).Day)
-                    {
-                        Now = new DateTime((Now.Year) + 1, 1, 1, Now.Hour, Now.Minute, Now.Second);
-                    }
-                    else if (Now.Day == ConvertToLastDayOfMonth(Now).Day)
-                    {
-                        Now = new DateTime(Now.Year, (Now.Month) + 1, 1, Now.Hour, Now.Minute, Now.Second);
-                    }
-                    else
-                    {
-                        Now = new DateTime(Now.Year, Now.Month, (Now.Day) + 1, Now.Hour, Now.Minute, Now.Second);
-                    }
-                    TotalTime = WorldBossBUS.GetTotal(Now);
-                    foreach (DataRow row in TotalTime.Rows)
-                    {
-                        TotalRow++;
-                    }
-                    BossData = WorldBossBUS.GetTime(Now);
-                    foreach (DataRow row in BossData.Rows)
-                    {
-                        RowCout++;
-                    }
+                    TotalRow++;
                 }
-                else
+
+                BossData = WorldBossBUS.GetTime(TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.UtcNow, "SE Asia Standard Time"));
+                foreach (DataRow row in BossData.Rows)
                 {
-                    TotalTime = WorldBossBUS.GetTotal(TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.UtcNow, "SE Asia Standard Time"));
-                    foreach (DataRow row in TotalTime.Rows)
-                    {
-                        TotalRow++;
-                    }
-
-
-                    BossData = WorldBossBUS.GetTime(TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.UtcNow, "SE Asia Standard Time"));
-                    foreach (DataRow row in BossData.Rows)
-                    {
-                        RowCout++;
-                    }
+                    RowCout++;
                 }
 
 
                 if (RowCout == 2)
                 {
-                    Store1.Text = BossData.Rows[0][0].ToString();
+                    Store1.Text = GetThisDay(BossData.Rows[0][0].ToString()).ToString();
                     BossName.Text = BossData.Rows[0][1].ToString();
                     AnhWorldBoss.ImageUrl = BossData.Rows[0][2].ToString();
-                    Store2.Text = BossData.Rows[1][0].ToString();
+                    Store2.Text = GetThisDay(BossData.Rows[1][0].ToString()).ToString();
                     BossName2.Text = BossData.Rows[1][1].ToString();
                     AnhWorldBoss2.ImageUrl = BossData.Rows[1][2].ToString();
                     BossName3.Visible = false;
@@ -115,22 +189,9 @@ namespace CrimsonAxis
                         if (TotalTime.Rows[i][0].ToString() == BossData.Rows[0][0].ToString() && i == TotalRow - 1)
                         {
                             DateTime Now = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.UtcNow, "SE Asia Standard Time");
-                            DateTime Next = DateTime.Parse(BossData.Rows[1][0].ToString(), System.Globalization.CultureInfo.CurrentCulture);
-                            int Min = Next.Minute;
-                            int Hour = Next.Hour;
-                            int Second = Next.Second;
-                            Next = MoveNextDay(Now, Hour, Min, Second);
+                            DateTime Next = GetThisDay(BossData.Rows[1][0].ToString());
+                            Next = MoveNextDay(Next.Hour, Next.Minute, Next.Second);
                             Store2.Text = Next.ToString();
-                        }
-                        if (Store3.Text != "")
-                        {
-                            DateTime Now = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.UtcNow, "SE Asia Standard Time");
-                            DateTime Next = DateTime.Parse(BossData.Rows[0][0].ToString(), System.Globalization.CultureInfo.CurrentCulture);
-                            int Min = Next.Minute;
-                            int Hour = Next.Hour;
-                            int Second = Next.Second;
-                            Next = MoveNextDay(Now, Hour, Min, Second);
-                            Store1.Text = Next.ToString();
                         }
                     }
                 } else if (RowCout == 3)
@@ -138,10 +199,10 @@ namespace CrimsonAxis
                     //If first "Time" row equal to second "Time" row then Load 2 upcoming Boss and 1 Boss after
                     if (BossData.Rows[0][0].ToString() == BossData.Rows[1][0].ToString())
                     {
-                        Store1.Text = BossData.Rows[0][0].ToString();
+                        Store1.Text = GetThisDay(BossData.Rows[0][0].ToString()).ToString();
                         BossName.Text = BossData.Rows[0][1].ToString();
                         AnhWorldBoss.ImageUrl = BossData.Rows[0][2].ToString();
-                        Store2.Text = BossData.Rows[2][0].ToString();
+                        Store2.Text = GetThisDay(BossData.Rows[2][0].ToString()).ToString();
                         BossName2.Text = BossData.Rows[2][1].ToString();
                         AnhWorldBoss2.ImageUrl = BossData.Rows[2][2].ToString();
                         AnhWorldBoss3.Visible = true;
@@ -155,33 +216,19 @@ namespace CrimsonAxis
                         {
                             if (TotalTime.Rows[i][0].ToString() == BossData.Rows[0][0].ToString() && i == TotalRow-1)
                             {
-                                DateTime Now = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.UtcNow, "SE Asia Standard Time");
-                                DateTime Next = DateTime.Parse(BossData.Rows[2][0].ToString(), System.Globalization.CultureInfo.CurrentCulture);
-                                int Min = Next.Minute;
-                                int Hour = Next.Hour;
-                                int Second = Next.Second;
-                                Next = MoveNextDay(Now, Hour, Min, Second);
+                                DateTime Next = GetThisDay(BossData.Rows[2][0].ToString());
+                                Next = MoveNextDay(Next.Hour, Next.Minute, Next.Second);
                                 Store2.Text = Next.ToString();
-                            }
-                            if(Store3.Text != "")
-                            {
-                                DateTime Now = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.UtcNow, "SE Asia Standard Time");
-                                DateTime Next = DateTime.Parse(BossData.Rows[0][0].ToString(), System.Globalization.CultureInfo.CurrentCulture);
-                                int Min = Next.Minute;
-                                int Hour = Next.Hour;
-                                int Second = Next.Second;
-                                Next = MoveNextDay(Now, Hour, Min, Second);
-                                Store1.Text = Next.ToString();
                             }
                         }
                     }
                     //If second "Time" row equal to third "Time" row then Load 1 upcoming Boss and 2 Boss after
                     if (BossData.Rows[1][0].ToString() == BossData.Rows[2][0].ToString())
                     {
-                        Store1.Text = BossData.Rows[0][0].ToString();
+                        Store1.Text = GetThisDay(BossData.Rows[0][0].ToString()).ToString();
                         BossName.Text = BossData.Rows[0][1].ToString();
                         AnhWorldBoss.ImageUrl = BossData.Rows[0][2].ToString();
-                        Store2.Text = BossData.Rows[1][0].ToString();
+                        Store2.Text = GetThisDay(BossData.Rows[1][0].ToString()).ToString();
                         BossName2.Text = BossData.Rows[1][1].ToString();
                         BossName4.Text = BossData.Rows[2][1].ToString();
                         AnhWorldBoss2.ImageUrl = BossData.Rows[1][2].ToString();
@@ -195,32 +242,18 @@ namespace CrimsonAxis
                         {
                             if (TotalTime.Rows[i][0].ToString() == BossData.Rows[0][0].ToString() && i == TotalRow - 1)
                             {
-                                DateTime Now = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.UtcNow, "SE Asia Standard Time");
-                                DateTime Next = DateTime.Parse(BossData.Rows[1][0].ToString(), System.Globalization.CultureInfo.CurrentCulture);
-                                int Min = Next.Minute;
-                                int Hour = Next.Hour;
-                                int Second = Next.Second;
-                                Next = MoveNextDay(Now, Hour, Min, Second);
+                                DateTime Next = GetThisDay(BossData.Rows[1][0].ToString());
+                                Next = MoveNextDay(Next.Hour, Next.Minute, Next.Second);
                                 Store2.Text = Next.ToString();
-                            }
-                            if (Store3.Text != "")
-                            {
-                                DateTime Now = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.UtcNow, "SE Asia Standard Time");
-                                DateTime Next = DateTime.Parse(BossData.Rows[0][0].ToString(), System.Globalization.CultureInfo.CurrentCulture);
-                                int Min = Next.Minute;
-                                int Hour = Next.Hour;
-                                int Second = Next.Second;
-                                Next = MoveNextDay(Now, Hour, Min, Second);
-                                Store1.Text = Next.ToString();
                             }
                         }
                     }
                 } else if (RowCout == 4)
                 {
-                    Store1.Text = BossData.Rows[0][0].ToString();
+                    Store1.Text = GetThisDay(BossData.Rows[0][0].ToString()).ToString();
                     BossName.Text = BossData.Rows[0][1].ToString();
                     AnhWorldBoss.ImageUrl = BossData.Rows[0][2].ToString();
-                    Store2.Text = BossData.Rows[2][0].ToString();
+                    Store2.Text = GetThisDay(BossData.Rows[2][0].ToString()).ToString();
                     BossName2.Text = BossData.Rows[2][1].ToString();
                     BossName4.Text = BossData.Rows[3][1].ToString();
                     AnhWorldBoss2.ImageUrl = BossData.Rows[2][2].ToString();
@@ -236,40 +269,37 @@ namespace CrimsonAxis
                     {
                         if (TotalTime.Rows[i][0].ToString() == BossData.Rows[0][0].ToString() && i == TotalRow - 1)
                         {
-                            DateTime Now = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.UtcNow, "SE Asia Standard Time");
-                            DateTime Next = DateTime.Parse(BossData.Rows[2][0].ToString(), System.Globalization.CultureInfo.CurrentCulture);
-                            int Min = Next.Minute;
-                            int Hour = Next.Hour;
-                            int Second = Next.Second;
-                            Next = MoveNextDay(Now, Hour, Min, Second);
+                            DateTime Next = GetThisDay(BossData.Rows[2][0].ToString());
+                            Next = MoveNextDay(Next.Hour, Next.Minute, Next.Second);
                             Store2.Text = Next.ToString();
-                        }
-                        if (Store3.Text != "")
-                        {
-                            DateTime Now = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.UtcNow, "SE Asia Standard Time");
-                            DateTime Next = DateTime.Parse(BossData.Rows[0][0].ToString(), System.Globalization.CultureInfo.CurrentCulture);
-                            int Min = Next.Minute;
-                            int Hour = Next.Hour;
-                            int Second = Next.Second;
-                            Next = MoveNextDay(Now, Hour, Min, Second);
-                            Store1.Text = Next.ToString();
                         }
                     }
                 }
+                
             }
-
             string a = Store1.Text;
             string b = Store2.Text;
             DateTime End = DateTime.Parse(a, System.Globalization.CultureInfo.CurrentCulture);
-            End = GetThisDay(End.Hour, End.Minute, End.Second);
             DateTime End2 = DateTime.Parse(b, System.Globalization.CultureInfo.CurrentCulture);
-            End2 = GetThisDay(End2.Hour, End2.Minute, End2.Second);
             TimeSpan TimeLeft = End.Subtract(TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.UtcNow, "SE Asia Standard Time"));
             TimeSpan TimeLeft2 = End2.Subtract(TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.UtcNow, "SE Asia Standard Time"));
             
             int Total = Convert.ToInt32(TimeLeft.TotalSeconds);
             int Total2 = Convert.ToInt32(TimeLeft2.TotalSeconds);
             Timer1.Interval = 1000;
+
+            if(Total < 300)
+            {
+                Label1.Attributes.Add("style", "Color: #fff;");
+                Label1.CssClass = "glow";
+            }
+            else
+            {
+                Label1.Attributes.Add("style", "Color: #fff;");
+                Label1.CssClass = "";
+                BossName.CssClass = "col-md-6";
+                BossName3.CssClass = "col-md-6";
+            }
 
             if (Total < -30)
             {
@@ -278,61 +308,29 @@ namespace CrimsonAxis
                 {
                     Store1.Text = "";
                     Store2.Text = "";
-                    Store3.Text = "Get";
+                    Store3.Text = "";
                 } else 
                 {
                     Store1.Text = "";
                     Store2.Text = "";
                     Store3.Text = "";
+                    Response.Redirect("Boss-Timer.aspx");
                 }
+                
             }
 
             if (Total < 0)
             {
+                Label1.CssClass = "GoLiveGlow";
+                BossName.CssClass = "col-md-6 GoLiveGlow";
+                BossName3.CssClass = "col-md-6 GoLiveGlow";
                 Label1.Text = "LIVE";
-                int Hour2 = Total2 / 3600;
-                int Minute2 = Total2 / 60 % 60;
-                int Second2 = Total2 % 60;
-                string Hours2 = Hour2.ToString();
-                string Minutes2 = Minute2.ToString();
-                string Seconds2 = Second2.ToString();
-                if (Hour2 < 10)
-                    Hours2 = "0" + Hour2.ToString();
-                if (Minute2 < 10)
-                    Minutes2 = "0" + Minute2.ToString();
-                if (Second2 < 10)
-                    Seconds2 = "0" + Second2.ToString();
-                Label2.Text = Hours2 + ":" + Minutes2 + ":" + Seconds2;
+                Label2.Text = ConvertSecondToClock(Total2);
             }
             else
             {
-                int Hour = Total / 3600;
-                int Minute = Total / 60 % 60;
-                int Second = Total % 60;
-                string Hours = Hour.ToString();
-                string Minutes = Minute.ToString();
-                string Seconds = Second.ToString();
-                if (Hour < 10)
-                    Hours = "0" + Hour.ToString();
-                if (Minute < 10)
-                    Minutes = "0" + Minute.ToString();
-                if (Second < 10)
-                    Seconds = "0" + Second.ToString();
-                Label1.Text = Hours + ":" + Minutes + ":" + Seconds;
-
-                int Hour2 = Total2 / 3600;
-                int Minute2 = Total2 / 60 % 60;
-                int Second2 = Total2 % 60;
-                string Hours2 = Hour2.ToString();
-                string Minutes2 = Minute2.ToString();
-                string Seconds2 = Second2.ToString();
-                if (Hour2 < 10)
-                    Hours2 = "0" + Hour2.ToString();
-                if (Minute2 < 10)
-                    Minutes2 = "0" + Minute2.ToString();
-                if (Second2 < 10)
-                    Seconds2 = "0" + Second2.ToString();
-                Label2.Text = Hours2 + ":" + Minutes2 + ":" + Seconds2;
+                Label1.Text = ConvertSecondToClock(Total);
+                Label2.Text = ConvertSecondToClock(Total2);
             }
         }
     }

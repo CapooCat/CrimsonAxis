@@ -67,6 +67,15 @@ namespace CrimsonAxis {
         protected global::System.Web.UI.UpdatePanel UpdatePanel1;
         
         /// <summary>
+        /// txt_BossTiepTheo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label txt_BossTiepTheo;
+        
+        /// <summary>
         /// AnhWorldBoss control.
         /// </summary>
         /// <remarks>
@@ -110,6 +119,15 @@ namespace CrimsonAxis {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Label1;
+        
+        /// <summary>
+        /// txt_BossSau control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label txt_BossSau;
         
         /// <summary>
         /// AnhWorldBoss2 control.
@@ -164,5 +182,14 @@ namespace CrimsonAxis {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.Timer Timer1;
+        
+        /// <summary>
+        /// rpt_LichBoss control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater rpt_LichBoss;
     }
 }
