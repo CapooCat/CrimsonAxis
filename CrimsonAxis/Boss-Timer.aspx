@@ -111,7 +111,7 @@
                     </div>
                 </div>
 				<div class="row">
-    			<div class="col-md-12 ftco-animate">
+    			<div class="ftco-animate disable-scrollbars">
 	    				<table class="table">
 						    <thead class="thead-primary">
 						      <tr class="text-center">

@@ -66,6 +66,19 @@ body {
 
 [tabindex="-1"]:focus {
   outline: 0 !important; }
+ 
+.disable-scrollbars {
+	overflow-x: scroll;
+  scrollbar-width: none;
+  -ms-overflow-style: none; 
+}
+.disable-scrollbars::-webkit-scrollbar {
+    width: 0px;
+	display: None;
+    background: transparent;
+}
+
+
 
 .glow {
   color: #fff;
