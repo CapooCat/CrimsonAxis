@@ -2,7 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" style="position: fixed;" id="ftco-navbar">
 	    <div class="container">
 	      <a class="navbar-brand" href="Home.aspx">Crimson<small>Axis</small></a>
 	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
@@ -17,11 +17,19 @@
 	      </div>
 		  </div>
 	  </nav>
-
+    
+    <section class="video-container">
+        <div style="position: absolute; width: 100%; height: 100%; background-color: black; opacity: 0.5;"></div>
+            <video style="min-width: 100%;min-height: 100%;top: 50%;left: 50%;" autoplay loop muted>
+                <source src="https://lh3.googleusercontent.com/6dz4bBKHeq-hhxwEIqkP0_Y6o8um-jqxrTGhuXVGK3WmZnbS8swHV6XNU7n4zf3Bye4X-8epbZuCvpAEAm_-FOMCcKYS_Ncg7nV1kMFiOxK91cP9NooUblDiPRlKuSceLBz17VjWXA=m37" type="video/mp4">
+            </video>
+    </section>
+        
+    
     
     <form id="form1" runat="server">
         
-        <section class=" ftco-section">
+        <section class="ftco-section" style="margin-top: 30px;">
             <div class="container">
                 <div class="row justify-content-center align-items-center">
                     <div class="col-md-7 heading-section ftco-animate text-center">
@@ -46,33 +54,33 @@
 
                             <ContentTemplate>
                                 <h2><asp:Label ID="txt_BossTiepTheo" runat="server" Text=""></asp:Label></h2>
-                                <div class="row justify-content-center">
-                                    <asp:Image ID="AnhWorldBoss" CssClass="col-md-6" runat="server" />
-                                    <asp:Image ID="AnhWorldBoss3" CssClass="col-md-6" runat="server"/>
-                                </div>
-                                <h1 class="row justify-content-center align-items-center">
-                                    <asp:Label ID="BossName" CssClass="col-md-6" style="Color: #fff;" runat="server"/>
-                                    <asp:Label CssClass="col-md-6" style="Color: #fff;" ID="BossName3" runat="server"/>
-                                </h1>
-                                <h1 style="font-size: 100px;"><asp:Label ID="Label1" runat="server" ></asp:Label></h1>
-                                
-                                <h2 style="margin-bottom: 30px">
-                                    <asp:Label ID="txt_BossSau" runat="server" Text=""></asp:Label></h2>
-                                
                                 <div class="row justify-content-center align-items-center">
+                                    <asp:Image ID="AnhWorldBoss" style="width: 50%; height: 50%" CssClass="col-md-6" runat="server" />
+                                    <asp:Image ID="AnhWorldBoss3" style="width: 50%; height: 50%" CssClass="col-md-6" runat="server"/>
+                                </div>
+                                <h3 class="row justify-content-center align-items-center Main-Boss-Text">
+                                    <asp:Label ID="BossName" CssClass="col-md-6"  style="Color: #fff;width: 50%; height: 50%" runat="server"/>
+                                    <asp:Label CssClass="col-md-6" style="Color: #fff;width: 50%; height: 50%" ID="BossName3" runat="server"/>
+                                </h3>
+                                <h1 class="Timer-Text"><asp:Label ID="Label1" runat="server" ></asp:Label></h1>
+                                <h2>
+                                    <asp:Label ID="txt_BossSau" runat="server" Text=""></asp:Label>
+                                </h2>
+                                
+                                <div class="row justify-content-center align-items-center col-md-12">
                                             <div class="row align-items-center justify-content-center col-md-12">
-                                            <asp:Image ID="AnhWorldBoss2" style="width: 33%; height: 33%" CssClass="col-md-4" runat="server" />
-                                            <asp:Image ID="AnhWorldBoss4" style="width: 33%; height: 33%;" CssClass="col-md-4"  runat="server" />
+                                            <asp:Image ID="AnhWorldBoss2" style="width: 30%; height: 30%;" CssClass="col-md-4" runat="server" />
+                                            <asp:Image ID="AnhWorldBoss4" style="width: 30%; height: 30%;" CssClass="col-md-4"  runat="server" />
                                         
-                                        <h4>
+                                        <h4 class="Next-Boss" >
                                                 <div class="col-md-12">
-                                                <asp:Label ID="BossName2" style="Color: #fff;" runat="server"></asp:Label>
+                                                <asp:Label ID="BossName2" style="Color: #fff;"  runat="server"></asp:Label>
                                             </div>
                                             <div class="col-md-12">
-                                                <asp:Label ID="BossName4" style="Color: #fff;" runat="server"></asp:Label>
+                                                <asp:Label ID="BossName4"  style="Color: #fff;" runat="server"></asp:Label>
                                             </div>
                                             <div class="col-md-12">
-                                                <asp:Label ID="Label2" style="Color: #fff;" runat="server"></asp:Label>
+                                                <asp:Label ID="Label2"  style="Color: #fff;"  runat="server"></asp:Label>
                                             </div>
                                             </h4>
                                                 </div>
@@ -101,7 +109,7 @@
             </div>
         </section>
 
-        <section class="ftco-cart">
+        <section class="ftco-section ftco-cart">
 			<div class="container">
                 <div class="row justify-content-center mb-5 pb-3">
                     <div class="col-md-7 heading-section ftco-animate text-center">
@@ -111,7 +119,7 @@
                     </div>
                 </div>
 				<div class="row">
-    			<div class="col-md-12 ftco-animate">
+    			<div class="ftco-animate disable-scrollbars">
 	    				<table class="table">
 						    <thead class="thead-primary">
 						      <tr class="text-center">

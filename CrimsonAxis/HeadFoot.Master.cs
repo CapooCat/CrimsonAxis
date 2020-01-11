@@ -13,8 +13,8 @@ namespace CrimsonAxis
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-                rpt_Recent.DataSource = GuildBlogBUS.BaiMoiNhat();
-                rpt_Recent.DataBind();
+                //rpt_Recent.DataSource = GuildBlogBUS.BaiMoiNhat();
+                //rpt_Recent.DataBind();
         }
     }
 }

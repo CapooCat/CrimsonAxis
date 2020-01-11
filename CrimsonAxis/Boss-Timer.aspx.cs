@@ -156,7 +156,7 @@ namespace CrimsonAxis
 
         protected void Timer1_Tick(object sender, EventArgs e)
         {
-            txt_BossTiepTheo.Text = "Boss Tiếp Theo";
+            txt_BossTiepTheo.Text = "Boss Tiếp Theo (SEA)";
             txt_BossSau.Text = "Boss sau";
             if (Store1.Text == "" && Store2.Text == "")
             {

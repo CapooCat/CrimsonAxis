@@ -17,7 +17,7 @@
 	      </div>
 		  </div>
 	  </nav>
-    <section class="ftco-gallery ftco-section" style="margin-top:80px">
+    <section class="ftco-gallery ftco-section" style="margin-top:40px;">
         <div class="container">
         <div class="row justify-content-center mb-5 pb-3">
           <div class="col-md-7 heading-section ftco-animate text-center">
@@ -31,7 +31,7 @@
             <div class="row" style="margin: 15px">
                 <asp:Repeater ID="rpt_Anh" runat="server">
                     <ItemTemplate>
-                        <div class="col-md-3 ftco-animate" style="margin-bottom: 35px">
+                        <div class="col-md-3 ftco-animate" style="margin-bottom: 30px">
                             <a data-target="#myModal<%# Eval("ImageID") %>" data-toggle="modal" class="gallery img d-flex align-items-center" style="<%# Eval("Code") %><%# Eval("Image") %><%# Eval("End") %>" href="#myModal">
                                 <div class="icon mb-4 d-flex align-items-center justify-content-center">
                                     <span class="icon-search"></span>

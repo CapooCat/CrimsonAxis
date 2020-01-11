@@ -77,8 +77,54 @@ body {
 	display: None;
     background: transparent;
 }
+.Main-Boss-Image {
+	
+}
 
+.Timer-Text {
+	font-size: calc(0.5em + 4vw);
+}
+.Main-Boss-Text {
+	font-size: calc(1.0em + 1vw);
+}
+.Next-Boss {
+	font-size: calc(0.5em + 1vw);
+}
+.video-container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%; 
+  overflow: hidden;
+}
 
+@media (max-width: 1900px){
+	.video-container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  height: 920px; 
+  overflow: hidden;
+	}
+}
+
+@media (max-width: 1600px){
+	.video-container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  height: 900px; 
+  overflow: hidden;
+}
+}
+@media (max-width: 1200px){
+	.video-container {
+  display: None;
+}
+}
 
 .glow {
   color: #fff;
@@ -7692,7 +7738,7 @@ h1, h2, h3, h4, h5,
     left: -25px; }
   .owl-carousel.home-slider {
     position: relative;
-    height: 750px;
+    height: 735px;
     z-index: 0; }
     .owl-carousel.home-slider .slider-item {
       background-size: cover;
@@ -8212,7 +8258,7 @@ h1, h2, h3, h4, h5,
   .table .thead-primary {
     background: #dc3545; }
     .table .thead-primary tr th {
-      padding: 10px 32px;
+      padding: 10px 33px;
       color: #fff !important;
       border: 1px solid transparent !important; }
   .table tbody tr td {
