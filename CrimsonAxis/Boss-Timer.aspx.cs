@@ -17,6 +17,7 @@ namespace CrimsonAxis
         {
             if (!Page.IsPostBack)
             {
+                
                 rpt_LichBoss.DataSource = WorldBossBUS.LichBoss();
                 rpt_LichBoss.DataBind();
                 int TotalRow = 0;
@@ -26,6 +27,11 @@ namespace CrimsonAxis
                     TotalRow++;
                 }
                 DateTime Now = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.UtcNow, "SE Asia Standard Time");
+                int Day = (int)Now.DayOfWeek;
+                if(Day == 0)
+                {
+                    Day = 7;
+                }
                 DateTime A = GetThisDay("00:30:00");
                 DateTime B = GetThisDay("06:00:00");
                 DateTime C = GetThisDay("10:00:00");
@@ -33,7 +39,7 @@ namespace CrimsonAxis
                 DateTime E = GetThisDay("15:00:00");
                 DateTime F = GetThisDay("19:00:00");
                 DateTime Y = GetThisDay("23:30:00");
-                RepeaterItem item = rpt_LichBoss.Items[(int)Now.DayOfWeek - 1];
+                RepeaterItem item = rpt_LichBoss.Items[Day-1];
                 Label Boss1 = item.FindControl("txt_BossTime1") as Label;
                 Label Boss2 = item.FindControl("txt_BossTime2") as Label;
                 Label Boss3 = item.FindControl("txt_BossTime3") as Label;
@@ -63,7 +69,12 @@ namespace CrimsonAxis
                         E = MoveNextDay(E.Hour, E.Minute, E.Second);
                         F = MoveNextDay(F.Hour, F.Minute, F.Second);
                         Y = MoveNextDay(Y.Hour, Y.Minute, Y.Second);
-                    item = rpt_LichBoss.Items[(int)Now.DayOfWeek-1];
+                    Day = (int)Now.DayOfWeek;
+                    if (Day == 0)
+                    {
+                        Day = 7;
+                    }
+                    item = rpt_LichBoss.Items[Day-1];
                     Boss1 = item.FindControl("txt_BossTime1") as Label;
                     Boss2 = item.FindControl("txt_BossTime2") as Label;
                     Boss3 = item.FindControl("txt_BossTime3") as Label;
@@ -328,8 +339,29 @@ namespace CrimsonAxis
             int Total = Convert.ToInt32(TimeLeft.TotalSeconds);
             int Total2 = Convert.ToInt32(TimeLeft2.TotalSeconds);
             Timer1.Interval = 1000;
+            if (Total <= 1800 && Total > 1795)
+            {
+                ScriptManager.RegisterClientScriptBlock(this, GetType(), "myfunction", "myfunction();", true);
+            }
+            if (Total <= 900 && Total > 895)
+            {
+                ScriptManager.RegisterClientScriptBlock(this, GetType(), "myfunction2", "myfunction2();", true);
+            }
+            if (Total <= 300 && Total > 295)
+            {
+                ScriptManager.RegisterClientScriptBlock(this, GetType(), "myfunction3", "myfunction3();", true);
+            }
+            if (Total <= 60 && Total > 55)
+            {
+                ScriptManager.RegisterClientScriptBlock(this, GetType(), "myfunction4", "myfunction4();", true);
+            }
+            if (Total <= 0)
+            {
+                ScriptManager.RegisterClientScriptBlock(this, GetType(), "myfunction4", "myfunction4();", true);
+            }
 
-            if(Total < 300)
+
+            if (Total < 300)
             {
                 Label1.Attributes.Add("style", "Color: #fff;");
                 Label1.CssClass = "glow";

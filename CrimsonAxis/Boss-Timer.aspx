@@ -86,21 +86,6 @@
                                                 </div>
                                     
                                 </div>
-                                <script>
-                                    var myVar = setInterval(myTimer, 1000);
-                                    function myTimer() {
-                                        var Time = document.getElementById('<%=Label1.ClientID%>').innerText;
-                                        var Hour = parseInt(Time.slice(0, 2));
-                                        var Min = parseInt(Time.slice(3, 5));
-                                        var Second = parseInt(Time.slice(6, 8));
-                                        if (Hour == 0 && Min ==14 && 55 < Second <= 59) {
-                                            var audio = new Audio('play.mp3');
-                                            audio.play();
-                                            clearInterval(myVar);
-                                        }
-                                    }
-                                    
-                                </script>
                             </ContentTemplate>
                         </asp:UpdatePanel>
                         <asp:Timer ID="Timer1" runat="server" Interval="1000" OnTick="Timer1_Tick"></asp:Timer>
@@ -155,4 +140,46 @@
 			</div>    
 		</section>
     </form>
+    <script>
+        var OneTime = 1;
+        var OneTime1 = 1;
+        var OneTime2 = 1;
+        var OneTime3 = 1;
+        var OneTime4 = 1;
+        function myfunction() {
+            if (OneTime == 1) {
+                var audio = new Audio('play.mp3');
+                audio.play();
+                OneTime = 0;
+            }
+        }
+        function myfunction2() {
+            if (OneTime1 == 1) {
+                var audio = new Audio('play2.mp3');
+                audio.play();
+                OneTime1 = 0;
+            }
+        }
+        function myfunction3() {
+            if (OneTime2 == 1) {
+                var audio = new Audio('play3.mp3');
+                audio.play();
+                OneTime2 = 0;
+            }
+        }
+        function myfunction4() {
+            if (OneTime3 == 1) {
+                var audio = new Audio('play4.mp3');
+                audio.play();
+                OneTime3 = 0;
+            }
+        }
+        function myfunction5() {
+            if (OneTime4 == 1) {
+                var audio = new Audio('play5.mp3');
+                audio.play();
+                OneTime4 = 0;
+            }
+        }
+    </script>
 </asp:Content>

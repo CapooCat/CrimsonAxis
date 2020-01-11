@@ -38,8 +38,8 @@
         <div class="container">
           <div class="row slider-text justify-content-center align-items-center" data-scrollax-parent="true">
             <div class="col-md-8 col-sm-12 text-center ftco-animate">
-              <h1 class="mb-4">Come join us</h1>
-              <p class="mb-4 mb-md-5">A special home for the newcomer</p>
+              <span class="subheading" style="font-size:50px">Welcome</span>
+              <h1 class="mb-4">To the Crimson family</h1>
               <p><a href="https://discord.gg/Fs6y2bP" class="btn btn-primary p-3 px-xl-4 py-xl-3">Tham gia ngay</a>
             </div>
 
@@ -54,8 +54,8 @@
 
             <div class="col-md-8 col-sm-12 text-center ftco-animate">
             	<span class="subheading"></span>
-              <h1 class="mb-4">together we'll grow stronger</h1>
-              <p class="mb-4 mb-md-5"></p>
+              <span class="subheading" style="font-size:50px">Welcome</span>
+              <h1 class="mb-4">To the Crimson family</h1>
               <p><a href="https://discord.gg/Fs6y2bP" class="btn btn-primary p-3 px-xl-4 py-xl-3">Tham gia ngay</a>
             </div>
 

@@ -61,6 +61,10 @@ namespace DAO
             int n = 0;
             int j = 0;
             int weekday = (int)Now.DayOfWeek;
+            if(weekday == 0)
+            {
+                weekday = 7;
+            }
             string query = "SELECT Time FROM WorldBoss WHERE WeekDay = @wEEKDAY GROUP BY Time";
             SqlParameter[] param = new SqlParameter[1];
             param[0] = new SqlParameter("@WEEKDAY", weekday);
@@ -98,7 +102,7 @@ namespace DAO
                 SqlParameter[] param4 = new SqlParameter[3];
                 param4[0] = new SqlParameter("@WeekDay", weekday);
                 if(weekday == 7)
-                { weekday = 1; }
+                { weekday = 1;}
                 else { weekday++; }
                 param4[1] = new SqlParameter("@TimeGroup", j);
                 param4[2] = new SqlParameter("@Next", weekday);
