@@ -12,12 +12,30 @@ namespace CrimsonAxis
 {
     public partial class Boss_Timer : System.Web.UI.Page
     {
-
+        
         protected void Page_Load(object sender, EventArgs e)
         {
+            
             if (!Page.IsPostBack)
             {
-                
+                if (Request.Cookies["check"] != null)
+                {
+                    chk_01min.Checked = Request.Cookies["check"].Values["01min"] != "False" ? true : false;
+                    chk_05min.Checked = Request.Cookies["check"].Values["05min"] != "False" ? true : false;
+                    chk_15min.Checked = Request.Cookies["check"].Values["15min"] != "False" ? true : false;
+                    chk_30min.Checked = Request.Cookies["check"].Values["30min"] != "False" ? true : false;
+                    chk_live.Checked = Request.Cookies["check"].Values["Live"] != "False" ? true : false;
+
+                    chk_Kzarka.Checked = Request.Cookies["check"].Values["Kzarka"] != "False" ? true : false;
+                    chk_Garmoth.Checked = Request.Cookies["check"].Values["Garmoth"] != "False" ? true : false;
+                    chk_Nouver.Checked = Request.Cookies["check"].Values["Nouver"] != "False" ? true : false;
+                    chk_Karanda.Checked = Request.Cookies["check"].Values["Karanda"] != "False" ? true : false;
+
+                    chk_Offin.Checked = Request.Cookies["check"].Values["Offin"] != "False" ? true : false;
+                    chk_Kutum.Checked = Request.Cookies["check"].Values["Kutum"] != "False" ? true : false;
+                    chk_Quint_Muraka.Checked = Request.Cookies["check"].Values["Quint"] != "False" ? true : false;
+                    chk_Vell.Checked = Request.Cookies["check"].Values["Vell"] != "False" ? true : false;
+                }
                 rpt_LichBoss.DataSource = WorldBossBUS.LichBoss();
                 rpt_LichBoss.DataBind();
                 int TotalRow = 0;
@@ -40,14 +58,7 @@ namespace CrimsonAxis
                 DateTime F = GetThisDay("19:00:00");
                 DateTime Y = GetThisDay("23:30:00");
                 RepeaterItem item = rpt_LichBoss.Items[Day-1];
-                Label Boss1 = item.FindControl("txt_BossTime1") as Label;
-                Label Boss2 = item.FindControl("txt_BossTime2") as Label;
-                Label Boss3 = item.FindControl("txt_BossTime3") as Label;
-                Label Boss4 = item.FindControl("txt_BossTime4") as Label;
-                Label Boss5 = item.FindControl("txt_BossTime5") as Label;
-                Label Boss6 = item.FindControl("txt_BossTime6") as Label;
-                Label Boss7 = item.FindControl("txt_BossTime7") as Label;
-
+                
                     if (GetThisDay(TotalTime.Rows[TotalRow-1][0].ToString()) < Now && Now < GetThisDay("23:59:59"))
                     {
                         if (Now.Month == 12 && Now.Day == ConvertToLastDayOfMonth(Now).Day)
@@ -75,48 +86,70 @@ namespace CrimsonAxis
                         Day = 7;
                     }
                     item = rpt_LichBoss.Items[Day-1];
-                    Boss1 = item.FindControl("txt_BossTime1") as Label;
-                    Boss2 = item.FindControl("txt_BossTime2") as Label;
-                    Boss3 = item.FindControl("txt_BossTime3") as Label;
-                    Boss4 = item.FindControl("txt_BossTime4") as Label;
-                    Boss5 = item.FindControl("txt_BossTime5") as Label;
-                    Boss6 = item.FindControl("txt_BossTime6") as Label;
-                    Boss7 = item.FindControl("txt_BossTime7") as Label;
                 }
-                
+
+                Label Boss1 = item.FindControl("txt_BossTime1") as Label;
+                Label Boss2 = item.FindControl("txt_BossTime2") as Label;
+                Label Boss3 = item.FindControl("txt_BossTime3") as Label;
+                Label Boss4 = item.FindControl("txt_BossTime4") as Label;
+                Label Boss5 = item.FindControl("txt_BossTime5") as Label;
+                Label Boss6 = item.FindControl("txt_BossTime6") as Label;
+                Label Boss7 = item.FindControl("txt_BossTime7") as Label;
+
                 Label lab = item.FindControl("txt_Thu") as Label;
                 lab.CssClass = "GoLiveGlow";
 
-                if (Now < A && Boss1.Text != "")
+                if (Now < A && Boss1.Text != string.Empty)
                 {
                     Boss1.CssClass = "GoLiveGlow";
                 }
-                else if (Now < B && Boss2.Text != "")
+                else if (Now < B && Boss2.Text != string.Empty)
                 {
                     Boss2.CssClass = "GoLiveGlow";
                 }
-                else if (Now < C && Boss3.Text != "")
+                else if (Now < C && Boss3.Text != string.Empty)
                 {
                     Boss3.CssClass = "GoLiveGlow";
                 }
-                else if (Now < D && Boss4.Text != "")
+                else if (Now < D && Boss4.Text != string.Empty)
                 {
                     Boss4.CssClass = "GoLiveGlow";
                 }
-                else if (Now < E && Boss5.Text != "")
+                else if (Now < E && Boss5.Text != string.Empty)
                 {
                     Boss5.CssClass = "GoLiveGlow";
                 }
-                else if (Now < F && Boss6.Text != "")
+                else if (Now < F && Boss6.Text != string.Empty)
                 {
                     Boss6.CssClass = "GoLiveGlow";
                 }
-                else if (Now < Y && Boss7.Text != "")
+                else if (Now < Y && Boss7.Text != string.Empty)
                 {
                     Boss7.CssClass = "GoLiveGlow";
                 }
             }
         }
+
+        protected void Save(Object sender, EventArgs args)
+        {
+            HttpCookie check = new HttpCookie("check");
+                check.Values["01min"] = chk_01min.Checked.ToString();
+                check.Values["05min"] = chk_05min.Checked.ToString();
+                check.Values["15min"] = chk_15min.Checked.ToString();
+                check.Values["30min"] = chk_30min.Checked.ToString();
+                check.Values["Live"] = chk_live.Checked.ToString();
+                check.Values["Kzarka"] = chk_Kzarka.Checked.ToString();
+                check.Values["Garmoth"] = chk_Garmoth.Checked.ToString();
+                check.Values["Nouver"] = chk_Nouver.Checked.ToString();
+                check.Values["Karanda"] = chk_Karanda.Checked.ToString();
+                check.Values["Offin"] = chk_Offin.Checked.ToString();
+                check.Values["Kutum"] = chk_Kutum.Checked.ToString();
+                check.Values["Quint"] = chk_Quint_Muraka.Checked.ToString();
+                check.Values["Vell"] = chk_Vell.Checked.ToString();
+            check.Expires = DateTime.UtcNow.AddDays(7);
+            Response.Cookies.Add(check);
+        }
+
         public static String ConvertSecondToClock(int Total)
         {
             int Hour = Total / 3600;
@@ -125,11 +158,11 @@ namespace CrimsonAxis
             string Hours = Hour.ToString();
             string Minutes = Minute.ToString();
             string Seconds = Second.ToString();
-            if (Hour < 10)
+            if (Hour < 10 && Hour > -10)
                 Hours = "0" + Hour.ToString();
-            if (Minute < 10)
+            if (Minute < 10 && Minute > -10)
                 Minutes = "0" + Minute.ToString();
-            if (Second < 10)
+            if (Second < 10 && Second > -10)
                 Seconds = "0" + Second.ToString();
             string x = Hours + ":" + Minutes + ":" + Seconds;
             return x;
@@ -169,7 +202,7 @@ namespace CrimsonAxis
         {
             txt_BossTiepTheo.Text = "Boss Tiếp Theo (SEA)";
             txt_BossSau.Text = "Boss sau";
-            if (Store1.Text == "" && Store2.Text == "")
+            if (Store1.Text == string.Empty && Store2.Text == string.Empty)
             {
                 int TotalRow = 0;
                 int RowCout = 0;
@@ -205,7 +238,6 @@ namespace CrimsonAxis
                     {
                         if (TotalTime.Rows[i][0].ToString() == BossData.Rows[0][0].ToString() && i == TotalRow - 1)
                         {
-                            DateTime Now = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.UtcNow, "SE Asia Standard Time");
                             DateTime Next = GetThisDay(BossData.Rows[1][0].ToString());
                             Next = MoveNextDay(Next.Hour, Next.Minute, Next.Second);
                             Store2.Text = Next.ToString();
@@ -339,25 +371,68 @@ namespace CrimsonAxis
             int Total = Convert.ToInt32(TimeLeft.TotalSeconds);
             int Total2 = Convert.ToInt32(TimeLeft2.TotalSeconds);
             Timer1.Interval = 1000;
-            if (Total <= 1800 && Total > 1795)
+
+            string[] CheckedBoss = new string[0];
+            
+            if (chk_Kzarka.Checked)
             {
-                ScriptManager.RegisterClientScriptBlock(this, GetType(), "myfunction", "myfunction();", true);
+                Array.Resize(ref CheckedBoss, CheckedBoss.Length + 1);
+                CheckedBoss[CheckedBoss.Length - 1] = "Kzarka";
+            } if(chk_Kutum.Checked)
+            {
+                Array.Resize(ref CheckedBoss, CheckedBoss.Length + 1);
+                CheckedBoss[CheckedBoss.Length - 1] = "Kutum";
+            } if(chk_Nouver.Checked)
+            {
+                Array.Resize(ref CheckedBoss, CheckedBoss.Length + 1);
+                CheckedBoss[CheckedBoss.Length - 1] = "Nouver";
+            } if(chk_Karanda.Checked)
+            {
+                Array.Resize(ref CheckedBoss, CheckedBoss.Length + 1);
+                CheckedBoss[CheckedBoss.Length - 1] = "Karanda";
+            } if(chk_Garmoth.Checked)
+            {
+                Array.Resize(ref CheckedBoss, CheckedBoss.Length + 1);
+                CheckedBoss[CheckedBoss.Length - 1] = "Garmoth";
+            } if(chk_Quint_Muraka.Checked)
+            {
+                Array.Resize(ref CheckedBoss, CheckedBoss.Length + 1);
+                CheckedBoss[CheckedBoss.Length - 1] = "Quint";
+            } if(chk_Offin.Checked)
+            {
+                Array.Resize(ref CheckedBoss, CheckedBoss.Length + 1);
+                CheckedBoss[CheckedBoss.Length - 1] = "Offin";
+            } if(chk_Vell.Checked)
+            {
+                Array.Resize(ref CheckedBoss, CheckedBoss.Length + 1);
+                CheckedBoss[CheckedBoss.Length - 1] = "Vell";
             }
-            if (Total <= 900 && Total > 895)
+            for (int y = 0; y < CheckedBoss.Length; y++)
             {
-                ScriptManager.RegisterClientScriptBlock(this, GetType(), "myfunction2", "myfunction2();", true);
-            }
-            if (Total <= 300 && Total > 295)
-            {
-                ScriptManager.RegisterClientScriptBlock(this, GetType(), "myfunction3", "myfunction3();", true);
-            }
-            if (Total <= 60 && Total > 55)
-            {
-                ScriptManager.RegisterClientScriptBlock(this, GetType(), "myfunction4", "myfunction4();", true);
-            }
-            if (Total <= 0)
-            {
-                ScriptManager.RegisterClientScriptBlock(this, GetType(), "myfunction4", "myfunction4();", true);
+                if ( CheckedBoss[y] == BossName.Text || CheckedBoss[y] == BossName3.Text)
+                {
+                    if (Total <= 1800 && Total > 1795 && chk_30min.Checked)
+                    {
+                        ScriptManager.RegisterClientScriptBlock(this, GetType(), "myfunction", "myfunction();", true);
+                    }
+                    if (Total <= 900 && Total > 895 && chk_15min.Checked)
+                    {
+                        ScriptManager.RegisterClientScriptBlock(this, GetType(), "myfunction2", "myfunction2();", true);
+                    }
+                    if (Total <= 300 && Total > 295 && chk_05min.Checked)
+                    {
+                        ScriptManager.RegisterClientScriptBlock(this, GetType(), "myfunction3", "myfunction3();", true);
+                    }
+                    if (Total <= 60 && Total > 55 && chk_01min.Checked)
+                    {
+                        ScriptManager.RegisterClientScriptBlock(this, GetType(), "myfunction4", "myfunction4();", true);
+                    }
+                    if (Total <= 0 && chk_live.Checked)
+                    {
+                        ScriptManager.RegisterClientScriptBlock(this, GetType(), "myfunction5", "myfunction5();", true);
+                    }
+                    break;
+                }
             }
 
 
@@ -365,6 +440,8 @@ namespace CrimsonAxis
             {
                 Label1.Attributes.Add("style", "Color: #fff;");
                 Label1.CssClass = "glow";
+                BossName.CssClass = "col-md-6 glow";
+                BossName3.CssClass = "col-md-6 glow";
             }
             else
             {
@@ -381,12 +458,10 @@ namespace CrimsonAxis
                 {
                     Store1.Text = "";
                     Store2.Text = "";
-                    Store3.Text = "";
                 } else 
                 {
                     Store1.Text = "";
                     Store2.Text = "";
-                    Store3.Text = "";
                     Response.Redirect("Boss-Timer.aspx");
                 }
                 

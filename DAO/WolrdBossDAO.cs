@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Data;
 using System.Data.SqlClient;
 using DTO;
+using System.Collections;
 
 namespace DAO
 {
@@ -50,7 +51,11 @@ namespace DAO
         public static DataTable GetTotal(DateTime Now)
         {
             int weekday = (int)Now.DayOfWeek;
-            string query = "SELECT Time FROM WorldBoss WHERE WeekDay = @WeekDay";
+            if (weekday == 0)
+            {
+                weekday = 7;
+            }
+            string query = "SELECT Time FROM WorldBoss WHERE WeekDay = @WeekDay GROUP BY Time";
             SqlParameter[] param = new SqlParameter[1];
             param[0] = new SqlParameter("@WeekDay", weekday);
             return DataProvider.ExecuteSelectQuery(query, param);
@@ -65,7 +70,7 @@ namespace DAO
             {
                 weekday = 7;
             }
-            string query = "SELECT Time FROM WorldBoss WHERE WeekDay = @wEEKDAY GROUP BY Time";
+            string query = "SELECT Time FROM WorldBoss WHERE WeekDay = @WEEKDAY GROUP BY Time";
             SqlParameter[] param = new SqlParameter[1];
             param[0] = new SqlParameter("@WEEKDAY", weekday);
             DataTable Result = DataProvider.ExecuteSelectQuery(query, param);
@@ -121,7 +126,7 @@ namespace DAO
 
         public static String GetBossFromTime(DataTable AllBossInDay, string Time, int i, bool Final)
         {
-            string BossTime = "";
+            string BossTime = string.Empty;
             if (Final == false)
             {
                 if (AllBossInDay.Rows[i][0].ToString() == Time && AllBossInDay.Rows[i][0].ToString() == AllBossInDay.Rows[i - 1][0].ToString())
@@ -153,30 +158,21 @@ namespace DAO
             table.Columns.Add("BossTime5", typeof(string));
             table.Columns.Add("BossTime6", typeof(string));
             table.Columns.Add("BossTime7", typeof(string));
+            string[] Time = new string[7] { "00:30:00", "06:00:00", "10:00:00", "14:00:00","15:00:00","19:00:00","23:00:00" };
+            string Thu = string.Empty;
             for (int i = 1; i <= 7; i++)
             {
-                string Thu = "";
-                string BossTime1 = "";
-                string BossTime2 = "";
-                string BossTime3 = "";
-                string BossTime4 = "";
-                string BossTime5 = "";
-                string BossTime6 = "";
-                string BossTime7 = "";
-                if (i == 1)
-                    Thu = "THỨ HAI";
-                if (i == 2)
-                    Thu = "THỨ BA";
-                if (i == 3)
-                    Thu = "THỨ TƯ";
-                if (i == 4)
-                    Thu = "THỨ NĂM";
-                if (i == 5)
-                    Thu = "THỨ SÁU";
-                if (i == 6)
-                    Thu = "THỨ BẢY";
-                if (i == 7)
-                    Thu = "CHỦ NHẬT";
+                string[] TableCol = new string[7] { null, null, null, null, null, null, null };
+                switch (i)
+                {
+                    case 1: Thu = "THỨ HAI";break;
+                    case 2: Thu = "THỨ BA";break;
+                    case 3: Thu ="THỨ TƯ";break;
+                    case 4: Thu = "THỨ NĂM";break;
+                    case 5: Thu = "THỨ SÁU";break;
+                    case 6: Thu = "THỨ BẢY";break;
+                    case 7: Thu = "CHỦ NHẬT";break;
+                }
                 int TotalBoss = 0;
                 DataTable AllBossInDay = GetAllBossInDay(i);
                 foreach (DataRow row in AllBossInDay.Rows)
@@ -187,68 +183,28 @@ namespace DAO
                 {
                     if (j == 0)
                     { 
-                        if(GetBossFromTime(AllBossInDay, "00:30:00", j, true) != "")
+                        for(int y = 0; y < 7; y++)
                         {
-                            BossTime1 = GetBossFromTime(AllBossInDay, "00:30:00", j, true);
-                        }
-                        if (GetBossFromTime(AllBossInDay, "06:00:00", j, true) != "")
-                        {
-                            BossTime2 = GetBossFromTime(AllBossInDay, "06:00:00", j, true);
-                        }
-                        if(GetBossFromTime(AllBossInDay, "10:00:00", j, true) != "")
-                        {
-                            BossTime3 = GetBossFromTime(AllBossInDay, "10:00:00", j, true);
-                        }
-                        if(GetBossFromTime(AllBossInDay, "14:00:00", j, true) != "")
-                        {
-                            BossTime4 = GetBossFromTime(AllBossInDay, "14:00:00", j, true);
-                        }
-                        if(GetBossFromTime(AllBossInDay, "15:00:00", j, true) != "")
-                        {
-                            BossTime5 = GetBossFromTime(AllBossInDay, "15:00:00", j, true);
-                        }
-                        if(GetBossFromTime(AllBossInDay, "19:00:00", j, true) != "")
-                        {
-                            BossTime6 = GetBossFromTime(AllBossInDay, "19:00:00", j, true);
-                        }
-                        if(GetBossFromTime(AllBossInDay, "23:00:00", j, true) != "")
-                        {
-                            BossTime7 = GetBossFromTime(AllBossInDay, "23:00:00", j, true);
+                            string Zone = (string)Time[y];
+                            if (GetBossFromTime(AllBossInDay, Zone, j, true) != string.Empty)
+                            {
+                                TableCol[y] = (GetBossFromTime(AllBossInDay, Zone, j, true)).ToString();
+                            }
                         }
                     }
                     else
                     {
-                        if(GetBossFromTime(AllBossInDay, "00:30:00", j, false) != "")
+                        for (int y = 0; y < 7; y++)
                         {
-                            BossTime1 = GetBossFromTime(AllBossInDay, "00:30:00", j, false);
-                        }
-                        if(GetBossFromTime(AllBossInDay, "06:00:00", j, false) != "")
-                        {
-                            BossTime2 = GetBossFromTime(AllBossInDay, "06:00:00", j, false);
-                        }
-                        if(GetBossFromTime(AllBossInDay, "10:00:00", j, false) != "")
-                        {
-                            BossTime3 = GetBossFromTime(AllBossInDay, "10:00:00", j, false);
-                        }
-                        if(GetBossFromTime(AllBossInDay, "14:00:00", j, false) != "")
-                        {
-                            BossTime4 = GetBossFromTime(AllBossInDay, "14:00:00", j, false);
-                        }
-                        if(GetBossFromTime(AllBossInDay, "15:00:00", j, false) != "")
-                        {
-                            BossTime5 = GetBossFromTime(AllBossInDay, "15:00:00", j, false);
-                        }
-                        if(GetBossFromTime(AllBossInDay, "19:00:00", j, false) != "")
-                        {
-                            BossTime6 = GetBossFromTime(AllBossInDay, "19:00:00", j, false);
-                        }
-                        if(GetBossFromTime(AllBossInDay, "23:00:00", j, false) != "")
-                        {
-                            BossTime7 = GetBossFromTime(AllBossInDay, "23:00:00", j, false);
+                            string Zone = (string)Time[y];
+                            if (GetBossFromTime(AllBossInDay, Zone, j, false) != string.Empty)
+                            {
+                                TableCol[y] = (GetBossFromTime(AllBossInDay, Zone, j, false)).ToString();
+                            }
                         }
                     }
                 }
-                table.Rows.Add(Thu, BossTime1, BossTime2, BossTime3, BossTime4, BossTime5, BossTime6, BossTime7);
+                table.Rows.Add(Thu, TableCol[0], TableCol[1], TableCol[2], TableCol[3], TableCol[4], TableCol[5], TableCol[6]);
             }
             foreach (DataRow dr in table.Rows)
             {

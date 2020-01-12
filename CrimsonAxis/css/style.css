@@ -66,6 +66,27 @@ body {
 
 [tabindex="-1"]:focus {
   outline: 0 !important; }
+  
+.MyButton {
+  background-color: Transparent;
+  background-repeat:no-repeat;
+  border:none;
+  color: #dc3545;
+  padding: 3px 3px;
+  font-size: 20px;
+  cursor: pointer;
+  outline:none;
+}.MyButton:hover {
+  background-color: Transparent;
+  background-repeat:no-repeat;
+  border:none;
+  color: #dc3545;
+  text-shadow: 0 0 10px red;
+  padding: 3px 3px;
+  font-size: 20px;
+  cursor: pointer;
+  outline:none;
+}
  
 .disable-scrollbars {
 	overflow-x: scroll;
@@ -77,8 +98,64 @@ body {
 	display: None;
     background: transparent;
 }
-.Main-Boss-Image {
-	
+
+.SettingCheck {
+  display: block;
+  position: relative;
+  margin-bottom: 35px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.SettingCheck input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.Checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
+}
+
+.SettingCheck:hover input ~ .Checkmark {
+	background-color: #ccc;
+}
+
+.SettingCheck input:checked ~ .Checkmark {
+	background-color: #dc3545;
+}
+
+.Checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.SettingCheck input:checked ~ .Checkmark:after {
+  display: block;
+}
+
+.SettingCheck .Checkmark:after {
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
 }
 
 .Timer-Text {
@@ -164,19 +241,7 @@ body {
 .Thu {
   color: #fff;
   text-align: center;
-  -webkit-animation: Thu 0.5s ease-in-out infinite alternate;
-  -moz-animation: Thu 0.5s ease-in-out infinite alternate;
-  animation: Thu 0.5s ease-in-out infinite alternate;
-}
-
-@-webkit-keyframes Thu {
-	from {
-  text-shadow: 0 0 20px red, 0 0 30px red, 0 0 40px red;
-  }
-  
-  to {
-    text-shadow: 0 0 20px red, 0 0 30px red, 0 0 40px red;
-  }
+  text-shadow: 0 0 20px red, 0 0 30px red,0 0 40px red;
 }
 
 hr {
@@ -8094,7 +8159,7 @@ h1, h2, h3, h4, h5,
 .pricing-entry {
   width: 100%;
   display: block;
-  margin-bottom: 30px; }
+  margin-bottom: 10px; }
   .pricing-entry .img {
     width: 60px;
     height: 60px;
@@ -8119,7 +8184,6 @@ h1, h2, h3, h4, h5,
       content: '';
       width: 100%;
       height: 1px;
-      border-bottom: 1px dashed #674c27;
       z-index: -1; }
     .pricing-entry .text h3 {
       width: calc(100% - 80px);

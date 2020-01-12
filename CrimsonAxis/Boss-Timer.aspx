@@ -35,7 +35,6 @@
                     <div class="col-md-7 heading-section ftco-animate text-center">
                         <asp:Label ID="Store1" runat="server" style="display:none;"></asp:Label>
                         <asp:Label ID="Store2" runat="server" style="display:none;"></asp:Label>
-                        <asp:Label ID="Store3" runat="server" style="display:none;"></asp:Label>
                         <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
                         
                         <script type="text/javascript">
@@ -139,47 +138,177 @@
                 </div>
 			</div>    
 		</section>
+
+        <section class="ftco-section">
+    	<div class="container">
+        <div class="row">
+        	<div class="col-md-6 mb-5 pb-3">
+        		<h3 class="mb-5 heading-pricing ftco-animate">Cài Đặt</h3>
+        		<div class="pricing-entry d-flex ftco-animate">
+	        			<div class="d-flex text align-items-center">
+	        				<h3>Thông báo khi còn 00:30:00 <asp:Button ID="Button1" runat="server" OnClientClick="play1(); return false;" CssClass="MyButton" Text="Scooby Doo" /></h3>
+	        				<label class="SettingCheck"><asp:CheckBox ID="chk_30min" runat="server" Checked="true" OnCheckedChanged="Save" /><span class="Checkmark"></span></label>
+	        			</div>
+        		</div>
+                <div class="pricing-entry d-flex ftco-animate">
+	        			<div class="d-flex text align-items-center">
+	        				<h3>Thông báo khi còn 00:15:00 <asp:Button ID="Button2" runat="server" OnClientClick="play2(); return false;" CssClass="MyButton" Text="Ok let's go" /></h3>
+	        				<label class="SettingCheck"><asp:CheckBox ID="chk_15min" OnCheckedChanged="Save" Checked="true" runat="server" /><span class="Checkmark"></span></label>
+	        			</div>
+        		</div>
+                <div class="pricing-entry d-flex ftco-animate">
+	        			<div class="d-flex text align-items-center">
+	        				<h3>Thông báo khi còn 00:05:00 <asp:Button ID="Button3" runat="server" OnClientClick="play3(); return false;" CssClass="MyButton" Text="Come on get happy" /></h3>
+	        				<label class="SettingCheck"><asp:CheckBox ID="chk_05min" OnCheckedChanged="Save" Checked="true" runat="server" /><span class="Checkmark"></span></label>
+	        			</div>
+        		</div>
+                <div class="pricing-entry d-flex ftco-animate">
+	        			<div class="d-flex text align-items-center">
+	        				<h3>Thông báo khi còn 00:01:00 <asp:Button ID="Button4" runat="server" OnClientClick="play4(); return false;" CssClass="MyButton" Text="Clock tick" /></h3>
+	        				<label class="SettingCheck"><asp:CheckBox ID="chk_01min" OnCheckedChanged="Save" Checked="true" runat="server" /><span class="Checkmark"></span></label>
+	        			</div>
+        		</div>
+                <div class="pricing-entry d-flex ftco-animate">
+	        			<div class="d-flex text align-items-center">
+	        				<h3>Thông báo khi LIVE <asp:Button ID="Button5" OnClientClick="play5(); return false;" runat="server" CssClass="MyButton" Text="War horn" /></h3>
+	        				<label class="SettingCheck"><asp:CheckBox ID="chk_live" OnCheckedChanged="Save" Checked="true" runat="server" /><span class="Checkmark"></span></label>
+	        			</div>
+        		</div>
+        	</div>
+
+        	<div class="col-md-6 mb-5 pb-3">
+        		<h3 class="mb-5 heading-pricing ftco-animate">Cài đặt Boss</h3>
+        		<div class="pricing-entry d-flex ftco-animate">
+	        			<div class="d-flex text align-items-center">
+	        				<h3>Thông báo khi có Kzarka</h3>
+	        				<label class="SettingCheck"><asp:CheckBox ID="chk_Kzarka" OnCheckedChanged="Save" Checked="true" runat="server" /><span class="Checkmark"></span></label>
+	        			</div>
+	        		</div>
+                <div class="pricing-entry d-flex ftco-animate">
+	        			<div class="d-flex text align-items-center">
+	        				<h3>Thông báo khi có Garmoth</h3>
+	        				<label class="SettingCheck"><asp:CheckBox ID="chk_Garmoth" OnCheckedChanged="Save" Checked="true" runat="server" /><span class="Checkmark"></span></label>
+	        			</div>
+	        		</div>
+                <div class="pricing-entry d-flex ftco-animate">
+	        			<div class="d-flex text align-items-center">
+	        				<h3>Thông báo khi có Nouver</h3>
+	        				<label class="SettingCheck"><asp:CheckBox ID="chk_Nouver" OnCheckedChanged="Save" Checked="true" runat="server" /><span class="Checkmark"></span></label>
+	        			</div>
+	        		</div>
+                <div class="pricing-entry d-flex ftco-animate">
+	        			<div class="d-flex text align-items-center">
+	        				<h3>Thông báo khi có Karanda</h3>
+	        				<label class="SettingCheck"><asp:CheckBox ID="chk_Karanda" OnCheckedChanged="Save" Checked="true" runat="server" /><span class="Checkmark"></span></label>
+	        			</div>
+	        		</div>
+                <div class="pricing-entry d-flex ftco-animate">
+	        			<div class="d-flex text align-items-center">
+	        				<h3>Thông báo khi có Offin</h3>
+	        				<label class="SettingCheck"><asp:CheckBox ID="chk_Offin" OnCheckedChanged="Save"  Checked="true" runat="server" /><span class="Checkmark"></span></label>
+	        			</div>
+	        		</div>
+                <div class="pricing-entry d-flex ftco-animate">
+	        			<div class="d-flex text align-items-center">
+	        				<h3>Thông báo khi có Kutum</h3>
+	        				<label class="SettingCheck"><asp:CheckBox ID="chk_Kutum" OnCheckedChanged="Save" Checked="true" runat="server" /><span class="Checkmark"></span></label>
+	        			</div>
+	        		</div>
+                <div class="pricing-entry d-flex ftco-animate">
+	        			<div class="d-flex text align-items-center">
+	        				<h3>Thông báo khi có Quint & Muraka</h3>
+	        				<label class="SettingCheck"><asp:CheckBox ID="chk_Quint_Muraka" OnCheckedChanged="Save" Checked="true" runat="server" /><span class="Checkmark"></span></label>
+	        			</div>
+	        		</div>
+                <div class="pricing-entry d-flex ftco-animate">
+	        			<div class="d-flex text align-items-center">
+	        				<h3>Thông báo khi có Vell</h3>
+	        				<label class="SettingCheck"><asp:CheckBox ID="chk_Vell" OnCheckedChanged="Save" Checked="true" runat="server" /><span class="Checkmark"></span></label>
+	        			</div>
+	        		</div>
+        	</div>
+        </div>
+    	</div>
+    </section>
+
+        
+
     </form>
     <script>
-        var OneTime = 1;
-        var OneTime1 = 1;
-        var OneTime2 = 1;
-        var OneTime3 = 1;
-        var OneTime4 = 1;
+        var OneTime = false;
+        var OneTime1 = false;
+        var OneTime2 = false;
+        var OneTime3 = false;
+        var OneTime4 = false;
+        var audio = new Audio('play.mp3');
         function myfunction() {
-            if (OneTime == 1) {
-                var audio = new Audio('play.mp3');
+            if (!OneTime) {
+                audio = new Audio('play.mp3');
                 audio.play();
-                OneTime = 0;
+                OneTime = true;
             }
         }
         function myfunction2() {
-            if (OneTime1 == 1) {
-                var audio = new Audio('play2.mp3');
+            if (!OneTime1) {
+                audio = new Audio('play2.mp3');
                 audio.play();
-                OneTime1 = 0;
+                OneTime1 = true;
             }
         }
         function myfunction3() {
-            if (OneTime2 == 1) {
-                var audio = new Audio('play3.mp3');
+            if (!OneTime2) {
+                audio = new Audio('play3.mp3');
                 audio.play();
-                OneTime2 = 0;
+                OneTime2 = true;
             }
         }
         function myfunction4() {
-            if (OneTime3 == 1) {
-                var audio = new Audio('play4.mp3');
+            if (!OneTime3) {
+                audio = new Audio('play4.mp3');
                 audio.play();
-                OneTime3 = 0;
+                OneTime3 = true;
             }
         }
         function myfunction5() {
-            if (OneTime4 == 1) {
-                var audio = new Audio('play5.mp3');
+            if (!OneTime4) {
+                audio = new Audio('play5.mp3');
                 audio.play();
-                OneTime4 = 0;
+                OneTime4 = true;
             }
+        }
+        function play1() {
+            audio.pause();
+            audio.currentTime = 0;
+            audio = new Audio('play.mp3');
+            
+                audio.play();
+            }
+        function play2() {
+            audio.pause();
+            audio.currentTime = 0;
+            audio = new Audio('play2.mp3');
+            
+                audio.play();
+        }
+        function play3() {
+            audio.pause();
+            audio.currentTime = 0;
+            audio = new Audio('play3.mp3');
+            
+            audio.play();
+        }
+        function play4() {
+            audio.pause();
+            audio.currentTime = 0;
+            audio = new Audio('play4.mp3');
+            
+            audio.play();
+        }
+        function play5() {
+            audio.pause();
+            audio.currentTime = 0;
+            audio = new Audio('play5.mp3');
+            audio.play();
         }
     </script>
 </asp:Content>
