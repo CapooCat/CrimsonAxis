@@ -49,7 +49,9 @@
     </asp:ContentPlaceHolder>
 </head>
 <body style="color:#949494">
+    <form id="form1" runat="server">
         <button onclick="topFunction()" id="myBtn" style="width:auto;" class="btn btn-primary ftco-animate icon-arrow-up px-xl-4"></button>
+        
         <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
         
         </asp:ContentPlaceHolder>
@@ -57,10 +59,26 @@
     	<div class="overlay"></div>
       <div class="container">
         <div class="row mb-5">
-          <div class="col-lg-3 col-md-6 mb-5 mb-md-5">
+          <div class="col-lg-4 col-md-6 mb-5 mb-md-5">
             <div class="ftco-footer-widget mb-4">
-              <h2 class="ftco-heading-2">About Us</h2>
-              <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+              <h2 class="ftco-heading-2">Số người dùng truy cập</h2>
+                      <script type="text/javascript">
+                            var prm = Sys.WebForms.PageRequestManager.getInstance();
+                            prm.add_beginRequest(beginRequest);
+                            function beginRequest() {
+                                prm._scrollPosition = null;
+                            }
+                        </script>
+                  <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
+                      <Triggers>
+                                <asp:AsyncPostBackTrigger ControlID="ReCountUser" EventName="Tick" />
+                            </Triggers>
+                      <ContentTemplate>
+                  <h2><asp:Label ID="UserCount" runat="server" Text="..."></asp:Label></h2>
+                          </ContentTemplate>
+                </asp:UpdatePanel>
+                      <asp:Timer ID="ReCountUser" runat="server" Interval="1000" OnTick="ReCountUser_Tick"></asp:Timer>
+                      </form>
             </div>
           </div>
             <div class="col-lg-4 col-md-6 mb-5 mb-md-5">
@@ -94,6 +112,7 @@
         </div>
       </div>
     </footer>
+    
 
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
   <script src="js/jquery.min.js"></script>
@@ -127,5 +146,6 @@
             $("div[style='height: 65px;']").remove();
         });
 </script>
+    </form>
 </body>
 </html>

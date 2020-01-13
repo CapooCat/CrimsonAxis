@@ -27,7 +27,6 @@
         
     
     
-    <form id="form1" runat="server">
         
         <section class="ftco-section" style="margin-top: 30px;">
             <div class="container">
@@ -52,34 +51,33 @@
                             </Triggers>
 
                             <ContentTemplate>
-                                <h2><asp:Label ID="txt_BossTiepTheo" runat="server" Text=""></asp:Label></h2>
+                                <h2><asp:Label ID="txt_BossTiepTheo" runat="server" Text="BOSS TIẾP THEO (SEA)"></asp:Label></h2>
                                 <div class="row justify-content-center align-items-center">
-                                    <asp:Image ID="AnhWorldBoss" style="width: 50%; height: 50%" CssClass="col-md-6" runat="server" />
-                                    <asp:Image ID="AnhWorldBoss3" style="width: 50%; height: 50%" CssClass="col-md-6" runat="server"/>
+                                    <asp:Image ID="AnhWorldBoss" ImageUrl='images/empty.png' style="width: 50%; height: 50%" CssClass="col-md-6" runat="server" />
+                                    <asp:Image ID="AnhWorldBoss3" ImageUrl='images/empty.png' style="width: 50%; height: 50%" CssClass="col-md-6" runat="server"/>
                                 </div>
                                 <h3 class="row justify-content-center align-items-center Main-Boss-Text">
-                                    <asp:Label ID="BossName" CssClass="col-md-6"  style="Color: #fff;width: 50%; height: 50%" runat="server"/>
-                                    <asp:Label CssClass="col-md-6" style="Color: #fff;width: 50%; height: 50%" ID="BossName3" runat="server"/>
+                                    <asp:Label ID="BossName" CssClass="col-md-6" style="Color: #fff;width: 50%; height: 50%" Text="..." runat="server"/>
+                                    <asp:Label CssClass="col-md-6" style="Color: #fff;width: 50%; height: 50%" ID="BossName3" Text="..." runat="server"/>
                                 </h3>
-                                <h1 class="Timer-Text"><asp:Label ID="Label1" runat="server" ></asp:Label></h1>
+                                <h1 class="Timer-Text"><asp:Label ID="Label1" style="Color: #fff;" runat="server" Text="..."></asp:Label></h1>
                                 <h2>
-                                    <asp:Label ID="txt_BossSau" runat="server" Text=""></asp:Label>
+                                    <asp:Label ID="txt_BossSau" runat="server" Text="BOSS SAU"></asp:Label>
                                 </h2>
                                 
                                 <div class="row justify-content-center align-items-center col-md-12">
                                             <div class="row align-items-center justify-content-center col-md-12">
-                                            <asp:Image ID="AnhWorldBoss2" style="width: 30%; height: 30%;" CssClass="col-md-4" runat="server" />
-                                            <asp:Image ID="AnhWorldBoss4" style="width: 30%; height: 30%;" CssClass="col-md-4"  runat="server" />
-                                        
-                                        <h4 class="Next-Boss" >
+                                            <asp:Image ID="AnhWorldBoss2" ImageUrl='images/empty.png'  style="width: 30%; height: 30%;" CssClass="col-md-4" runat="server" />
+                                            <asp:Image ID="AnhWorldBoss4" ImageUrl='images/empty.png' style="width: 30%; height: 30%;" CssClass="col-md-4"  runat="server" />
+                                        <h4 class="Next-Boss">
                                                 <div class="col-md-12">
-                                                <asp:Label ID="BossName2" style="Color: #fff;"  runat="server"></asp:Label>
+                                                <asp:Label ID="BossName2" style="Color: #fff;" Text="..."  runat="server"></asp:Label>
                                             </div>
                                             <div class="col-md-12">
-                                                <asp:Label ID="BossName4"  style="Color: #fff;" runat="server"></asp:Label>
+                                                <asp:Label ID="BossName4"  style="Color: #fff;" Text="..." runat="server"></asp:Label>
                                             </div>
                                             <div class="col-md-12">
-                                                <asp:Label ID="Label2"  style="Color: #fff;"  runat="server"></asp:Label>
+                                                <asp:Label ID="Label2"  style="Color: #fff;" Text="..."  runat="server"></asp:Label>
                                             </div>
                                             </h4>
                                                 </div>
@@ -93,6 +91,7 @@
             </div>
         </section>
 
+
         <section class="ftco-section ftco-cart">
 			<div class="container">
                 <div class="row justify-content-center mb-5 pb-3">
@@ -102,6 +101,15 @@
                         <img style="max-width: 300px;" src="https://lh3.googleusercontent.com/hRLkDL15CbsrAzc5T9UV9E6tVM3SA0SLYb2xn6B0fKFX8rr4-hCi0PLbkNgsYfxEWl9z0a5Rq5WTOAk8VbqtMvFcM894mo8OyTcfNY_RIwvN7QwSIYMSzoEOhXPjCvYKquc74iE7=w2400">
                     </div>
                 </div>
+                <h2 class="row justify-content-center pb-3" style="color: #dc3545">Thời gian VN hiện tại</h2>
+                <asp:UpdatePanel ID="UpdatePanel2" runat="server" UpdateMode="Conditional">
+                <Triggers>
+                    <asp:AsyncPostBackTrigger ControlID="Timer1" EventName="Tick" />
+                </Triggers>
+            <ContentTemplate>
+                <h2 class="row justify-content-center mb-5 pb-3"><asp:Label ID="TimeNow" runat="server" style="color: #fff" Text="..."></asp:Label></h2>
+            </ContentTemplate>
+            </asp:UpdatePanel>
 				<div class="row">
     			<div class="ftco-animate disable-scrollbars">
 	    				<table class="table">
@@ -231,9 +239,7 @@
     	</div>
     </section>
 
-        
-
-    </form>
+      
     <script>
         var OneTime = false;
         var OneTime1 = false;

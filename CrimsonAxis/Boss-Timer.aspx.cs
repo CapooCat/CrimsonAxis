@@ -200,8 +200,7 @@ namespace CrimsonAxis
 
         protected void Timer1_Tick(object sender, EventArgs e)
         {
-            txt_BossTiepTheo.Text = "Boss Tiếp Theo (SEA)";
-            txt_BossSau.Text = "Boss sau";
+            TimeNow.Text = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.UtcNow, "SE Asia Standard Time").ToString();
             if (Store1.Text == string.Empty && Store2.Text == string.Empty)
             {
                 int TotalRow = 0;

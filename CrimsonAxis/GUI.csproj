@@ -95,6 +95,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Boss-Timer.aspx" />
+    <Content Include="Global.asax" />
     <Content Include="ThuVien.aspx" />
     <Content Include="Blog-Single.aspx" />
     <Content Include="Blog.aspx" />
@@ -128,6 +129,9 @@
     </Compile>
     <Compile Include="Boss-Timer.aspx.designer.cs">
       <DependentUpon>Boss-Timer.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="ThuVien.aspx.cs">
       <DependentUpon>ThuVien.aspx</DependentUpon>

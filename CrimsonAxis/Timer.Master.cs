@@ -13,5 +13,10 @@ namespace CrimsonAxis
         {
 
         }
+        protected void ReCountUser_Tick(object sender, EventArgs e)
+        {
+            int currentNumberOfUsers = Global.CurrentNumberOfUsers;
+            UserCount.Text = "Đang Online: " + currentNumberOfUsers.ToString();
+        }
     }
 }

@@ -13,8 +13,14 @@ namespace CrimsonAxis
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-                //rpt_Recent.DataSource = GuildBlogBUS.BaiMoiNhat();
-                //rpt_Recent.DataBind();
+            //rpt_Recent.DataSource = GuildBlogBUS.BaiMoiNhat();
+            //rpt_Recent.DataBind();
+        }
+
+        protected void ReCountUser_Tick(object sender, EventArgs e)
+        {
+            int currentNumberOfUsers = Global.CurrentNumberOfUsers;
+            UserCount.Text = "Đang Online: " + currentNumberOfUsers.ToString();
         }
     }
 }
