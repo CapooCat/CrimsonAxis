@@ -201,6 +201,7 @@ namespace CrimsonAxis
         protected void Timer1_Tick(object sender, EventArgs e)
         {
             TimeNow.Text = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.UtcNow, "SE Asia Standard Time").ToString();
+            TimeNow24h.Text = "(" + TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.UtcNow, "SE Asia Standard Time").ToString("HH:mm:ss") + ")";
             if (Store1.Text == string.Empty && Store2.Text == string.Empty)
             {
                 int TotalRow = 0;
@@ -450,7 +451,7 @@ namespace CrimsonAxis
                 BossName3.CssClass = "col-md-6";
             }
 
-            if (Total < -30)
+            if (Total < -60)
             {
                 //Get Boss data from the next Day
                 if (End2.Day != TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.UtcNow, "SE Asia Standard Time").Day)

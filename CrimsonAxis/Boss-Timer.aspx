@@ -107,7 +107,8 @@
                     <asp:AsyncPostBackTrigger ControlID="Timer1" EventName="Tick" />
                 </Triggers>
             <ContentTemplate>
-                <h2 class="row justify-content-center mb-5 pb-3"><asp:Label ID="TimeNow" runat="server" style="color: #fff" Text="..."></asp:Label></h2>
+                <h2 class="row justify-content-center"><asp:Label ID="TimeNow" runat="server" style="color: #fff" Text="..."></asp:Label></h2>
+                <h2 class="row justify-content-center mb-5"><asp:Label ID="TimeNow24h" runat="server" style="color: #fff" Text="..."></asp:Label></h2>
             </ContentTemplate>
             </asp:UpdatePanel>
 				<div class="row">
@@ -182,6 +183,13 @@
 	        				<label class="SettingCheck"><asp:CheckBox ID="chk_live" OnCheckedChanged="Save" Checked="true" runat="server" /><span class="Checkmark"></span></label>
 	        			</div>
         		</div>
+                <div class="pricing-entry d-flex ftco-animate">
+	        			<div class="d-flex text align-items-center">
+	        				<h3>Âm lượng</h3>
+                             <div class="slidecontainer">
+	        				<input type="range" min="0" max="100" value="50" class="slider" id="Volume"> </div>
+	        			</div>
+        		</div>
         	</div>
 
         	<div class="col-md-6 mb-5 pb-3">
@@ -241,15 +249,49 @@
 
       
     <script>
+        function getCookie(cname) {
+            var name = cname + "=";
+            var decodedCookie = decodeURIComponent(document.cookie);
+            var ca = decodedCookie.split(';');
+            for (var i = 0; i < ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0) == ' ') {
+                    c = c.substring(1);
+                }
+                if (c.indexOf(name) == 0) {
+                    return c.substring(name.length, c.length);
+                }
+            }
+            return "";
+        }
         var OneTime = false;
         var OneTime1 = false;
         var OneTime2 = false;
         var OneTime3 = false;
         var OneTime4 = false;
         var audio = new Audio('play.mp3');
+        var AudioVolume = document.getElementById("Volume");
+        var Cookie = getCookie("Volume");
+        if(Cookie != "")
+        {
+            AudioVolume.value = Cookie;
+        }
+        var ConvertVolume = AudioVolume.value / 100;
+        AudioVolume.oninput = function () {
+            ConvertVolume = AudioVolume.value / 100;
+            audio.volume = ConvertVolume;
+            document.cookie = "Volume" + "=" + (ConvertVolume * 100) + ";7;path=/";
+        }
+        AudioVolume.onchange = function () {
+            audio.pause();
+            audio.currentTime = 0;
+            audio.volume = ConvertVolume;
+            audio.play();
+        }
         function myfunction() {
             if (!OneTime) {
                 audio = new Audio('play.mp3');
+                audio.volume = ConvertVolume;
                 audio.play();
                 OneTime = true;
             }
@@ -257,6 +299,7 @@
         function myfunction2() {
             if (!OneTime1) {
                 audio = new Audio('play2.mp3');
+                audio.volume = ConvertVolume;
                 audio.play();
                 OneTime1 = true;
             }
@@ -264,6 +307,7 @@
         function myfunction3() {
             if (!OneTime2) {
                 audio = new Audio('play3.mp3');
+                audio.volume = ConvertVolume;
                 audio.play();
                 OneTime2 = true;
             }
@@ -271,6 +315,7 @@
         function myfunction4() {
             if (!OneTime3) {
                 audio = new Audio('play4.mp3');
+                audio.volume = ConvertVolume;
                 audio.play();
                 OneTime3 = true;
             }
@@ -278,6 +323,7 @@
         function myfunction5() {
             if (!OneTime4) {
                 audio = new Audio('play5.mp3');
+                audio.volume = ConvertVolume;
                 audio.play();
                 OneTime4 = true;
             }
@@ -286,35 +332,37 @@
             audio.pause();
             audio.currentTime = 0;
             audio = new Audio('play.mp3');
-            
+            audio.volume = ConvertVolume;
                 audio.play();
             }
         function play2() {
             audio.pause();
             audio.currentTime = 0;
             audio = new Audio('play2.mp3');
-            
+            audio.volume = ConvertVolume;
                 audio.play();
         }
         function play3() {
             audio.pause();
             audio.currentTime = 0;
             audio = new Audio('play3.mp3');
-            
+            audio.volume = ConvertVolume;
             audio.play();
         }
         function play4() {
             audio.pause();
             audio.currentTime = 0;
             audio = new Audio('play4.mp3');
-            
+            audio.volume = ConvertVolume;
             audio.play();
         }
         function play5() {
             audio.pause();
             audio.currentTime = 0;
             audio = new Audio('play5.mp3');
+            audio.volume = ConvertVolume;
             audio.play();
         }
+        
     </script>
 </asp:Content>

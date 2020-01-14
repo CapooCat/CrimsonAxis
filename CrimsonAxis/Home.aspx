@@ -152,13 +152,12 @@
         <img class="mb-4" style="max-width: 300px;" src="https://lh3.googleusercontent.com/hRLkDL15CbsrAzc5T9UV9E6tVM3SA0SLYb2xn6B0fKFX8rr4-hCi0PLbkNgsYfxEWl9z0a5Rq5WTOAk8VbqtMvFcM894mo8OyTcfNY_RIwvN7QwSIYMSzoEOhXPjCvYKquc74iE7=w2400">
         </div>
         </section>
-    <section class="ftco-animate img" style="background-image: url(https://lh3.googleusercontent.com/bPNW50DulOvzz4j07q4ull4ItAX-EIHQbTWPEInbEr80pxOCM3OfRrMJBQ3Li6uLheFhWKmPDf-WYVQj0BP_eu9EJFwYVNVv7LRHvIPG3tnfHNtaO5HDFJp5aj9GNrttVrX2l7sl=w2400);" data-stellar-background-ratio="0.5">
-        <section class="ftco-section contact-section ftco-animate img" style=" background-image: url(https://lh3.googleusercontent.com/yzV4o5PYBV57hC3yvJi_cBdzkDj2N66vKIDjjbNT2twNYTFF_8kBHjD6vGNZRaUlDaHwasXzKxsf5yeb922nCmJfaoOr9y2NrildLsStBkTLrGxXL6KCT6E4ASmd4Hkgzkec-_Xt=w2400);">
+    <section class="ftco-animate img" style="background-image: url(https://lh3.googleusercontent.com/bPNW50DulOvzz4j07q4ull4ItAX-EIHQbTWPEInbEr80pxOCM3OfRrMJBQ3Li6uLheFhWKmPDf-WYVQj0BP_eu9EJFwYVNVv7LRHvIPG3tnfHNtaO5HDFJp5aj9GNrttVrX2l7sl=w2400);">
+        <section class="ftco-section contact-section ftco-animate img" style="background-image: url(https://lh3.googleusercontent.com/yzV4o5PYBV57hC3yvJi_cBdzkDj2N66vKIDjjbNT2twNYTFF_8kBHjD6vGNZRaUlDaHwasXzKxsf5yeb922nCmJfaoOr9y2NrildLsStBkTLrGxXL6KCT6E4ASmd4Hkgzkec-_Xt=w2400);">
             <div class="container">
                 <div class="row justify-content-center mb-5 pb-3">
-                    <div class=" col-md-10 heading-section ftco-animate text-center">
-                        <iframe class="container" style="margin-top: 100px;" height="502" src="https://www.youtube.com/embed/uQ5fry5wNAg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
+                    <div class="col-md-10 ftco-animate text-center">
+                        <iframe class="Video-Contain" src="https://www.youtube.com/embed/uQ5fry5wNAg?modestbranding=1&autohide=1&showinfo=0" frameborder="0" allowfullscreen></iframe>
                     </div>
                 </div>
             </div>
@@ -176,7 +175,7 @@
     
     
 
-    <section class="ftco-counter ftco-bg-dark img" id="section-counter" style="background-image: url(https://lh3.googleusercontent.com/LsXgygMtx7YSF8kTHVkP0GFCUgbxb6aj3HsZ6JDV81ewveW2O0uIgxIv7RlKloy1dH_DdGKgi05r9BbPUByAHOCgsJXcP5cUSykXdO-HsgYlVo5TLzEt4fR1rgU-LHsX1isbDZXa=w2400);" data-stellar-background-ratio="0.5">
+    <section class="ftco-counter ftco-bg-dark img" id="section-counter" style="background-image: url(https://lh3.googleusercontent.com/LsXgygMtx7YSF8kTHVkP0GFCUgbxb6aj3HsZ6JDV81ewveW2O0uIgxIv7RlKloy1dH_DdGKgi05r9BbPUByAHOCgsJXcP5cUSykXdO-HsgYlVo5TLzEt4fR1rgU-LHsX1isbDZXa=w2400);">
 			<div class="overlay"></div>
       <div class="container">
         <div class="row justify-content-center">
