@@ -50,7 +50,7 @@
 </head>
 <body style="color:#949494">
     <form id="form1" runat="server">
-        <button onclick="topFunction()" id="myBtn" style="width:auto;" class="btn btn-primary ftco-animate icon-arrow-up px-xl-4"></button>
+        <button onclick="topFunction(); return false" id="myBtn" style="width:auto;" class="btn btn-primary ftco-animate icon-arrow-up px-xl-4"></button>
         
         <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
         
