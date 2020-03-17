@@ -372,6 +372,12 @@ namespace CrimsonAxis
             int Total2 = Convert.ToInt32(TimeLeft2.TotalSeconds);
             Timer1.Interval = 1000;
 
+            if(Store1.Text != "" )
+            {
+                ScriptManager.RegisterClientScriptBlock(this, GetType(), "MIN30", "MIN30();", true);
+                ScriptManager.RegisterClientScriptBlock(this, GetType(), BossName.Text, BossName.Text + "();", true);
+            } 
+
             string[] CheckedBoss = new string[0];
             
             if (chk_Kzarka.Checked)
@@ -413,23 +419,33 @@ namespace CrimsonAxis
                 {
                     if (Total <= 1800 && Total > 1795 && chk_30min.Checked)
                     {
-                        ScriptManager.RegisterClientScriptBlock(this, GetType(), "myfunction", "myfunction();", true);
+                        ScriptManager.RegisterClientScriptBlock(this, GetType(), "MIN30", "MIN30();", true);
+                        ScriptManager.RegisterClientScriptBlock(this, GetType(), BossName.Text, BossName.Text + "();", true);
+                        ScriptManager.RegisterClientScriptBlock(this, GetType(), BossName3.Text, BossName3.Text + "();", true);
                     }
                     if (Total <= 900 && Total > 895 && chk_15min.Checked)
                     {
-                        ScriptManager.RegisterClientScriptBlock(this, GetType(), "myfunction2", "myfunction2();", true);
+                        ScriptManager.RegisterClientScriptBlock(this, GetType(), "MIN15", "MIN15();", true);
+                        ScriptManager.RegisterClientScriptBlock(this, GetType(), BossName.Text, BossName.Text + "();", true);
+                        ScriptManager.RegisterClientScriptBlock(this, GetType(), BossName3.Text, BossName3.Text + "();", true);
                     }
                     if (Total <= 300 && Total > 295 && chk_05min.Checked)
                     {
-                        ScriptManager.RegisterClientScriptBlock(this, GetType(), "myfunction3", "myfunction3();", true);
+                        ScriptManager.RegisterClientScriptBlock(this, GetType(), "MIN5", "MIN5();", true);
+                        ScriptManager.RegisterClientScriptBlock(this, GetType(), BossName.Text, BossName.Text + "();", true);
+                        ScriptManager.RegisterClientScriptBlock(this, GetType(), BossName3.Text, BossName3.Text + "();", true);
                     }
                     if (Total <= 60 && Total > 55 && chk_01min.Checked)
                     {
-                        ScriptManager.RegisterClientScriptBlock(this, GetType(), "myfunction4", "myfunction4();", true);
+                        ScriptManager.RegisterClientScriptBlock(this, GetType(), "MIN1", "MIN1();", true);
+                        ScriptManager.RegisterClientScriptBlock(this, GetType(), BossName.Text, BossName.Text + "();", true);
+                        ScriptManager.RegisterClientScriptBlock(this, GetType(), BossName3.Text, BossName3.Text + "();", true);
                     }
                     if (Total <= 0 && chk_live.Checked)
                     {
-                        ScriptManager.RegisterClientScriptBlock(this, GetType(), "myfunction5", "myfunction5();", true);
+                        ScriptManager.RegisterClientScriptBlock(this, GetType(), "SUMMON", "SUMMON();", true);
+                        ScriptManager.RegisterClientScriptBlock(this, GetType(), BossName.Text, BossName.Text + "();", true);
+                        ScriptManager.RegisterClientScriptBlock(this, GetType(), BossName3.Text, BossName3.Text + "();", true);
                     }
                     break;
                 }

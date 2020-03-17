@@ -264,12 +264,16 @@
             }
             return "";
         }
+
+        
         var OneTime = false;
         var OneTime1 = false;
         var OneTime2 = false;
         var OneTime3 = false;
         var OneTime4 = false;
-        var audio = new Audio('play.mp3');
+        var OneTime5 = false;
+        var Skip = false;
+        var audio = new Audio('Hello.mp3');
         var AudioVolume = document.getElementById("Volume");
         var Cookie = getCookie("Volume");
         if(Cookie != "")
@@ -284,77 +288,295 @@
         }
         AudioVolume.onchange = function () {
             audio.pause();
-            audio.currentTime = 0;
+            audio = new Audio('Hello.mp3');
             audio.volume = ConvertVolume;
             audio.play();
         }
-        function myfunction() {
+
+        var SetTimeAlert = new Audio('hello.mp3');
+
+        function MIN30() {
+            SetTimeAlert = new Audio('30min.mp3');
+        }
+        function MIN15() {
+            SetTimeAlert = new Audio('15min.mp3');
+        }
+        function MIN5() {
+            SetTimeAlert = new Audio('5min.mp3');
+        }
+        function MIN1() {
+            SetTimeAlert = new Audio('1min.mp3');
+        }
+        function SUMMON() {
+            SetTimeAlert = new Audio('Summoning.mp3');
+        }
+
+        //Kzarka
+        function Kzarka() {
+            if (OneTime) {
+                if (!Skip) {
+                    audio.addEventListener("ended", function () {
+                        audio = new Audio('Kzarka.mp3');
+                        audio.volume = ConvertVolume;
+                        audio.play();
+                        audio.addEventListener("ended", function () {
+                            SetTimeAlert.volume = ConvertVolume;
+                            SetTimeAlert.play();
+                        })
+                    })
+                    Skip = true;
+                    setTimeout(function () {
+                        OneTime = false;
+                    }, 30000);
+                }
+            }
             if (!OneTime) {
-                audio = new Audio('play.mp3');
+                audio = new Audio('Kzarka.mp3');
+                audio.volume = ConvertVolume;
+                audio.play();
+                OneTime = true;
+            }
+
+            
+        }
+
+        //Nouver
+        function Nouver() {
+            if (OneTime) {
+                if (!Skip) {
+                    audio.addEventListener("ended", function () {
+                        audio = new Audio('Nouver.mp3');
+                        audio.volume = ConvertVolume;
+                        audio.play();
+                        audio.addEventListener("ended", function () {
+                            SetTimeAlert.volume = ConvertVolume;
+                            SetTimeAlert.play();
+                        })
+                    })
+                    Skip = true;
+                    setTimeout(function () {
+                        OneTime = false;
+                    }, 30000);
+                }
+            }
+            if (!OneTime) {
+                audio = new Audio('Nouver.mp3');
                 audio.volume = ConvertVolume;
                 audio.play();
                 OneTime = true;
             }
         }
-        function myfunction2() {
-            if (!OneTime1) {
-                audio = new Audio('play2.mp3');
+
+        //Kutum
+        function Kutum() {
+            if (OneTime) {
+                if (!Skip) {
+                    audio.addEventListener("ended", function () {
+                        audio = new Audio('Kutum.mp3');
+                        audio.volume = ConvertVolume;
+                        audio.play();
+                        audio.addEventListener("ended", function () {
+                            SetTimeAlert.volume = ConvertVolume;
+                            SetTimeAlert.play();
+                        })
+                    })
+                    Skip = true;
+                    setTimeout(function () {
+                        OneTime = false;
+                    }, 30000);
+                }
+            }
+            if (!OneTime) {
+                audio = new Audio('Kutum.mp3');
                 audio.volume = ConvertVolume;
                 audio.play();
-                OneTime1 = true;
+                OneTime = true;
             }
         }
-        function myfunction3() {
-            if (!OneTime2) {
-                audio = new Audio('play3.mp3');
+
+        //Garmoth
+        function Garmoth() {
+            if (OneTime) {
+                if (!Skip) {
+                    audio.addEventListener("ended", function () {
+                        audio = new Audio('Garmoth.mp3');
+                        audio.volume = ConvertVolume;
+                        audio.play();
+                        audio.addEventListener("ended", function () {
+                            SetTimeAlert.volume = ConvertVolume;
+                            SetTimeAlert.play();
+                        })
+                    })
+                    Skip = true;
+                    setTimeout(function () {
+                        OneTime = false;
+                    }, 30000);
+                }
+            }
+            if (!OneTime) {
+                audio = new Audio('Garmoth.mp3');
                 audio.volume = ConvertVolume;
                 audio.play();
-                OneTime2 = true;
+                OneTime = true;
             }
         }
-        function myfunction4() {
-            if (!OneTime3) {
-                audio = new Audio('play4.mp3');
+
+        //Karanda
+        function Karanda() {
+            if (OneTime) {
+                if (!Skip) {
+                    audio.addEventListener("ended", function () {
+                        audio = new Audio('Karanda.mp3');
+                        audio.volume = ConvertVolume;
+                        audio.play();
+                        audio.addEventListener("ended", function () {
+                            SetTimeAlert.volume = ConvertVolume;
+                            SetTimeAlert.play();
+                        })
+                    })
+                    Skip = true;
+                    setTimeout(function () {
+                        OneTime = false;
+                    }, 30000);
+                }
+            }
+            if (!OneTime) {
+                audio = new Audio('Karanda.mp3');
                 audio.volume = ConvertVolume;
                 audio.play();
-                OneTime3 = true;
+                OneTime = true;
             }
         }
-        function myfunction5() {
-            if (!OneTime4) {
-                audio = new Audio('play5.mp3');
+
+        //Offin
+        function Offin() {
+            if (OneTime) {
+                if (!Skip) {
+                    audio.addEventListener("ended", function () {
+                        audio = new Audio('Offin.mp3');
+                        audio.volume = ConvertVolume;
+                        audio.play();
+                        audio.addEventListener("ended", function () {
+                            SetTimeAlert.volume = ConvertVolume;
+                            SetTimeAlert.play();
+                        })
+                    })
+                    Skip = true;
+                    setTimeout(function () {
+                        OneTime = false;
+                    }, 30000);
+                }
+            }
+            if (!OneTime) {
+                audio = new Audio('Offin.mp3');
                 audio.volume = ConvertVolume;
                 audio.play();
-                OneTime4 = true;
+                OneTime = true;
             }
         }
+
+        //Vell
+        function Vell() {
+            if (OneTime) {
+                if (!Skip) {
+                    audio.addEventListener("ended", function () {
+                        audio = new Audio('Vell.mp3');
+                        audio.volume = ConvertVolume;
+                        audio.play();
+                        audio.addEventListener("ended", function () {
+                            SetTimeAlert.volume = ConvertVolume;
+                            SetTimeAlert.play();
+                        })
+                    })
+                    Skip = true;
+                    setTimeout(function () {
+                        OneTime = false;
+                    }, 30000);
+                }
+            }
+            if (!OneTime) {
+                audio = new Audio('Vell.mp3');
+                audio.volume = ConvertVolume;
+                audio.play();
+                OneTime = true;
+            }
+        }
+
+        //Muraka
+        function Muraka() {
+            if (OneTime) {
+                if (!Skip) {
+                    audio.addEventListener("ended", function () {
+                        audio = new Audio('Muraka.mp3');
+                        audio.volume = ConvertVolume;
+                        audio.play();
+                        audio.addEventListener("ended", function () {
+                            SetTimeAlert.volume = ConvertVolume;
+                            SetTimeAlert.play();
+                        })
+                    })
+                    Skip = true;
+                    setTimeout(function () {
+                        OneTime = false;
+                    }, 30000);
+                }
+            }
+            if (!OneTime) {
+                audio = new Audio('Muraka.mp3');
+                audio.volume = ConvertVolume;
+                audio.play();
+                OneTime = true;
+            }
+        }
+
+        //Quint
+        function Quint() {
+            if (OneTime) {
+                if (!Skip) {
+                    audio.addEventListener("ended", function () {
+                        audio = new Audio('Quint.mp3');
+                        audio.volume = ConvertVolume;
+                        audio.play();
+                        audio.addEventListener("ended", function () {
+                            SetTimeAlert.volume = ConvertVolume;
+                            SetTimeAlert.play();
+                        })
+                    })
+                    Skip = true;
+                    setTimeout(function () {
+                        OneTime = false;
+                    }, 30000);
+                }
+            }
+            if (!OneTime) {
+                audio = new Audio('Quint.mp3');
+                audio.volume = ConvertVolume;
+                audio.play();
+                OneTime = true;
+            }
+        }
+
+        
+
         function play1() {
             audio.pause();
             audio.currentTime = 0;
-            audio = new Audio('play.mp3');
+            audio = new Audio('Nouver.mp3');
             audio.volume = ConvertVolume;
-                audio.play();
-            }
+            audio.play();
+        }
+        
         function play2() {
-            audio.pause();
-            audio.currentTime = 0;
-            audio = new Audio('play2.mp3');
-            audio.volume = ConvertVolume;
-                audio.play();
-        }
-        function play3() {
-            audio.pause();
-            audio.currentTime = 0;
-            audio = new Audio('play3.mp3');
-            audio.volume = ConvertVolume;
-            audio.play();
-        }
-        function play4() {
-            audio.pause();
-            audio.currentTime = 0;
-            audio = new Audio('play4.mp3');
-            audio.volume = ConvertVolume;
-            audio.play();
+                audio.addEventListener("ended", function () {
+                    audio = new Audio('Kutum.mp3');
+                    audio.volume = ConvertVolume;
+                    audio.play();
+                    audio.addEventListener("ended", function () {
+                        audio = new Audio('15min.mp3');
+                        audio.volume = ConvertVolume;
+                        audio.play();
+                    });
+                });
         }
         function play5() {
             audio.pause();
