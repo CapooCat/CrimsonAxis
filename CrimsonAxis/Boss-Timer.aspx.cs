@@ -146,7 +146,7 @@ namespace CrimsonAxis
                 check.Values["Kutum"] = chk_Kutum.Checked.ToString();
                 check.Values["Quint"] = chk_Quint_Muraka.Checked.ToString();
                 check.Values["Vell"] = chk_Vell.Checked.ToString();
-            check.Expires = DateTime.UtcNow.AddDays(7);
+            check.Expires = DateTime.UtcNow.AddDays(365);
             Response.Cookies.Add(check);
         }
 
@@ -367,16 +367,10 @@ namespace CrimsonAxis
             DateTime End2 = DateTime.Parse(b, System.Globalization.CultureInfo.CurrentCulture);
             TimeSpan TimeLeft = End.Subtract(TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.UtcNow, "SE Asia Standard Time"));
             TimeSpan TimeLeft2 = End2.Subtract(TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.UtcNow, "SE Asia Standard Time"));
-            
+
             int Total = Convert.ToInt32(TimeLeft.TotalSeconds);
             int Total2 = Convert.ToInt32(TimeLeft2.TotalSeconds);
             Timer1.Interval = 1000;
-
-            if(Store1.Text != "" )
-            {
-                ScriptManager.RegisterClientScriptBlock(this, GetType(), "MIN30", "MIN30();", true);
-                ScriptManager.RegisterClientScriptBlock(this, GetType(), BossName.Text, BossName.Text + "();", true);
-            } 
 
             string[] CheckedBoss = new string[0];
             
@@ -415,37 +409,97 @@ namespace CrimsonAxis
             }
             for (int y = 0; y < CheckedBoss.Length; y++)
             {
-                if ( CheckedBoss[y] == BossName.Text || CheckedBoss[y] == BossName3.Text)
+                if (CheckedBoss[y] == BossName.Text || CheckedBoss[y] == BossName3.Text)
                 {
-                    if (Total <= 1800 && Total > 1795 && chk_30min.Checked)
+                    if (Total <= 1800 && Total > 1799 && chk_30min.Checked)
                     {
-                        ScriptManager.RegisterClientScriptBlock(this, GetType(), "MIN30", "MIN30();", true);
-                        ScriptManager.RegisterClientScriptBlock(this, GetType(), BossName.Text, BossName.Text + "();", true);
-                        ScriptManager.RegisterClientScriptBlock(this, GetType(), BossName3.Text, BossName3.Text + "();", true);
+                        int Number = 0;
+                        for (int f = 0; f < CheckedBoss.Length; f++)
+                        {
+                            if (CheckedBoss[f] == BossName.Text)
+                            {
+                                ScriptManager.RegisterClientScriptBlock(this, GetType(), BossName.Text, BossName.Text + "();", true);
+                                Number++;
+                            }
+                            else if (CheckedBoss[f] == BossName3.Text)
+                            {
+                                ScriptManager.RegisterClientScriptBlock(this, GetType(), BossName3.Text, BossName3.Text + "();", true);
+                                Number++;
+                            }
+                        }
+                        ScriptManager.RegisterClientScriptBlock(this, GetType(), "MIN30", "MIN30("+Number.ToString()+");", true);
                     }
-                    if (Total <= 900 && Total > 895 && chk_15min.Checked)
+                    if (Total <= 900 && Total > 899 && chk_15min.Checked)
                     {
-                        ScriptManager.RegisterClientScriptBlock(this, GetType(), "MIN15", "MIN15();", true);
-                        ScriptManager.RegisterClientScriptBlock(this, GetType(), BossName.Text, BossName.Text + "();", true);
-                        ScriptManager.RegisterClientScriptBlock(this, GetType(), BossName3.Text, BossName3.Text + "();", true);
+                        int Number = 0;
+                        for (int f = 0; f < CheckedBoss.Length; f++)
+                        {
+                            if (CheckedBoss[f] == BossName.Text)
+                            {
+                                ScriptManager.RegisterClientScriptBlock(this, GetType(), BossName.Text, BossName.Text + "();", true);
+                                Number++;
+                            }
+                            else if (CheckedBoss[f] == BossName3.Text)
+                            {
+                                ScriptManager.RegisterClientScriptBlock(this, GetType(), BossName3.Text, BossName3.Text + "();", true);
+                                Number++;
+                            }
+                        }
+                        ScriptManager.RegisterClientScriptBlock(this, GetType(), "MIN15", "MIN15(" + Number.ToString() + ");", true);
                     }
-                    if (Total <= 300 && Total > 295 && chk_05min.Checked)
+                    if (Total <= 300 && Total > 299 && chk_05min.Checked)
                     {
-                        ScriptManager.RegisterClientScriptBlock(this, GetType(), "MIN5", "MIN5();", true);
-                        ScriptManager.RegisterClientScriptBlock(this, GetType(), BossName.Text, BossName.Text + "();", true);
-                        ScriptManager.RegisterClientScriptBlock(this, GetType(), BossName3.Text, BossName3.Text + "();", true);
+                        int Number = 0;
+                        for (int f = 0; f < CheckedBoss.Length; f++)
+                        {
+                            if (CheckedBoss[f] == BossName.Text)
+                            {
+                                ScriptManager.RegisterClientScriptBlock(this, GetType(), BossName.Text, BossName.Text + "();", true);
+                                Number++;
+                            }
+                            else if (CheckedBoss[f] == BossName3.Text)
+                            {
+                                ScriptManager.RegisterClientScriptBlock(this, GetType(), BossName3.Text, BossName3.Text + "();", true);
+                                Number++;
+                            }
+                        }
+                        ScriptManager.RegisterClientScriptBlock(this, GetType(), "MIN5", "MIN5(" + Number.ToString() + ");", true);
                     }
-                    if (Total <= 60 && Total > 55 && chk_01min.Checked)
+                    if (Total <= 60 && Total > 59 && chk_01min.Checked)
                     {
-                        ScriptManager.RegisterClientScriptBlock(this, GetType(), "MIN1", "MIN1();", true);
-                        ScriptManager.RegisterClientScriptBlock(this, GetType(), BossName.Text, BossName.Text + "();", true);
-                        ScriptManager.RegisterClientScriptBlock(this, GetType(), BossName3.Text, BossName3.Text + "();", true);
+                        int Number = 0;
+                        for (int f = 0; f < CheckedBoss.Length; f++)
+                        {
+                            if (CheckedBoss[f] == BossName.Text)
+                            {
+                                ScriptManager.RegisterClientScriptBlock(this, GetType(), BossName.Text, BossName.Text + "();", true);
+                                Number++;
+                            }
+                            else if (CheckedBoss[f] == BossName3.Text)
+                            {
+                                ScriptManager.RegisterClientScriptBlock(this, GetType(), BossName3.Text, BossName3.Text + "();", true);
+                                Number++;
+                            }
+                        }
+                        ScriptManager.RegisterClientScriptBlock(this, GetType(), "MIN1", "MIN1(" + Number.ToString() + ");", true);
                     }
-                    if (Total <= 0 && chk_live.Checked)
+                    if (Total <= 0 && Total > -1 && chk_live.Checked)
                     {
-                        ScriptManager.RegisterClientScriptBlock(this, GetType(), "SUMMON", "SUMMON();", true);
-                        ScriptManager.RegisterClientScriptBlock(this, GetType(), BossName.Text, BossName.Text + "();", true);
-                        ScriptManager.RegisterClientScriptBlock(this, GetType(), BossName3.Text, BossName3.Text + "();", true);
+                        int Number = 0;
+                        for (int f = 0; f < CheckedBoss.Length; f++)
+                        {
+                            if (CheckedBoss[f] == BossName.Text)
+                            {
+                                ScriptManager.RegisterClientScriptBlock(this, GetType(), BossName.Text, BossName.Text + "();", true);
+                                Number++;
+                            }
+                            else if (CheckedBoss[f] == BossName3.Text)
+                            {
+                                ScriptManager.RegisterClientScriptBlock(this, GetType(), BossName3.Text, BossName3.Text + "();", true);
+                                Number++;
+                            }
+                        }
+                        ScriptManager.RegisterClientScriptBlock(this, GetType(), "SUMMON", "SUMMON(" + Number.ToString() + ");", true);
                     }
                     break;
                 }

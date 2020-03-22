@@ -155,31 +155,31 @@
         		<h3 class="mb-5 heading-pricing ftco-animate">Cài Đặt</h3>
         		<div class="pricing-entry d-flex ftco-animate">
 	        			<div class="d-flex text align-items-center">
-	        				<h3>Thông báo khi còn 00:30:00 <asp:Button ID="Button1" runat="server" OnClientClick="play1(); return false;" CssClass="MyButton" Text="Scooby Doo" /></h3>
+	        				<h3>Thông báo khi còn 00:30:00 <%--<asp:Button ID="Button1" runat="server" OnClientClick="play1(); return false;" CssClass="MyButton" Text="Scooby Doo" />--%></h3>
 	        				<label class="SettingCheck"><asp:CheckBox ID="chk_30min" runat="server" Checked="true" OnCheckedChanged="Save" /><span class="Checkmark"></span></label>
 	        			</div>
         		</div>
                 <div class="pricing-entry d-flex ftco-animate">
 	        			<div class="d-flex text align-items-center">
-	        				<h3>Thông báo khi còn 00:15:00 <asp:Button ID="Button2" runat="server" OnClientClick="play2(); return false;" CssClass="MyButton" Text="Ok let's go" /></h3>
+	        				<h3>Thông báo khi còn 00:15:00 <%--<asp:Button ID="Button2" runat="server" OnClientClick="play2(); return false;" CssClass="MyButton" Text="Ok let's go" />--%></h3>
 	        				<label class="SettingCheck"><asp:CheckBox ID="chk_15min" OnCheckedChanged="Save" Checked="true" runat="server" /><span class="Checkmark"></span></label>
 	        			</div>
         		</div>
                 <div class="pricing-entry d-flex ftco-animate">
 	        			<div class="d-flex text align-items-center">
-	        				<h3>Thông báo khi còn 00:05:00 <asp:Button ID="Button3" runat="server" OnClientClick="play3(); return false;" CssClass="MyButton" Text="Come on get happy" /></h3>
+	        				<h3>Thông báo khi còn 00:05:00 <%--<asp:Button ID="Button3" runat="server" OnClientClick="play3(); return false;" CssClass="MyButton" Text="Come on get happy" />--%></h3>
 	        				<label class="SettingCheck"><asp:CheckBox ID="chk_05min" OnCheckedChanged="Save" Checked="true" runat="server" /><span class="Checkmark"></span></label>
 	        			</div>
         		</div>
                 <div class="pricing-entry d-flex ftco-animate">
 	        			<div class="d-flex text align-items-center">
-	        				<h3>Thông báo khi còn 00:01:00 <asp:Button ID="Button4" runat="server" OnClientClick="play4(); return false;" CssClass="MyButton" Text="Clock tick" /></h3>
+	        				<h3>Thông báo khi còn 00:01:00 <%--<asp:Button ID="Button4" runat="server" OnClientClick="play4(); return false;" CssClass="MyButton" Text="Clock tick" />--%></h3>
 	        				<label class="SettingCheck"><asp:CheckBox ID="chk_01min" OnCheckedChanged="Save" Checked="true" runat="server" /><span class="Checkmark"></span></label>
 	        			</div>
         		</div>
                 <div class="pricing-entry d-flex ftco-animate">
 	        			<div class="d-flex text align-items-center">
-	        				<h3>Thông báo khi LIVE <asp:Button ID="Button5" OnClientClick="play5(); return false;" runat="server" CssClass="MyButton" Text="War horn" /></h3>
+	        				<h3>Thông báo khi LIVE <%--<asp:Button ID="Button5" OnClientClick="play5(); return false;" runat="server" CssClass="MyButton" Text="War horn" />--%></h3>
 	        				<label class="SettingCheck"><asp:CheckBox ID="chk_live" OnCheckedChanged="Save" Checked="true" runat="server" /><span class="Checkmark"></span></label>
 	        			</div>
         		</div>
@@ -264,16 +264,12 @@
             }
             return "";
         }
+        var j = 0;
+        var playlist = new Array();
 
-        
-        var OneTime = false;
-        var OneTime1 = false;
-        var OneTime2 = false;
-        var OneTime3 = false;
-        var OneTime4 = false;
-        var OneTime5 = false;
         var Skip = false;
         var audio = new Audio('Hello.mp3');
+        var audio2 = new Audio('Hello.mp3');
         var AudioVolume = document.getElementById("Volume");
         var Cookie = getCookie("Volume");
         if(Cookie != "")
@@ -284,7 +280,9 @@
         AudioVolume.oninput = function () {
             ConvertVolume = AudioVolume.value / 100;
             audio.volume = ConvertVolume;
-            document.cookie = "Volume" + "=" + (ConvertVolume * 100) + ";7;path=/";
+            var expires = new Date();
+            expires.setTime(expires.getTime() + 31536000000);
+            document.cookie = "Volume" + "=" + (ConvertVolume * 100) + ";expires=" + expires.toUTCString(); + ";path=/";
         }
         AudioVolume.onchange = function () {
             audio.pause();
@@ -293,297 +291,235 @@
             audio.play();
         }
 
-        var SetTimeAlert = new Audio('hello.mp3');
-
-        function MIN30() {
-            SetTimeAlert = new Audio('30min.mp3');
+        function MIN30(a) {
+            if (a == "1") {
+                audio.addEventListener('ended', function () {
+                    audio2 = new Audio('30min.mp3');
+                    audio2.play();
+                })
+            } else {
+                audio2 = new Audio('30min.mp3');
+            }
         }
-        function MIN15() {
-            SetTimeAlert = new Audio('15min.mp3');
+        function MIN15(a) {
+            if (a == "1") {
+                audio.addEventListener('ended', function () {
+                    audio2 = new Audio('15min.mp3');
+                    audio2.play();
+                })
+            } else {
+                audio2 = new Audio('15min.mp3');
+            }
         }
-        function MIN5() {
-            SetTimeAlert = new Audio('5min.mp3');
+        function MIN5(a) {
+            if (a == "1") {
+                audio.addEventListener('ended', function () {
+                    audio2 = new Audio('5min.mp3');
+                    audio2.play();
+                })
+            } else {
+                audio2 = new Audio('5min.mp3');
+            }
         }
-        function MIN1() {
-            SetTimeAlert = new Audio('1min.mp3');
+        function MIN1(a) {
+            if (a == "1") {
+                audio.addEventListener('ended', function () {
+                    audio2 = new Audio('1min.mp3');
+                    audio2.play();
+                })
+            } else {
+                audio2 = new Audio('1min.mp3');
+            }
         }
-        function SUMMON() {
-            SetTimeAlert = new Audio('Summoning.mp3');
+        function SUMMON(a) {
+            if (a == "1") {
+                audio.addEventListener('ended', function () {
+                    audio2 = new Audio('Summoning.mp3');
+                    audio2.play();
+                })
+            } else {
+                audio2 = new Audio('Summoning.mp3');
+            }
         }
 
         //Kzarka
         function Kzarka() {
-            if (OneTime) {
-                if (!Skip) {
-                    audio.addEventListener("ended", function () {
-                        audio = new Audio('Kzarka.mp3');
-                        audio.volume = ConvertVolume;
-                        audio.play();
-                        audio.addEventListener("ended", function () {
-                            SetTimeAlert.volume = ConvertVolume;
-                            SetTimeAlert.play();
-                        })
+            if (!audio.paused) {
+                audio.addEventListener('ended', function () {
+                    audio = new Audio('Kzarka.mp3');
+                    audio.volume = ConvertVolume;
+                    audio.play();
+                    audio.addEventListener('ended', function () {
+                        audio2.volume = ConvertVolume;
+                        audio2.play();
                     })
-                    Skip = true;
-                    setTimeout(function () {
-                        OneTime = false;
-                    }, 30000);
-                }
+                })
             }
-            if (!OneTime) {
+            else {
                 audio = new Audio('Kzarka.mp3');
                 audio.volume = ConvertVolume;
                 audio.play();
-                OneTime = true;
             }
-
-            
         }
 
         //Nouver
         function Nouver() {
-            if (OneTime) {
-                if (!Skip) {
-                    audio.addEventListener("ended", function () {
-                        audio = new Audio('Nouver.mp3');
-                        audio.volume = ConvertVolume;
-                        audio.play();
-                        audio.addEventListener("ended", function () {
-                            SetTimeAlert.volume = ConvertVolume;
-                            SetTimeAlert.play();
-                        })
+            if (!audio.paused) {
+                audio.addEventListener('ended', function () {
+                    audio = new Audio('Nouver.mp3');
+                    audio.volume = ConvertVolume;
+                    audio.play();
+                    audio.addEventListener('ended', function () {
+                        audio2.volume = ConvertVolume;
+                        audio2.play();
                     })
-                    Skip = true;
-                    setTimeout(function () {
-                        OneTime = false;
-                    }, 30000);
-                }
+                })
             }
-            if (!OneTime) {
+            else {
                 audio = new Audio('Nouver.mp3');
                 audio.volume = ConvertVolume;
                 audio.play();
-                OneTime = true;
             }
         }
 
         //Kutum
         function Kutum() {
-            if (OneTime) {
-                if (!Skip) {
-                    audio.addEventListener("ended", function () {
-                        audio = new Audio('Kutum.mp3');
-                        audio.volume = ConvertVolume;
-                        audio.play();
-                        audio.addEventListener("ended", function () {
-                            SetTimeAlert.volume = ConvertVolume;
-                            SetTimeAlert.play();
-                        })
+            if (!audio.paused) {
+                audio.addEventListener('ended', function () {
+                    audio = new Audio('Kutum.mp3');
+                    audio.volume = ConvertVolume;
+                    audio.play();
+                    audio.addEventListener('ended', function () {
+                        audio2.volume = ConvertVolume;
+                        audio2.play();
                     })
-                    Skip = true;
-                    setTimeout(function () {
-                        OneTime = false;
-                    }, 30000);
-                }
+                })
             }
-            if (!OneTime) {
+            else {
                 audio = new Audio('Kutum.mp3');
                 audio.volume = ConvertVolume;
                 audio.play();
-                OneTime = true;
             }
         }
 
         //Garmoth
         function Garmoth() {
-            if (OneTime) {
-                if (!Skip) {
-                    audio.addEventListener("ended", function () {
-                        audio = new Audio('Garmoth.mp3');
-                        audio.volume = ConvertVolume;
-                        audio.play();
-                        audio.addEventListener("ended", function () {
-                            SetTimeAlert.volume = ConvertVolume;
-                            SetTimeAlert.play();
-                        })
+            if (!audio.paused) {
+                audio.addEventListener('ended', function () {
+                    audio = new Audio('Garmoth.mp3');
+                    audio.volume = ConvertVolume;
+                    audio.play();
+                    audio.addEventListener('ended', function () {
+                        audio2.volume = ConvertVolume;
+                        audio2.play();
                     })
-                    Skip = true;
-                    setTimeout(function () {
-                        OneTime = false;
-                    }, 30000);
-                }
+                })
             }
-            if (!OneTime) {
+            else {
                 audio = new Audio('Garmoth.mp3');
                 audio.volume = ConvertVolume;
                 audio.play();
-                OneTime = true;
             }
         }
 
         //Karanda
         function Karanda() {
-            if (OneTime) {
-                if (!Skip) {
-                    audio.addEventListener("ended", function () {
-                        audio = new Audio('Karanda.mp3');
-                        audio.volume = ConvertVolume;
-                        audio.play();
-                        audio.addEventListener("ended", function () {
-                            SetTimeAlert.volume = ConvertVolume;
-                            SetTimeAlert.play();
-                        })
+            if (!audio.paused) {
+                audio.addEventListener('ended', function () {
+                    audio = new Audio('Karanda.mp3');
+                    audio.volume = ConvertVolume;
+                    audio.play();
+                    audio.addEventListener('ended', function () {
+                        audio2.volume = ConvertVolume;
+                        audio2.play();
                     })
-                    Skip = true;
-                    setTimeout(function () {
-                        OneTime = false;
-                    }, 30000);
-                }
+                })
             }
-            if (!OneTime) {
+            else {
                 audio = new Audio('Karanda.mp3');
                 audio.volume = ConvertVolume;
                 audio.play();
-                OneTime = true;
             }
         }
 
         //Offin
         function Offin() {
-            if (OneTime) {
-                if (!Skip) {
-                    audio.addEventListener("ended", function () {
-                        audio = new Audio('Offin.mp3');
-                        audio.volume = ConvertVolume;
-                        audio.play();
-                        audio.addEventListener("ended", function () {
-                            SetTimeAlert.volume = ConvertVolume;
-                            SetTimeAlert.play();
-                        })
+            if (!audio.paused) {
+                audio.addEventListener('ended', function () {
+                    audio = new Audio('Offin.mp3');
+                    audio.volume = ConvertVolume;
+                    audio.play();
+                    audio.addEventListener('ended', function () {
+                        audio2.volume = ConvertVolume;
+                        audio2.play();
                     })
-                    Skip = true;
-                    setTimeout(function () {
-                        OneTime = false;
-                    }, 30000);
-                }
+                })
             }
-            if (!OneTime) {
+            else {
                 audio = new Audio('Offin.mp3');
                 audio.volume = ConvertVolume;
                 audio.play();
-                OneTime = true;
             }
         }
 
         //Vell
         function Vell() {
-            if (OneTime) {
-                if (!Skip) {
-                    audio.addEventListener("ended", function () {
-                        audio = new Audio('Vell.mp3');
-                        audio.volume = ConvertVolume;
-                        audio.play();
-                        audio.addEventListener("ended", function () {
-                            SetTimeAlert.volume = ConvertVolume;
-                            SetTimeAlert.play();
-                        })
+            if (!audio.paused) {
+                audio.addEventListener('ended', function () {
+                    audio = new Audio('Vell.mp3');
+                    audio.volume = ConvertVolume;
+                    audio.play();
+                    audio.addEventListener('ended', function () {
+                        audio2.volume = ConvertVolume;
+                        audio2.play();
                     })
-                    Skip = true;
-                    setTimeout(function () {
-                        OneTime = false;
-                    }, 30000);
-                }
+                })
             }
-            if (!OneTime) {
+            else {
                 audio = new Audio('Vell.mp3');
                 audio.volume = ConvertVolume;
                 audio.play();
-                OneTime = true;
             }
         }
 
         //Muraka
         function Muraka() {
-            if (OneTime) {
-                if (!Skip) {
-                    audio.addEventListener("ended", function () {
-                        audio = new Audio('Muraka.mp3');
-                        audio.volume = ConvertVolume;
-                        audio.play();
-                        audio.addEventListener("ended", function () {
-                            SetTimeAlert.volume = ConvertVolume;
-                            SetTimeAlert.play();
-                        })
+            if (!audio.paused) {
+                audio.addEventListener('ended', function () {
+                    audio = new Audio('Muraka.mp3');
+                    audio.volume = ConvertVolume;
+                    audio.play();
+                    audio.addEventListener('ended', function () {
+                        audio2.volume = ConvertVolume;
+                        audio2.play();
                     })
-                    Skip = true;
-                    setTimeout(function () {
-                        OneTime = false;
-                    }, 30000);
-                }
+                })
             }
-            if (!OneTime) {
+            else {
                 audio = new Audio('Muraka.mp3');
                 audio.volume = ConvertVolume;
                 audio.play();
-                OneTime = true;
             }
         }
 
         //Quint
         function Quint() {
-            if (OneTime) {
-                if (!Skip) {
-                    audio.addEventListener("ended", function () {
-                        audio = new Audio('Quint.mp3');
-                        audio.volume = ConvertVolume;
-                        audio.play();
-                        audio.addEventListener("ended", function () {
-                            SetTimeAlert.volume = ConvertVolume;
-                            SetTimeAlert.play();
-                        })
+            if (!audio.paused) {
+                audio.addEventListener('ended', function () {
+                    audio = new Audio('Quint.mp3');
+                    audio.volume = ConvertVolume;
+                    audio.play();
+                    audio.addEventListener('ended', function () {
+                        audio2.volume = ConvertVolume;
+                        audio2.play();
                     })
-                    Skip = true;
-                    setTimeout(function () {
-                        OneTime = false;
-                    }, 30000);
-                }
+                })
             }
-            if (!OneTime) {
+            else {
                 audio = new Audio('Quint.mp3');
                 audio.volume = ConvertVolume;
                 audio.play();
-                OneTime = true;
             }
-        }
-
-        
-
-        function play1() {
-            audio.pause();
-            audio.currentTime = 0;
-            audio = new Audio('Nouver.mp3');
-            audio.volume = ConvertVolume;
-            audio.play();
-        }
-        
-        function play2() {
-                audio.addEventListener("ended", function () {
-                    audio = new Audio('Kutum.mp3');
-                    audio.volume = ConvertVolume;
-                    audio.play();
-                    audio.addEventListener("ended", function () {
-                        audio = new Audio('15min.mp3');
-                        audio.volume = ConvertVolume;
-                        audio.play();
-                    });
-                });
-        }
-        function play5() {
-            audio.pause();
-            audio.currentTime = 0;
-            audio = new Audio('play5.mp3');
-            audio.volume = ConvertVolume;
-            audio.play();
         }
         
     </script>
