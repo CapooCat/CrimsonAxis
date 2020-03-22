@@ -36,6 +36,8 @@ namespace CrimsonAxis
                     chk_Quint_Muraka.Checked = Request.Cookies["check"].Values["Quint"] != "False" ? true : false;
                     chk_Vell.Checked = Request.Cookies["check"].Values["Vell"] != "False" ? true : false;
                 }
+
+                //Load Lịch Boss
                 rpt_LichBoss.DataSource = WorldBossBUS.LichBoss();
                 rpt_LichBoss.DataBind();
                 int TotalRow = 0;
@@ -130,6 +132,8 @@ namespace CrimsonAxis
             }
         }
 
+
+        //Save Cookie checkbox
         protected void Save(Object sender, EventArgs args)
         {
             HttpCookie check = new HttpCookie("check");
@@ -174,6 +178,26 @@ namespace CrimsonAxis
             return new DateTime(date.Year, date.Month, DateTime.DaysInMonth(date.Year, date.Month));
         }
 
+        public static int GetValidImperialTimeLine(DateTime date)
+        {
+
+            TimeSpan TimeLeft = date.Subtract(TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.UtcNow, "SE Asia Standard Time"));
+            while(Convert.ToInt32(TimeLeft.TotalSeconds) <= 0)
+            {
+                string Hour = (date.Hour + 4).ToString();
+                if(date.Hour + 4 < 10)
+                {
+                    date = GetThisDay("0" + Hour + ":00:00");
+                    TimeLeft = GetThisDay("0"+ Hour + ":00:00").Subtract(TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.UtcNow, "SE Asia Standard Time"));
+                } else
+                {
+                    date = GetThisDay(Hour + ":00:00");
+                    TimeLeft = GetThisDay(Hour + ":00:00").Subtract(TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.UtcNow, "SE Asia Standard Time"));
+                }
+            }
+            return Convert.ToInt32(TimeLeft.TotalSeconds);
+        }
+
         public static DateTime MoveNextDay(int Hour,int Min,int Second)
         {
             DateTime date = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.UtcNow, "SE Asia Standard Time");
@@ -197,11 +221,20 @@ namespace CrimsonAxis
             DateTime Next = DateTime.Parse(Time, System.Globalization.CultureInfo.CurrentCulture);
             return new DateTime(Now.Year, Now.Month, Now.Day, Next.Hour, Next.Minute, Next.Second);
         }
+        public static String GetImperialTradeTime()
+        {
+            DateTime FirstTimeLine = GetThisDay("00:00:00");
+            return ConvertSecondToClock(GetValidImperialTimeLine(FirstTimeLine));
+        }
+
 
         protected void Timer1_Tick(object sender, EventArgs e)
         {
             TimeNow.Text = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.UtcNow, "SE Asia Standard Time").ToString();
             TimeNow24h.Text = "(" + TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.UtcNow, "SE Asia Standard Time").ToString("HH:mm:ss") + ")";
+            ImperialTrade.Text = GetImperialTradeTime();
+            Bartering.Text = GetImperialTradeTime();
+
             if (Store1.Text == string.Empty && Store2.Text == string.Empty)
             {
                 int TotalRow = 0;
@@ -506,6 +539,8 @@ namespace CrimsonAxis
             }
 
 
+
+
             if (Total < 300)
             {
                 Label1.Attributes.Add("style", "Color: #fff;");
@@ -549,6 +584,8 @@ namespace CrimsonAxis
             {
                 Label1.Text = ConvertSecondToClock(Total);
                 Label2.Text = ConvertSecondToClock(Total2);
+                Imperial.Text = ConvertSecondToClock(Total);
+                Night.Text = ConvertSecondToClock(Total);
             }
         }
     }
