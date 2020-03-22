@@ -178,25 +178,62 @@ namespace CrimsonAxis
             return new DateTime(date.Year, date.Month, DateTime.DaysInMonth(date.Year, date.Month));
         }
 
-        public static int GetValidImperialTimeLine(DateTime date)
+        public static int GetValidImperialTradeTimeLine(DateTime date)
         {
-
+            string Hours = (date.Hour + 3).ToString();
+            date = GetThisDay("0" + Hours + ":00:00");
             TimeSpan TimeLeft = date.Subtract(TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.UtcNow, "SE Asia Standard Time"));
-            while(Convert.ToInt32(TimeLeft.TotalSeconds) <= 0)
+            
+            while (Convert.ToInt32(TimeLeft.TotalSeconds) <= 0)
             {
-                string Hour = (date.Hour + 4).ToString();
-                if(date.Hour + 4 < 10)
+                Hours = (date.Hour + 4).ToString();
+                if(Convert.ToInt32(Hours) > 24)
                 {
-                    date = GetThisDay("0" + Hour + ":00:00");
-                    TimeLeft = GetThisDay("0"+ Hour + ":00:00").Subtract(TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.UtcNow, "SE Asia Standard Time"));
+                    date = MoveNextDay((Convert.ToInt32(Hours) - 24), 0,0);
+                    TimeLeft = date.Subtract(TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.UtcNow, "SE Asia Standard Time"));
+                }
+                else if (date.Hour + 4 < 10)
+                {
+                    date = GetThisDay("0" + Hours + ":00:00");
+                    TimeLeft = GetThisDay("0"+ Hours + ":00:00").Subtract(TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.UtcNow, "SE Asia Standard Time"));
                 } else
                 {
-                    date = GetThisDay(Hour + ":00:00");
-                    TimeLeft = GetThisDay(Hour + ":00:00").Subtract(TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.UtcNow, "SE Asia Standard Time"));
+                    date = GetThisDay(Hours + ":00:00");
+                    TimeLeft = GetThisDay(Hours + ":00:00").Subtract(TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.UtcNow, "SE Asia Standard Time"));
                 }
             }
             return Convert.ToInt32(TimeLeft.TotalSeconds);
         }
+
+        public static int GetValidImperialTimeLine(DateTime date)
+        {
+            string Hours = (date.Hour + 1).ToString();
+            date = GetThisDay("0" + Hours + ":00:00");
+            TimeSpan TimeLeft = date.Subtract(TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.UtcNow, "SE Asia Standard Time"));
+
+            while (Convert.ToInt32(TimeLeft.TotalSeconds) <= 0)
+            {
+                Hours = (date.Hour + 3).ToString();
+                if (Convert.ToInt32(Hours) > 24)
+                {
+                    date = MoveNextDay((Convert.ToInt32(Hours) - 24), 0, 0);
+                    TimeLeft = date.Subtract(TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.UtcNow, "SE Asia Standard Time"));
+                }
+                else if (date.Hour + 3 < 10)
+                {
+                    date = GetThisDay("0" + Hours + ":00:00");
+                    TimeLeft = GetThisDay("0" + Hours + ":00:00").Subtract(TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.UtcNow, "SE Asia Standard Time"));
+                }
+                else
+                {
+                    date = GetThisDay(Hours + ":00:00");
+                    TimeLeft = GetThisDay(Hours + ":00:00").Subtract(TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.UtcNow, "SE Asia Standard Time"));
+                }
+            }
+            return Convert.ToInt32(TimeLeft.TotalSeconds);
+        }
+
+
 
         public static DateTime MoveNextDay(int Hour,int Min,int Second)
         {
@@ -224,6 +261,11 @@ namespace CrimsonAxis
         public static String GetImperialTradeTime()
         {
             DateTime FirstTimeLine = GetThisDay("00:00:00");
+            return ConvertSecondToClock(GetValidImperialTradeTimeLine(FirstTimeLine));
+        }
+        public static String GetImperialTime()
+        {
+            DateTime FirstTimeLine = GetThisDay("00:00:00");
             return ConvertSecondToClock(GetValidImperialTimeLine(FirstTimeLine));
         }
 
@@ -234,6 +276,7 @@ namespace CrimsonAxis
             TimeNow24h.Text = "(" + TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.UtcNow, "SE Asia Standard Time").ToString("HH:mm:ss") + ")";
             ImperialTrade.Text = GetImperialTradeTime();
             Bartering.Text = GetImperialTradeTime();
+            Imperial.Text = GetImperialTime();
 
             if (Store1.Text == string.Empty && Store2.Text == string.Empty)
             {
@@ -584,8 +627,8 @@ namespace CrimsonAxis
             {
                 Label1.Text = ConvertSecondToClock(Total);
                 Label2.Text = ConvertSecondToClock(Total2);
-                Imperial.Text = ConvertSecondToClock(Total);
-                Night.Text = ConvertSecondToClock(Total);
+                //Imperial.Text = ConvertSecondToClock(Total);
+                //Night.Text = ConvertSecondToClock(Total);
             }
         }
     }

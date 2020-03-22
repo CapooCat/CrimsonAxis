@@ -523,7 +523,7 @@
     </script>
     
     <div class="sidenav" style="left: 0;padding-left: 25px;">
-        <div style="padding-bottom: 8px;">
+        <div id="Time1" style="padding-bottom: 8px;">
             <asp:Label ID="Imperial_Text" runat="server" Style="width: 200px; height: 70px;" CssClass="BoxedText ftco-animate px-xl-4">Imperial Delivery
                 <div>
                     <asp:UpdatePanel ID="Life1" runat="server" UpdateMode="Conditional">
@@ -538,7 +538,7 @@
                 </div>
             </asp:Label>
         </div>
-        <div style="padding-bottom: 8px;">
+        <div id="Time2" style="padding-bottom: 8px;">
             <asp:Label ID="ImperialTrade_Text" runat="server" Style="width: 200px; height: 70px;" CssClass="BoxedText ftco-animate px-xl-4">Imperial Trade
                 <div>
                     <asp:UpdatePanel ID="Life2" runat="server" UpdateMode="Conditional">
@@ -555,7 +555,7 @@
 
            
         </div>
-        <div style="padding-bottom: 8px;">
+        <div id="Time3" style="padding-bottom: 8px;">
             <asp:Label ID="Bartering_Text" runat="server" Style="width: 200px; height: 70px;" CssClass="BoxedText ftco-animate px-xl-4">Bartering
                 <div>
                     <asp:UpdatePanel ID="Life3" runat="server" UpdateMode="Conditional">
@@ -570,7 +570,7 @@
                 </div>
             </asp:Label>
         </div>
-        <div style="padding-bottom: 8px;">
+        <div id="Time4" style="padding-bottom: 8px;">
             <asp:Label ID="Night_Text" runat="server" Style="width: 200px;; height: 70px;" CssClass="BoxedText ftco-animate px-xl-4">Đêm bắt đầu vào
                 <div>
                     <asp:UpdatePanel ID="Life4" runat="server" UpdateMode="Conditional">
@@ -585,10 +585,11 @@
                 </div>
             </asp:Label>
         </div>
+        <button id="ShowAndHide" onclick="showhide();return false;" style="width: 40px; height: 40px;background-color: rgba(255, 255, 255, 0.2);border: None;color: #fff" class="ftco-animate icon-arrow-circle-left"></button>
             
     </div>
     
-    <div class="sidenav" style="right: 25px;padding-right: 25px;">
+    <div class="sidenav" style="right: 25px;">
         <div style="padding-bottom: 8px;">
             <button onclick="location.href='#Timer';return false" style="width: 70px; height: 70px;" class="btn btn-primary ftco-animate icon-clock-o "></button>
         </div>
@@ -599,5 +600,31 @@
             <button onclick="location.href='#Setting';return false" style="width: 70px; height: 70px;" class="btn btn-primary ftco-animate icon-settings "></button>
         </div>
     </div>
+    <script>
+        function showhide() {
+            var Label0 = document.getElementById("Time1");
+            var Label1 = document.getElementById("Time2");
+            var Label2 = document.getElementById("Time3");
+            var Label3 = document.getElementById("Time4");
+            var ShowHideIt = document.getElementById('ShowAndHide');
+            if (Label0.style.display == "block") {
+                Label0.style.display = "none";
+                Label1.style.display = "none";
+                Label2.style.display = "none";
+                Label3.style.display = "none";
+                ShowHideIt.classList.remove('icon-arrow-circle-left');
+                ShowHideIt.classList.add('icon-arrow-circle-right');
+            }
+            else {
+                Label0.style.display = "block";
+                Label1.style.display = "block";
+                Label2.style.display = "block";
+                Label3.style.display = "block";
+                ShowHideIt.classList.remove('icon-arrow-circle-right');
+                ShowHideIt.classList.add('icon-arrow-circle-left');
+            }
+            
+        }
+    </script>
     
 </asp:Content>

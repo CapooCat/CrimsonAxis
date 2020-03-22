@@ -76,13 +76,13 @@ body {
 
 [tabindex="-1"]:focus {
   outline: 0 !important; }
-  
 
 .sidenav {
   position: fixed;
   z-index: 1;
   top: 150px;
   overflow-x: hidden;
+  height: 500px;
   
 }
 .sidenav a {
