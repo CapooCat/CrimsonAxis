@@ -18,11 +18,9 @@
 		  </div>
 	  </nav>
     
-    <section class="video-container">
+    <section id="Timer" class="video-container">
         <div style="position: absolute; width: 100%; height: 100%; background-color: black; opacity: 0.5;"></div>
-            <video style="min-width: 100%;min-height: 100%;top: 50%;left: 50%;" autoplay loop muted>
-                <source src="https://lh3.googleusercontent.com/6dz4bBKHeq-hhxwEIqkP0_Y6o8um-jqxrTGhuXVGK3WmZnbS8swHV6XNU7n4zf3Bye4X-8epbZuCvpAEAm_-FOMCcKYS_Ncg7nV1kMFiOxK91cP9NooUblDiPRlKuSceLBz17VjWXA=m37" type="video/mp4">
-            </video>
+            <img src="https://lh3.googleusercontent.com/UkWLBD6q1nTRe6ZWVnIzJOdJ5lT9-7FCSdHjFt4hVnQHHqtw1vejjIH_Z76Scy5DqIaWJYNT3bA3rneS8Bc4389xTbSQLm4qC9IPGfnOd2saDHsjcxIlFJefX97_uGoFpOPq0-bX2A=w2400">
     </section>
         
     
@@ -43,6 +41,7 @@
                                 prm._scrollPosition = null;
                             }
                         </script>
+                        
                         
                         <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
                             
@@ -98,7 +97,7 @@
                     <div class="col-md-7 heading-section ftco-animate text-center">
                         <span class="subheading" style="margin-bottom: 5px">Crimson Axis</span>
                         <h2 class="mb-4">Lịch boss</h2>
-                        <img style="max-width: 300px;" src="https://lh3.googleusercontent.com/hRLkDL15CbsrAzc5T9UV9E6tVM3SA0SLYb2xn6B0fKFX8rr4-hCi0PLbkNgsYfxEWl9z0a5Rq5WTOAk8VbqtMvFcM894mo8OyTcfNY_RIwvN7QwSIYMSzoEOhXPjCvYKquc74iE7=w2400">
+                        <img id="Calendar" style="max-width: 300px;" src="https://lh3.googleusercontent.com/hRLkDL15CbsrAzc5T9UV9E6tVM3SA0SLYb2xn6B0fKFX8rr4-hCi0PLbkNgsYfxEWl9z0a5Rq5WTOAk8VbqtMvFcM894mo8OyTcfNY_RIwvN7QwSIYMSzoEOhXPjCvYKquc74iE7=w2400">
                     </div>
                 </div>
                 <h2 class="row justify-content-center pb-3" style="color: #dc3545">Thời gian VN hiện tại</h2>
@@ -147,39 +146,38 @@
                 </div>
 			</div>    
 		</section>
-
-        <section class="ftco-section">
+        <section id="Setting" class="ftco-section">
     	<div class="container">
         <div class="row">
         	<div class="col-md-6 mb-5 pb-3">
         		<h3 class="mb-5 heading-pricing ftco-animate">Cài Đặt</h3>
         		<div class="pricing-entry d-flex ftco-animate">
 	        			<div class="d-flex text align-items-center">
-	        				<h3>Thông báo khi còn 00:30:00 <asp:Button ID="Button1" runat="server" OnClientClick="play1(); return false;" CssClass="MyButton" Text="Scooby Doo" /></h3>
+	        				<h3>Thông báo khi còn 00:30:00 <%--<asp:Button ID="Button1" runat="server" OnClientClick="play1(); return false;" CssClass="MyButton" Text="Scooby Doo" />--%></h3>
 	        				<label class="SettingCheck"><asp:CheckBox ID="chk_30min" runat="server" Checked="true" OnCheckedChanged="Save" /><span class="Checkmark"></span></label>
 	        			</div>
         		</div>
                 <div class="pricing-entry d-flex ftco-animate">
 	        			<div class="d-flex text align-items-center">
-	        				<h3>Thông báo khi còn 00:15:00 <asp:Button ID="Button2" runat="server" OnClientClick="play2(); return false;" CssClass="MyButton" Text="Ok let's go" /></h3>
+	        				<h3>Thông báo khi còn 00:15:00 <%--<asp:Button ID="Button2" runat="server" OnClientClick="play2(); return false;" CssClass="MyButton" Text="Ok let's go" />--%></h3>
 	        				<label class="SettingCheck"><asp:CheckBox ID="chk_15min" OnCheckedChanged="Save" Checked="true" runat="server" /><span class="Checkmark"></span></label>
 	        			</div>
         		</div>
                 <div class="pricing-entry d-flex ftco-animate">
 	        			<div class="d-flex text align-items-center">
-	        				<h3>Thông báo khi còn 00:05:00 <asp:Button ID="Button3" runat="server" OnClientClick="play3(); return false;" CssClass="MyButton" Text="Come on get happy" /></h3>
+	        				<h3>Thông báo khi còn 00:05:00 <%--<asp:Button ID="Button3" runat="server" OnClientClick="play3(); return false;" CssClass="MyButton" Text="Come on get happy" />--%></h3>
 	        				<label class="SettingCheck"><asp:CheckBox ID="chk_05min" OnCheckedChanged="Save" Checked="true" runat="server" /><span class="Checkmark"></span></label>
 	        			</div>
         		</div>
                 <div class="pricing-entry d-flex ftco-animate">
 	        			<div class="d-flex text align-items-center">
-	        				<h3>Thông báo khi còn 00:01:00 <asp:Button ID="Button4" runat="server" OnClientClick="play4(); return false;" CssClass="MyButton" Text="Clock tick" /></h3>
+	        				<h3>Thông báo khi còn 00:01:00 <%--<asp:Button ID="Button4" runat="server" OnClientClick="play4(); return false;" CssClass="MyButton" Text="Clock tick" />--%></h3>
 	        				<label class="SettingCheck"><asp:CheckBox ID="chk_01min" OnCheckedChanged="Save" Checked="true" runat="server" /><span class="Checkmark"></span></label>
 	        			</div>
         		</div>
                 <div class="pricing-entry d-flex ftco-animate">
 	        			<div class="d-flex text align-items-center">
-	        				<h3>Thông báo khi LIVE <asp:Button ID="Button5" OnClientClick="play5(); return false;" runat="server" CssClass="MyButton" Text="War horn" /></h3>
+	        				<h3>Thông báo khi LIVE <%--<asp:Button ID="Button5" OnClientClick="play5(); return false;" runat="server" CssClass="MyButton" Text="War horn" />--%></h3>
 	        				<label class="SettingCheck"><asp:CheckBox ID="chk_live" OnCheckedChanged="Save" Checked="true" runat="server" /><span class="Checkmark"></span></label>
 	        			</div>
         		</div>
@@ -264,12 +262,12 @@
             }
             return "";
         }
-        var OneTime = false;
-        var OneTime1 = false;
-        var OneTime2 = false;
-        var OneTime3 = false;
-        var OneTime4 = false;
-        var audio = new Audio('play.mp3');
+        var j = 0;
+        var playlist = new Array();
+
+        var Skip = false;
+        var audio = new Audio('Hello.mp3');
+        var audio2 = new Audio('Hello.mp3');
         var AudioVolume = document.getElementById("Volume");
         var Cookie = getCookie("Volume");
         if(Cookie != "")
@@ -280,89 +278,353 @@
         AudioVolume.oninput = function () {
             ConvertVolume = AudioVolume.value / 100;
             audio.volume = ConvertVolume;
-            document.cookie = "Volume" + "=" + (ConvertVolume * 100) + ";7;path=/";
+            var expires = new Date();
+            expires.setTime(expires.getTime() + 31536000000);
+            document.cookie = "Volume" + "=" + (ConvertVolume * 100) + ";expires=" + expires.toUTCString(); + ";path=/";
         }
         AudioVolume.onchange = function () {
             audio.pause();
-            audio.currentTime = 0;
+            audio = new Audio('Hello.mp3');
             audio.volume = ConvertVolume;
             audio.play();
         }
-        function myfunction() {
-            if (!OneTime) {
-                audio = new Audio('play.mp3');
+
+        function MIN30(a) {
+            if (a == "1") {
+                audio.addEventListener('ended', function () {
+                    audio2 = new Audio('30min.mp3');
+                    audio2.play();
+                })
+            } else {
+                audio2 = new Audio('30min.mp3');
+            }
+        }
+        function MIN15(a) {
+            if (a == "1") {
+                audio.addEventListener('ended', function () {
+                    audio2 = new Audio('15min.mp3');
+                    audio2.play();
+                })
+            } else {
+                audio2 = new Audio('15min.mp3');
+            }
+        }
+        function MIN5(a) {
+            if (a == "1") {
+                audio.addEventListener('ended', function () {
+                    audio2 = new Audio('5min.mp3');
+                    audio2.play();
+                })
+            } else {
+                audio2 = new Audio('5min.mp3');
+            }
+        }
+        function MIN1(a) {
+            if (a == "1") {
+                audio.addEventListener('ended', function () {
+                    audio2 = new Audio('1min.mp3');
+                    audio2.play();
+                })
+            } else {
+                audio2 = new Audio('1min.mp3');
+            }
+        }
+        function SUMMON(a) {
+            if (a == "1") {
+                audio.addEventListener('ended', function () {
+                    audio2 = new Audio('Summoning.mp3');
+                    audio2.play();
+                })
+            } else {
+                audio2 = new Audio('Summoning.mp3');
+            }
+        }
+
+        //Kzarka
+        function Kzarka() {
+            if (!audio.paused) {
+                audio.addEventListener('ended', function () {
+                    audio = new Audio('Kzarka.mp3');
+                    audio.volume = ConvertVolume;
+                    audio.play();
+                    audio.addEventListener('ended', function () {
+                        audio2.volume = ConvertVolume;
+                        audio2.play();
+                    })
+                })
+            }
+            else {
+                audio = new Audio('Kzarka.mp3');
                 audio.volume = ConvertVolume;
                 audio.play();
-                OneTime = true;
             }
         }
-        function myfunction2() {
-            if (!OneTime1) {
-                audio = new Audio('play2.mp3');
+
+        //Nouver
+        function Nouver() {
+            if (!audio.paused) {
+                audio.addEventListener('ended', function () {
+                    audio = new Audio('Nouver.mp3');
+                    audio.volume = ConvertVolume;
+                    audio.play();
+                    audio.addEventListener('ended', function () {
+                        audio2.volume = ConvertVolume;
+                        audio2.play();
+                    })
+                })
+            }
+            else {
+                audio = new Audio('Nouver.mp3');
                 audio.volume = ConvertVolume;
                 audio.play();
-                OneTime1 = true;
             }
         }
-        function myfunction3() {
-            if (!OneTime2) {
-                audio = new Audio('play3.mp3');
+
+        //Kutum
+        function Kutum() {
+            if (!audio.paused) {
+                audio.addEventListener('ended', function () {
+                    audio = new Audio('Kutum.mp3');
+                    audio.volume = ConvertVolume;
+                    audio.play();
+                    audio.addEventListener('ended', function () {
+                        audio2.volume = ConvertVolume;
+                        audio2.play();
+                    })
+                })
+            }
+            else {
+                audio = new Audio('Kutum.mp3');
                 audio.volume = ConvertVolume;
                 audio.play();
-                OneTime2 = true;
             }
         }
-        function myfunction4() {
-            if (!OneTime3) {
-                audio = new Audio('play4.mp3');
+
+        //Garmoth
+        function Garmoth() {
+            if (!audio.paused) {
+                audio.addEventListener('ended', function () {
+                    audio = new Audio('Garmoth.mp3');
+                    audio.volume = ConvertVolume;
+                    audio.play();
+                    audio.addEventListener('ended', function () {
+                        audio2.volume = ConvertVolume;
+                        audio2.play();
+                    })
+                })
+            }
+            else {
+                audio = new Audio('Garmoth.mp3');
                 audio.volume = ConvertVolume;
                 audio.play();
-                OneTime3 = true;
             }
         }
-        function myfunction5() {
-            if (!OneTime4) {
-                audio = new Audio('play5.mp3');
+
+        //Karanda
+        function Karanda() {
+            if (!audio.paused) {
+                audio.addEventListener('ended', function () {
+                    audio = new Audio('Karanda.mp3');
+                    audio.volume = ConvertVolume;
+                    audio.play();
+                    audio.addEventListener('ended', function () {
+                        audio2.volume = ConvertVolume;
+                        audio2.play();
+                    })
+                })
+            }
+            else {
+                audio = new Audio('Karanda.mp3');
                 audio.volume = ConvertVolume;
                 audio.play();
-                OneTime4 = true;
             }
         }
-        function play1() {
-            audio.pause();
-            audio.currentTime = 0;
-            audio = new Audio('play.mp3');
-            audio.volume = ConvertVolume;
+
+        //Offin
+        function Offin() {
+            if (!audio.paused) {
+                audio.addEventListener('ended', function () {
+                    audio = new Audio('Offin.mp3');
+                    audio.volume = ConvertVolume;
+                    audio.play();
+                    audio.addEventListener('ended', function () {
+                        audio2.volume = ConvertVolume;
+                        audio2.play();
+                    })
+                })
+            }
+            else {
+                audio = new Audio('Offin.mp3');
+                audio.volume = ConvertVolume;
                 audio.play();
             }
-        function play2() {
-            audio.pause();
-            audio.currentTime = 0;
-            audio = new Audio('play2.mp3');
-            audio.volume = ConvertVolume;
+        }
+
+        //Vell
+        function Vell() {
+            if (!audio.paused) {
+                audio.addEventListener('ended', function () {
+                    audio = new Audio('Vell.mp3');
+                    audio.volume = ConvertVolume;
+                    audio.play();
+                    audio.addEventListener('ended', function () {
+                        audio2.volume = ConvertVolume;
+                        audio2.play();
+                    })
+                })
+            }
+            else {
+                audio = new Audio('Vell.mp3');
+                audio.volume = ConvertVolume;
                 audio.play();
+            }
         }
-        function play3() {
-            audio.pause();
-            audio.currentTime = 0;
-            audio = new Audio('play3.mp3');
-            audio.volume = ConvertVolume;
-            audio.play();
+
+        //Muraka
+        function Muraka() {
+            if (!audio.paused) {
+                audio.addEventListener('ended', function () {
+                    audio = new Audio('Muraka.mp3');
+                    audio.volume = ConvertVolume;
+                    audio.play();
+                    audio.addEventListener('ended', function () {
+                        audio2.volume = ConvertVolume;
+                        audio2.play();
+                    })
+                })
+            }
+            else {
+                audio = new Audio('Muraka.mp3');
+                audio.volume = ConvertVolume;
+                audio.play();
+            }
         }
-        function play4() {
-            audio.pause();
-            audio.currentTime = 0;
-            audio = new Audio('play4.mp3');
-            audio.volume = ConvertVolume;
-            audio.play();
-        }
-        function play5() {
-            audio.pause();
-            audio.currentTime = 0;
-            audio = new Audio('play5.mp3');
-            audio.volume = ConvertVolume;
-            audio.play();
+
+        //Quint
+        function Quint() {
+            if (!audio.paused) {
+                audio.addEventListener('ended', function () {
+                    audio = new Audio('Quint.mp3');
+                    audio.volume = ConvertVolume;
+                    audio.play();
+                    audio.addEventListener('ended', function () {
+                        audio2.volume = ConvertVolume;
+                        audio2.play();
+                    })
+                })
+            }
+            else {
+                audio = new Audio('Quint.mp3');
+                audio.volume = ConvertVolume;
+                audio.play();
+            }
         }
         
     </script>
+    
+    <div class="sidenav" style="left: 0;padding-left: 25px;">
+        <div id="Time1" style="padding-bottom: 8px;">
+            <asp:Label ID="Imperial_Text" runat="server" Style="width: 200px; height: 70px;" CssClass="BoxedText ftco-animate px-xl-4">Imperial Delivery
+                <div>
+                    <asp:UpdatePanel ID="Life1" runat="server" UpdateMode="Conditional">
+                        <Triggers>
+                            <asp:AsyncPostBackTrigger ControlID="Timer1" EventName="Tick" />
+                        </Triggers>
+
+                        <ContentTemplate>
+                            <asp:Label Style="color: #fff;" ID="Imperial" runat="server" Text="00:00:00"></asp:Label>
+                        </ContentTemplate>
+                    </asp:UpdatePanel>
+                </div>
+            </asp:Label>
+        </div>
+        <div id="Time2" style="padding-bottom: 8px;">
+            <asp:Label ID="ImperialTrade_Text" runat="server" Style="width: 200px; height: 70px;" CssClass="BoxedText ftco-animate px-xl-4">Imperial Trade
+                <div>
+                    <asp:UpdatePanel ID="Life2" runat="server" UpdateMode="Conditional">
+                        <Triggers>
+                            <asp:AsyncPostBackTrigger ControlID="Timer1" EventName="Tick" />
+                        </Triggers>
+
+                        <ContentTemplate>
+                            <asp:Label Style="color: #fff;" ID="ImperialTrade" runat="server" Text="00:00:00"></asp:Label>
+                        </ContentTemplate>
+                    </asp:UpdatePanel>
+                </div>
+            </asp:Label>
+
+           
+        </div>
+        <div id="Time3" style="padding-bottom: 8px;">
+            <asp:Label ID="Bartering_Text" runat="server" Style="width: 200px; height: 70px;" CssClass="BoxedText ftco-animate px-xl-4">Bartering
+                <div>
+                    <asp:UpdatePanel ID="Life3" runat="server" UpdateMode="Conditional">
+                        <Triggers>
+                            <asp:AsyncPostBackTrigger ControlID="Timer1" EventName="Tick" />
+                        </Triggers>
+
+                        <ContentTemplate>
+                            <asp:Label Style="color: #fff;" ID="Bartering" runat="server" Text="00:00:00"></asp:Label>
+                        </ContentTemplate>
+                    </asp:UpdatePanel>
+                </div>
+            </asp:Label>
+        </div>
+        <div id="Time4" style="padding-bottom: 8px;">
+            <asp:Label ID="Night_Text" runat="server" Style="width: 200px;; height: 70px;" CssClass="BoxedText ftco-animate px-xl-4">Đêm bắt đầu vào
+                <div>
+                    <asp:UpdatePanel ID="Life4" runat="server" UpdateMode="Conditional">
+                        <Triggers>
+                            <asp:AsyncPostBackTrigger ControlID="Timer1" EventName="Tick" />
+                        </Triggers>
+
+                        <ContentTemplate>
+                            <asp:Label Style="color: #fff;" ID="Night" runat="server" Text="00:00:00"></asp:Label>
+                        </ContentTemplate>
+                    </asp:UpdatePanel>
+                </div>
+            </asp:Label>
+        </div>
+        <button id="ShowAndHide" onclick="showhide();return false;" style="width: 40px; height: 40px;background-color: rgba(255, 255, 255, 0.2);border: None;color: #fff" class="ftco-animate icon-arrow-circle-left"></button>
+            
+    </div>
+    
+    <div class="sidenav" style="right: 25px;">
+        <div style="padding-bottom: 8px;">
+            <button onclick="location.href='#Timer';return false" style="width: 70px; height: 70px;" class="btn btn-primary ftco-animate icon-clock-o "></button>
+        </div>
+        <div style="padding-bottom: 8px;">
+            <button onclick="location.href='#Calendar';return false" style="width: 70px; height: 70px;" class="btn btn-primary ftco-animate icon-calendar"></button>
+        </div>
+        <div style="padding-bottom: 8px;">
+            <button onclick="location.href='#Setting';return false" style="width: 70px; height: 70px;" class="btn btn-primary ftco-animate icon-settings "></button>
+        </div>
+    </div>
+    <script>
+        function showhide() {
+            var Label0 = document.getElementById("Time1");
+            var Label1 = document.getElementById("Time2");
+            var Label2 = document.getElementById("Time3");
+            var Label3 = document.getElementById("Time4");
+            var ShowHideIt = document.getElementById('ShowAndHide');
+            if (Label0.style.display == "block") {
+                Label0.style.display = "none";
+                Label1.style.display = "none";
+                Label2.style.display = "none";
+                Label3.style.display = "none";
+                ShowHideIt.classList.remove('icon-arrow-circle-left');
+                ShowHideIt.classList.add('icon-arrow-circle-right');
+            }
+            else {
+                Label0.style.display = "block";
+                Label1.style.display = "block";
+                Label2.style.display = "block";
+                Label3.style.display = "block";
+                ShowHideIt.classList.remove('icon-arrow-circle-right');
+                ShowHideIt.classList.add('icon-arrow-circle-left');
+            }
+            
+        }
+    </script>
+    
 </asp:Content>

@@ -164,65 +164,6 @@
         </section>
         </section>
 
-    <section class="ftco-section contact-section">
-    <div class="container col-md-10 heading-section ftco-animate text-center">
-                    <span class="subheading" style="margin-bottom: 5px">Crimson Axis</span>
-                    <h2 class="mb-4">Thống kê</h2>
-        <img class="mb-4" style="max-width: 300px;" src="https://lh3.googleusercontent.com/hRLkDL15CbsrAzc5T9UV9E6tVM3SA0SLYb2xn6B0fKFX8rr4-hCi0PLbkNgsYfxEWl9z0a5Rq5WTOAk8VbqtMvFcM894mo8OyTcfNY_RIwvN7QwSIYMSzoEOhXPjCvYKquc74iE7=w2400">
-        </div>
-        </section>
-    
-    
-    
-
-    <section class="ftco-counter ftco-bg-dark img" id="section-counter" style="background-image: url(https://lh3.googleusercontent.com/LsXgygMtx7YSF8kTHVkP0GFCUgbxb6aj3HsZ6JDV81ewveW2O0uIgxIv7RlKloy1dH_DdGKgi05r9BbPUByAHOCgsJXcP5cUSykXdO-HsgYlVo5TLzEt4fR1rgU-LHsX1isbDZXa=w2400);">
-			<div class="overlay"></div>
-      <div class="container">
-        <div class="row justify-content-center">
-        	<div class="col-md-10">
-        		<div class="row">
-		          <div class="col-md-6 col-lg-3 d-flex justify-content-center counter-wrap ftco-animate">
-		            <div class="block-18 text-center">
-		              <div class="text">
-		              	<div class="icon"><span class="icon-people"></span></div>
-		              	<strong class="number" data-number="0">0</strong>
-		              	<span>Số lượng Officers</span>
-		              </div>
-		            </div>
-		          </div>
-		          <div class="col-md-6 col-lg-3 d-flex justify-content-center counter-wrap ftco-animate">
-		            <div class="block-18 text-center">
-		              <div class="text">
-		              	<div class="icon"><span class="icon-group"></span></div>
-		              	<strong class="number" data-number="0">0</strong>
-		              	<span>Số lượng Members</span>
-		              </div>
-		            </div>
-		          </div>
-		          <div class="col-md-6 col-lg-3 d-flex justify-content-center counter-wrap ftco-animate">
-		            <div class="block-18 text-center">
-		              <div class="text">
-		              	<div class="icon"><span class="icon-user"></span></div>
-		              	<strong class="number" data-number="0">0</strong>
-		              	<span>Số lượng Guild Master</span>
-		              </div>
-		            </div>
-		          </div>
-		          <div class="col-md-6 col-lg-3 d-flex justify-content-center counter-wrap ftco-animate">
-		            <div class="block-18 text-center">
-		              <div class="text">
-		              	<div class="icon"><span class="icon-network_wifi"></span></div>
-		              	<strong class="number" data-number="0">0</strong>
-		              	<span>Online Members</span>
-		              </div>
-		            </div>
-		          </div>
-		        </div>
-		      </div>
-        </div>
-      </div>
-    </section>
-
     <section class="ftco-gallery" style="margin-top:80px">
         <div class="container">
         <div class="row justify-content-center mb-5 pb-3">
@@ -286,4 +227,7 @@
     <a href="ThuVien.aspx" class=" btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3" style="width:200px;font-size:18px;">Xem thêm hình</a>
             </div>
         </section>
+    <script>
+
+    </script>
 </asp:Content>

@@ -36,6 +36,8 @@ namespace CrimsonAxis
                     chk_Quint_Muraka.Checked = Request.Cookies["check"].Values["Quint"] != "False" ? true : false;
                     chk_Vell.Checked = Request.Cookies["check"].Values["Vell"] != "False" ? true : false;
                 }
+
+                //Load Lịch Boss
                 rpt_LichBoss.DataSource = WorldBossBUS.LichBoss();
                 rpt_LichBoss.DataBind();
                 int TotalRow = 0;
@@ -130,6 +132,8 @@ namespace CrimsonAxis
             }
         }
 
+
+        //Save Cookie checkbox
         protected void Save(Object sender, EventArgs args)
         {
             HttpCookie check = new HttpCookie("check");
@@ -146,7 +150,7 @@ namespace CrimsonAxis
                 check.Values["Kutum"] = chk_Kutum.Checked.ToString();
                 check.Values["Quint"] = chk_Quint_Muraka.Checked.ToString();
                 check.Values["Vell"] = chk_Vell.Checked.ToString();
-            check.Expires = DateTime.UtcNow.AddDays(7);
+            check.Expires = DateTime.UtcNow.AddDays(365);
             Response.Cookies.Add(check);
         }
 
@@ -174,6 +178,63 @@ namespace CrimsonAxis
             return new DateTime(date.Year, date.Month, DateTime.DaysInMonth(date.Year, date.Month));
         }
 
+        public static int GetValidImperialTradeTimeLine(DateTime date)
+        {
+            string Hours = (date.Hour + 3).ToString();
+            date = GetThisDay("0" + Hours + ":00:00");
+            TimeSpan TimeLeft = date.Subtract(TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.UtcNow, "SE Asia Standard Time"));
+            
+            while (Convert.ToInt32(TimeLeft.TotalSeconds) <= 0)
+            {
+                Hours = (date.Hour + 4).ToString();
+                if(Convert.ToInt32(Hours) > 24)
+                {
+                    date = MoveNextDay((Convert.ToInt32(Hours) - 24), 0,0);
+                    TimeLeft = date.Subtract(TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.UtcNow, "SE Asia Standard Time"));
+                }
+                else if (date.Hour + 4 < 10)
+                {
+                    date = GetThisDay("0" + Hours + ":00:00");
+                    TimeLeft = GetThisDay("0"+ Hours + ":00:00").Subtract(TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.UtcNow, "SE Asia Standard Time"));
+                } else
+                {
+                    date = GetThisDay(Hours + ":00:00");
+                    TimeLeft = GetThisDay(Hours + ":00:00").Subtract(TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.UtcNow, "SE Asia Standard Time"));
+                }
+            }
+            return Convert.ToInt32(TimeLeft.TotalSeconds);
+        }
+
+        public static int GetValidImperialTimeLine(DateTime date)
+        {
+            string Hours = (date.Hour + 1).ToString();
+            date = GetThisDay("0" + Hours + ":00:00");
+            TimeSpan TimeLeft = date.Subtract(TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.UtcNow, "SE Asia Standard Time"));
+
+            while (Convert.ToInt32(TimeLeft.TotalSeconds) <= 0)
+            {
+                Hours = (date.Hour + 3).ToString();
+                if (Convert.ToInt32(Hours) > 24)
+                {
+                    date = MoveNextDay((Convert.ToInt32(Hours) - 24), 0, 0);
+                    TimeLeft = date.Subtract(TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.UtcNow, "SE Asia Standard Time"));
+                }
+                else if (date.Hour + 3 < 10)
+                {
+                    date = GetThisDay("0" + Hours + ":00:00");
+                    TimeLeft = GetThisDay("0" + Hours + ":00:00").Subtract(TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.UtcNow, "SE Asia Standard Time"));
+                }
+                else
+                {
+                    date = GetThisDay(Hours + ":00:00");
+                    TimeLeft = GetThisDay(Hours + ":00:00").Subtract(TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.UtcNow, "SE Asia Standard Time"));
+                }
+            }
+            return Convert.ToInt32(TimeLeft.TotalSeconds);
+        }
+
+
+
         public static DateTime MoveNextDay(int Hour,int Min,int Second)
         {
             DateTime date = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.UtcNow, "SE Asia Standard Time");
@@ -197,11 +258,26 @@ namespace CrimsonAxis
             DateTime Next = DateTime.Parse(Time, System.Globalization.CultureInfo.CurrentCulture);
             return new DateTime(Now.Year, Now.Month, Now.Day, Next.Hour, Next.Minute, Next.Second);
         }
+        public static String GetImperialTradeTime()
+        {
+            DateTime FirstTimeLine = GetThisDay("00:00:00");
+            return ConvertSecondToClock(GetValidImperialTradeTimeLine(FirstTimeLine));
+        }
+        public static String GetImperialTime()
+        {
+            DateTime FirstTimeLine = GetThisDay("00:00:00");
+            return ConvertSecondToClock(GetValidImperialTimeLine(FirstTimeLine));
+        }
+
 
         protected void Timer1_Tick(object sender, EventArgs e)
         {
             TimeNow.Text = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.UtcNow, "SE Asia Standard Time").ToString();
             TimeNow24h.Text = "(" + TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.UtcNow, "SE Asia Standard Time").ToString("HH:mm:ss") + ")";
+            ImperialTrade.Text = GetImperialTradeTime();
+            Bartering.Text = GetImperialTradeTime();
+            Imperial.Text = GetImperialTime();
+
             if (Store1.Text == string.Empty && Store2.Text == string.Empty)
             {
                 int TotalRow = 0;
@@ -367,7 +443,7 @@ namespace CrimsonAxis
             DateTime End2 = DateTime.Parse(b, System.Globalization.CultureInfo.CurrentCulture);
             TimeSpan TimeLeft = End.Subtract(TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.UtcNow, "SE Asia Standard Time"));
             TimeSpan TimeLeft2 = End2.Subtract(TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.UtcNow, "SE Asia Standard Time"));
-            
+
             int Total = Convert.ToInt32(TimeLeft.TotalSeconds);
             int Total2 = Convert.ToInt32(TimeLeft2.TotalSeconds);
             Timer1.Interval = 1000;
@@ -409,31 +485,103 @@ namespace CrimsonAxis
             }
             for (int y = 0; y < CheckedBoss.Length; y++)
             {
-                if ( CheckedBoss[y] == BossName.Text || CheckedBoss[y] == BossName3.Text)
+                if (CheckedBoss[y] == BossName.Text || CheckedBoss[y] == BossName3.Text)
                 {
-                    if (Total <= 1800 && Total > 1795 && chk_30min.Checked)
+                    if (Total <= 1800 && Total > 1799 && chk_30min.Checked)
                     {
-                        ScriptManager.RegisterClientScriptBlock(this, GetType(), "myfunction", "myfunction();", true);
+                        int Number = 0;
+                        for (int f = 0; f < CheckedBoss.Length; f++)
+                        {
+                            if (CheckedBoss[f] == BossName.Text)
+                            {
+                                ScriptManager.RegisterClientScriptBlock(this, GetType(), BossName.Text, BossName.Text + "();", true);
+                                Number++;
+                            }
+                            else if (CheckedBoss[f] == BossName3.Text)
+                            {
+                                ScriptManager.RegisterClientScriptBlock(this, GetType(), BossName3.Text, BossName3.Text + "();", true);
+                                Number++;
+                            }
+                        }
+                        ScriptManager.RegisterClientScriptBlock(this, GetType(), "MIN30", "MIN30("+Number.ToString()+");", true);
                     }
-                    if (Total <= 900 && Total > 895 && chk_15min.Checked)
+                    if (Total <= 900 && Total > 899 && chk_15min.Checked)
                     {
-                        ScriptManager.RegisterClientScriptBlock(this, GetType(), "myfunction2", "myfunction2();", true);
+                        int Number = 0;
+                        for (int f = 0; f < CheckedBoss.Length; f++)
+                        {
+                            if (CheckedBoss[f] == BossName.Text)
+                            {
+                                ScriptManager.RegisterClientScriptBlock(this, GetType(), BossName.Text, BossName.Text + "();", true);
+                                Number++;
+                            }
+                            else if (CheckedBoss[f] == BossName3.Text)
+                            {
+                                ScriptManager.RegisterClientScriptBlock(this, GetType(), BossName3.Text, BossName3.Text + "();", true);
+                                Number++;
+                            }
+                        }
+                        ScriptManager.RegisterClientScriptBlock(this, GetType(), "MIN15", "MIN15(" + Number.ToString() + ");", true);
                     }
-                    if (Total <= 300 && Total > 295 && chk_05min.Checked)
+                    if (Total <= 300 && Total > 299 && chk_05min.Checked)
                     {
-                        ScriptManager.RegisterClientScriptBlock(this, GetType(), "myfunction3", "myfunction3();", true);
+                        int Number = 0;
+                        for (int f = 0; f < CheckedBoss.Length; f++)
+                        {
+                            if (CheckedBoss[f] == BossName.Text)
+                            {
+                                ScriptManager.RegisterClientScriptBlock(this, GetType(), BossName.Text, BossName.Text + "();", true);
+                                Number++;
+                            }
+                            else if (CheckedBoss[f] == BossName3.Text)
+                            {
+                                ScriptManager.RegisterClientScriptBlock(this, GetType(), BossName3.Text, BossName3.Text + "();", true);
+                                Number++;
+                            }
+                        }
+                        ScriptManager.RegisterClientScriptBlock(this, GetType(), "MIN5", "MIN5(" + Number.ToString() + ");", true);
                     }
-                    if (Total <= 60 && Total > 55 && chk_01min.Checked)
+                    if (Total <= 60 && Total > 59 && chk_01min.Checked)
                     {
-                        ScriptManager.RegisterClientScriptBlock(this, GetType(), "myfunction4", "myfunction4();", true);
+                        int Number = 0;
+                        for (int f = 0; f < CheckedBoss.Length; f++)
+                        {
+                            if (CheckedBoss[f] == BossName.Text)
+                            {
+                                ScriptManager.RegisterClientScriptBlock(this, GetType(), BossName.Text, BossName.Text + "();", true);
+                                Number++;
+                            }
+                            else if (CheckedBoss[f] == BossName3.Text)
+                            {
+                                ScriptManager.RegisterClientScriptBlock(this, GetType(), BossName3.Text, BossName3.Text + "();", true);
+                                Number++;
+                            }
+                        }
+                        ScriptManager.RegisterClientScriptBlock(this, GetType(), "MIN1", "MIN1(" + Number.ToString() + ");", true);
                     }
-                    if (Total <= 0 && chk_live.Checked)
+                    if (Total <= 0 && Total > -1 && chk_live.Checked)
                     {
-                        ScriptManager.RegisterClientScriptBlock(this, GetType(), "myfunction5", "myfunction5();", true);
+                        int Number = 0;
+                        for (int f = 0; f < CheckedBoss.Length; f++)
+                        {
+                            if (CheckedBoss[f] == BossName.Text)
+                            {
+                                ScriptManager.RegisterClientScriptBlock(this, GetType(), BossName.Text, BossName.Text + "();", true);
+                                Number++;
+                            }
+                            else if (CheckedBoss[f] == BossName3.Text)
+                            {
+                                ScriptManager.RegisterClientScriptBlock(this, GetType(), BossName3.Text, BossName3.Text + "();", true);
+                                Number++;
+                            }
+                        }
+                        ScriptManager.RegisterClientScriptBlock(this, GetType(), "SUMMON", "SUMMON(" + Number.ToString() + ");", true);
                     }
                     break;
                 }
             }
+
+
 
 
             if (Total < 300)
@@ -479,6 +627,8 @@ namespace CrimsonAxis
             {
                 Label1.Text = ConvertSecondToClock(Total);
                 Label2.Text = ConvertSecondToClock(Total2);
+                //Imperial.Text = ConvertSecondToClock(Total);
+                //Night.Text = ConvertSecondToClock(Total);
             }
         }
     }
