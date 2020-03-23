@@ -5,3 +5,10 @@ D:\DoAn\CrimsonAxis\DAO\bin\Debug\DTO.pdb
 D:\DoAn\CrimsonAxis\DAO\obj\Debug\DAO.csprojResolveAssemblyReference.cache
 D:\DoAn\CrimsonAxis\DAO\obj\Debug\DAO.dll
 D:\DoAn\CrimsonAxis\DAO\obj\Debug\DAO.pdb
+C:\CrimsonAxis\DAO\bin\Debug\DAO.dll
+C:\CrimsonAxis\DAO\bin\Debug\DAO.pdb
+C:\CrimsonAxis\DAO\bin\Debug\DTO.dll
+C:\CrimsonAxis\DAO\bin\Debug\DTO.pdb
+C:\CrimsonAxis\DAO\obj\Debug\DAO.csprojResolveAssemblyReference.cache
+C:\CrimsonAxis\DAO\obj\Debug\DAO.dll
+C:\CrimsonAxis\DAO\obj\Debug\DAO.pdb

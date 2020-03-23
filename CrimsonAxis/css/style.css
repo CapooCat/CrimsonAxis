@@ -39,6 +39,30 @@
 *::after {
   -webkit-box-sizing: border-box;
   box-sizing: border-box; }
+  
+  
+@media ( max-width: 1050px) {
+	.MobileRightRemove {
+		Display: None;
+	}
+}
+	
+.Hide {
+	width: 40px;
+	height: 40px;
+	background-color: rgba(255, 255, 255,0.1);
+	transition: background-color 0.15s ease-in-out;
+	border: None;
+	color: #fff;
+}
+.Hide:hover {
+	opacity: 0.5;
+	background-color: rgba(255, 255, 255,0.3);
+}
+.Hide:focus {
+	border: none;
+    outline:none;
+}
 
 .BoxedText {
 	padding-top: 8px;
@@ -46,8 +70,12 @@
 	display: inline-block;
 	text-align: center;
 	background-color: #343a40;
-	display: inline-block;
+
 }
+
+
+
+
 
 html {
   scroll-behavior: smooth;
@@ -85,11 +113,13 @@ body {
   height: 500px;
   
 }
-.sidenav a {
+.sidenav Button {
   text-decoration: none;
   font-size: 20px;
   display: block;
 }
+
+
   
 .slidecontainer {
   margin-right:55px;

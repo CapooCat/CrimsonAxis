@@ -17,8 +17,8 @@
 	      </div>
 		  </div>
 	  </nav>
-    
-    <section id="Timer" class="video-container">
+    <div id="Timer"></div>
+    <section class="video-container">
         <div style="position: absolute; width: 100%; height: 100%; background-color: black; opacity: 0.5;"></div>
             <img src="https://lh3.googleusercontent.com/UkWLBD6q1nTRe6ZWVnIzJOdJ5lT9-7FCSdHjFt4hVnQHHqtw1vejjIH_Z76Scy5DqIaWJYNT3bA3rneS8Bc4389xTbSQLm4qC9IPGfnOd2saDHsjcxIlFJefX97_uGoFpOPq0-bX2A=w2400">
     </section>
@@ -523,7 +523,7 @@
     </script>
     
     <div class="sidenav" style="left: 0;padding-left: 25px;">
-        <div id="Time1" style="padding-bottom: 8px;">
+        <div id="Time1" style="padding-bottom: 8px;display:block;">
             <asp:Label ID="Imperial_Text" runat="server" Style="width: 200px; height: 70px;" CssClass="BoxedText ftco-animate px-xl-4">Imperial Delivery
                 <div>
                     <asp:UpdatePanel ID="Life1" runat="server" UpdateMode="Conditional">
@@ -532,13 +532,14 @@
                         </Triggers>
 
                         <ContentTemplate>
-                            <asp:Label Style="color: #fff;" ID="Imperial" runat="server" Text="00:00:00"></asp:Label>
+                            <asp:Label Style="color: #fff;" ID="Imperial" runat="server" Text="..."></asp:Label>
                         </ContentTemplate>
                     </asp:UpdatePanel>
                 </div>
             </asp:Label>
+            
         </div>
-        <div id="Time2" style="padding-bottom: 8px;">
+        <div id="Time2"  style="padding-bottom: 8px;display:block;">
             <asp:Label ID="ImperialTrade_Text" runat="server" Style="width: 200px; height: 70px;" CssClass="BoxedText ftco-animate px-xl-4">Imperial Trade
                 <div>
                     <asp:UpdatePanel ID="Life2" runat="server" UpdateMode="Conditional">
@@ -547,7 +548,7 @@
                         </Triggers>
 
                         <ContentTemplate>
-                            <asp:Label Style="color: #fff;" ID="ImperialTrade" runat="server" Text="00:00:00"></asp:Label>
+                            <asp:Label Style="color: #fff;" ID="ImperialTrade" runat="server" Text="..."></asp:Label>
                         </ContentTemplate>
                     </asp:UpdatePanel>
                 </div>
@@ -555,7 +556,7 @@
 
            
         </div>
-        <div id="Time3" style="padding-bottom: 8px;">
+        <div id="Time3" style="padding-bottom: 8px;display:block;">
             <asp:Label ID="Bartering_Text" runat="server" Style="width: 200px; height: 70px;" CssClass="BoxedText ftco-animate px-xl-4">Bartering
                 <div>
                     <asp:UpdatePanel ID="Life3" runat="server" UpdateMode="Conditional">
@@ -564,14 +565,14 @@
                         </Triggers>
 
                         <ContentTemplate>
-                            <asp:Label Style="color: #fff;" ID="Bartering" runat="server" Text="00:00:00"></asp:Label>
+                            <asp:Label Style="color: #fff;" ID="Bartering" runat="server" Text="..."></asp:Label>
                         </ContentTemplate>
                     </asp:UpdatePanel>
                 </div>
             </asp:Label>
         </div>
-        <div id="Time4" style="padding-bottom: 8px;">
-            <asp:Label ID="Night_Text" runat="server" Style="width: 200px;; height: 70px;" CssClass="BoxedText ftco-animate px-xl-4">Đêm bắt đầu vào
+        <div id="Time4" style="padding-bottom: 8px;display:block;">
+            <asp:Label ID="Night_Text" runat="server" Style="width: 200px; height: 70px;" CssClass="BoxedText ftco-animate px-xl-4">Đêm bắt đầu vào
                 <div>
                     <asp:UpdatePanel ID="Life4" runat="server" UpdateMode="Conditional">
                         <Triggers>
@@ -579,17 +580,18 @@
                         </Triggers>
 
                         <ContentTemplate>
-                            <asp:Label Style="color: #fff;" ID="Night" runat="server" Text="00:00:00"></asp:Label>
+                            <asp:Label Style="color: #fff;" ID="Night" runat="server" Text="..."></asp:Label>
                         </ContentTemplate>
                     </asp:UpdatePanel>
                 </div>
             </asp:Label>
         </div>
-        <button id="ShowAndHide" onclick="showhide();return false;" style="width: 40px; height: 40px;background-color: rgba(255, 255, 255, 0.2);border: None;color: #fff" class="ftco-animate icon-arrow-circle-left"></button>
-            
+        <div>
+        <button id="ShowAndHide" onclick="showhide();return false;" class="Hide ftco-animate icon-eye-slash"></button>
     </div>
+        </div>
     
-    <div class="sidenav" style="right: 25px;">
+    <div class="sidenav MobileRightRemove" style="right: 25px;">
         <div style="padding-bottom: 8px;">
             <button onclick="location.href='#Timer';return false" style="width: 70px; height: 70px;" class="btn btn-primary ftco-animate icon-clock-o "></button>
         </div>
@@ -601,27 +603,29 @@
         </div>
     </div>
     <script>
+        var Label0 = document.getElementById("Time1");
+        var Label1 = document.getElementById("Time2");
+        var Label2 = document.getElementById("Time3");
+        var Label3 = document.getElementById("Time4");
+        var ShowHideIt = document.getElementById('ShowAndHide');
         function showhide() {
-            var Label0 = document.getElementById("Time1");
-            var Label1 = document.getElementById("Time2");
-            var Label2 = document.getElementById("Time3");
-            var Label3 = document.getElementById("Time4");
-            var ShowHideIt = document.getElementById('ShowAndHide');
-            if (Label0.style.display == "block") {
+            if (Label0.style.display == "block" || Label1.style.display == "block" || Label2.style.display == "block" || Label3.style.display == "block") {
                 Label0.style.display = "none";
                 Label1.style.display = "none";
                 Label2.style.display = "none";
                 Label3.style.display = "none";
-                ShowHideIt.classList.remove('icon-arrow-circle-left');
-                ShowHideIt.classList.add('icon-arrow-circle-right');
+                ShowHideIt.classList.remove('ftco-animate');
+                ShowHideIt.classList.remove('icon-eye-slash');
+                ShowHideIt.classList.add('icon-eye');
             }
             else {
                 Label0.style.display = "block";
                 Label1.style.display = "block";
                 Label2.style.display = "block";
                 Label3.style.display = "block";
-                ShowHideIt.classList.remove('icon-arrow-circle-right');
-                ShowHideIt.classList.add('icon-arrow-circle-left');
+                ShowHideIt.classList.remove('ftco-animate');
+                ShowHideIt.classList.remove('icon-eye');
+                ShowHideIt.classList.add('icon-eye-slash');
             }
             
         }

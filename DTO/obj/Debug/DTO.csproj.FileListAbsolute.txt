@@ -3,3 +3,8 @@ D:\DoAn\CrimsonAxis\DTO\bin\Debug\DTO.pdb
 D:\DoAn\CrimsonAxis\DTO\obj\Debug\DTO.csprojResolveAssemblyReference.cache
 D:\DoAn\CrimsonAxis\DTO\obj\Debug\DTO.dll
 D:\DoAn\CrimsonAxis\DTO\obj\Debug\DTO.pdb
+C:\CrimsonAxis\DTO\bin\Debug\DTO.dll
+C:\CrimsonAxis\DTO\bin\Debug\DTO.pdb
+C:\CrimsonAxis\DTO\obj\Debug\DTO.csprojResolveAssemblyReference.cache
+C:\CrimsonAxis\DTO\obj\Debug\DTO.dll
+C:\CrimsonAxis\DTO\obj\Debug\DTO.pdb
