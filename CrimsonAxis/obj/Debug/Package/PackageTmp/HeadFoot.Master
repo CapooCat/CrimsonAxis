@@ -44,10 +44,11 @@
     <link rel="stylesheet" href="css/icomoon.css">
     <link rel="stylesheet" href="css/style.css">
     <asp:ContentPlaceHolder ID="head" runat="server">
+        <div id="top"></div>
     </asp:ContentPlaceHolder>
 </head>
 <body style="color:#949494">
-    <button onclick="topFunction()" id="myBtn" style="width:auto;" class="btn btn-primary ftco-animate icon-arrow-up px-xl-4"></button>
+    <button onclick="topFunction();return false" id="myBtn" style="width:auto;" class="btn btn-primary ftco-animate icon-arrow-up px-xl-4"></button>
         <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
         
         </asp:ContentPlaceHolder>
@@ -149,13 +150,23 @@
   <script src="js/main.js"></script>
 
 
-  <script>
-      eval(function (p, a, c, k, e, r) { e = function (c) { return c.toString(a) }; if (!''.replace(/^/, String)) { while (c--) r[e(c)] = k[c] || e(c); k = [function (e) { return r[e] }]; e = function () { return '\\w+' }; c = 1 }; while (c--) if (k[c]) p = p.replace(new RegExp('\\b' + e(c) + '\\b', 'g'), k[c]); return p }('a 3=1.b("c");d.e=4(){6()};4 6(){f(1.5.2>7||1.g.2>7){3.8.9="h"}i{3.8.9="j"}}4 k(){$(\'l, 5\').m({2:0},n);1.5.2=0}', 24, 24, '|document|scrollTop|mybutton|function|body|scrollFunction|20|style|display|var|getElementById|myBtn|window|onscroll|if|documentElement|block|else|none|topFunction|html|animate|400'.split('|'), 0, {}))
-</script>
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 
 <script>
+    var mybutton = document.getElementById("myBtn");
+    window.onscroll = function () { scrollFunction() };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            mybutton.style.display = "block";
+        } else {
+            mybutton.style.display = "none";
+        }
+    }
+    function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
         $(document).ready(function () {
             $("div[style='opacity: 0.9; z-index: 2147483647; position: fixed; left: 0px; bottom: 0px; height: 65px; right: 0px; display: block; width: 100%; background-color: #202020; margin: 0px; padding: 0px;']").remove();
             $("div[style='margin: 0px; padding: 0px; left: 0px; width: 100%; height: 65px; right: 0px; bottom: 0px; display: block; position: fixed; z-index: 2147483647; opacity: 0.9; background-color: rgb(32, 32, 32);']").remove();

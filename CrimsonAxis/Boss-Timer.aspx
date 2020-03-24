@@ -17,9 +17,8 @@
 	      </div>
 		  </div>
 	  </nav>
-    <div id="Timer"></div>
     <section class="video-container">
-        <div style="position: absolute; width: 100%; height: 100%; background-color: black; opacity: 0.5;"></div>
+        <div id="Timer" style="position: absolute; width: 100%; height: 100%; background-color: black; opacity: 0.5;"></div>
             <img src="https://lh3.googleusercontent.com/UkWLBD6q1nTRe6ZWVnIzJOdJ5lT9-7FCSdHjFt4hVnQHHqtw1vejjIH_Z76Scy5DqIaWJYNT3bA3rneS8Bc4389xTbSQLm4qC9IPGfnOd2saDHsjcxIlFJefX97_uGoFpOPq0-bX2A=w2400">
     </section>
         
@@ -27,6 +26,7 @@
     
         
         <section class="ftco-section" style="margin-top: 30px;">
+            
             <div class="container">
                 <div class="row justify-content-center align-items-center">
                     <div class="col-md-7 heading-section ftco-animate text-center">
@@ -88,8 +88,9 @@
                     </div>
                 </div>
             </div>
+            
         </section>
-
+            
 
         <section class="ftco-section ftco-cart">
 			<div class="container">
@@ -179,6 +180,18 @@
 	        			<div class="d-flex text align-items-center">
 	        				<h3>Thông báo khi LIVE <%--<asp:Button ID="Button5" OnClientClick="play5(); return false;" runat="server" CssClass="MyButton" Text="War horn" />--%></h3>
 	        				<label class="SettingCheck"><asp:CheckBox ID="chk_live" OnCheckedChanged="Save" Checked="true" runat="server" /><span class="Checkmark"></span></label>
+	        			</div>
+        		</div>
+                <div class="pricing-entry d-flex ftco-animate">
+	        			<div class="d-flex text align-items-center">
+	        				<h3>Thông báo khi Imperial Delivery được reset</h3>
+	        				<label class="SettingCheck"><asp:CheckBox ID="chk_Imperial" OnCheckedChanged="Save" Checked="true" runat="server" /><span class="Checkmark"></span></label>
+	        			</div>
+        		</div>
+                <div class="pricing-entry d-flex ftco-animate">
+	        			<div class="d-flex text align-items-center">
+	        				<h3>Thông báo khi Imperial Trade và Bartering được reset</h3>
+	        				<label class="SettingCheck"><asp:CheckBox ID="chk_TradeBartering" OnCheckedChanged="Save" Checked="true" runat="server" /><span class="Checkmark"></span></label>
 	        			</div>
         		</div>
                 <div class="pricing-entry d-flex ftco-animate">
@@ -290,61 +303,105 @@
         }
 
         function MIN30(a) {
+            audio2 = new Audio('30min.mp3');
             if (a == "1") {
                 audio.addEventListener('ended', function () {
-                    audio2 = new Audio('30min.mp3');
                     audio2.play();
                 })
-            } else {
-                audio2 = new Audio('30min.mp3');
             }
         }
         function MIN15(a) {
+            audio2 = new Audio('15min.mp3');
             if (a == "1") {
                 audio.addEventListener('ended', function () {
-                    audio2 = new Audio('15min.mp3');
                     audio2.play();
                 })
-            } else {
-                audio2 = new Audio('15min.mp3');
             }
         }
         function MIN5(a) {
+            audio2 = new Audio('5min.mp3');
             if (a == "1") {
                 audio.addEventListener('ended', function () {
-                    audio2 = new Audio('5min.mp3');
                     audio2.play();
                 })
-            } else {
-                audio2 = new Audio('5min.mp3');
             }
         }
         function MIN1(a) {
+            audio2 = new Audio('1min.mp3');
             if (a == "1") {
                 audio.addEventListener('ended', function () {
-                    audio2 = new Audio('1min.mp3');
                     audio2.play();
                 })
-            } else {
-                audio2 = new Audio('1min.mp3');
             }
         }
         function SUMMON(a) {
+            audio2 = new Audio('Summoning.mp3');
             if (a == "1") {
                 audio.addEventListener('ended', function () {
-                    audio2 = new Audio('Summoning.mp3');
                     audio2.play();
                 })
-            } else {
-                audio2 = new Audio('Summoning.mp3');
+            }
+        }
+
+        function ImperialTradeBartering() {
+            audio = new Audio('ImperialTradeBartering.mp3');
+            if (!audio.paused) {
+                audio.addEventListener('ended', function () {
+                    audio.volume = ConvertVolume;
+                    audio.play();
+                })
+            }
+            else {
+                audio.volume = ConvertVolume;
+                audio.play();
+            }
+        }
+        function Imperial() {
+            audio = new Audio('Imperial.mp3');
+            if (!audio.paused) {
+                audio.addEventListener('ended', function () {
+                    audio.volume = ConvertVolume;
+                    audio.play();
+                })
+            }
+            else {
+                audio.volume = ConvertVolume;
+                audio.play();
+            }
+        }
+
+        function ImperialTradeBartering10min() {
+            audio = new Audio('ImperialTradeBartering10min.mp3');
+            if (!audio.paused) {
+                audio.addEventListener('ended', function () {
+                    audio.volume = ConvertVolume;
+                    audio.play();
+                })
+            }
+            else {
+                audio.volume = ConvertVolume;
+                audio.play();
+            }
+        }
+        function Imperial10min() {
+            audio = new Audio('Imperial10min.mp3');
+            if (!audio.paused) {
+                audio.addEventListener('ended', function () {
+                    audio.volume = ConvertVolume;
+                    audio.play();
+                })
+            }
+            else {
+                audio.volume = ConvertVolume;
+                audio.play();
             }
         }
 
         //Kzarka
         function Kzarka() {
+            audio = new Audio('Kzarka.mp3');
             if (!audio.paused) {
                 audio.addEventListener('ended', function () {
-                    audio = new Audio('Kzarka.mp3');
                     audio.volume = ConvertVolume;
                     audio.play();
                     audio.addEventListener('ended', function () {
@@ -354,7 +411,6 @@
                 })
             }
             else {
-                audio = new Audio('Kzarka.mp3');
                 audio.volume = ConvertVolume;
                 audio.play();
             }
@@ -362,9 +418,9 @@
 
         //Nouver
         function Nouver() {
+            audio = new Audio('Nouver.mp3');
             if (!audio.paused) {
                 audio.addEventListener('ended', function () {
-                    audio = new Audio('Nouver.mp3');
                     audio.volume = ConvertVolume;
                     audio.play();
                     audio.addEventListener('ended', function () {
@@ -374,7 +430,6 @@
                 })
             }
             else {
-                audio = new Audio('Nouver.mp3');
                 audio.volume = ConvertVolume;
                 audio.play();
             }
@@ -382,9 +437,9 @@
 
         //Kutum
         function Kutum() {
+            audio = new Audio('Kutum.mp3');
             if (!audio.paused) {
                 audio.addEventListener('ended', function () {
-                    audio = new Audio('Kutum.mp3');
                     audio.volume = ConvertVolume;
                     audio.play();
                     audio.addEventListener('ended', function () {
@@ -394,7 +449,6 @@
                 })
             }
             else {
-                audio = new Audio('Kutum.mp3');
                 audio.volume = ConvertVolume;
                 audio.play();
             }
@@ -402,9 +456,9 @@
 
         //Garmoth
         function Garmoth() {
+            audio = new Audio('Garmoth.mp3');
             if (!audio.paused) {
                 audio.addEventListener('ended', function () {
-                    audio = new Audio('Garmoth.mp3');
                     audio.volume = ConvertVolume;
                     audio.play();
                     audio.addEventListener('ended', function () {
@@ -414,7 +468,6 @@
                 })
             }
             else {
-                audio = new Audio('Garmoth.mp3');
                 audio.volume = ConvertVolume;
                 audio.play();
             }
@@ -422,9 +475,9 @@
 
         //Karanda
         function Karanda() {
+            audio = new Audio('Karanda.mp3');
             if (!audio.paused) {
                 audio.addEventListener('ended', function () {
-                    audio = new Audio('Karanda.mp3');
                     audio.volume = ConvertVolume;
                     audio.play();
                     audio.addEventListener('ended', function () {
@@ -434,7 +487,6 @@
                 })
             }
             else {
-                audio = new Audio('Karanda.mp3');
                 audio.volume = ConvertVolume;
                 audio.play();
             }
@@ -442,9 +494,9 @@
 
         //Offin
         function Offin() {
+            audio = new Audio('Offin.mp3');
             if (!audio.paused) {
                 audio.addEventListener('ended', function () {
-                    audio = new Audio('Offin.mp3');
                     audio.volume = ConvertVolume;
                     audio.play();
                     audio.addEventListener('ended', function () {
@@ -454,7 +506,6 @@
                 })
             }
             else {
-                audio = new Audio('Offin.mp3');
                 audio.volume = ConvertVolume;
                 audio.play();
             }
@@ -462,9 +513,9 @@
 
         //Vell
         function Vell() {
+            audio = new Audio('Vell.mp3');
             if (!audio.paused) {
                 audio.addEventListener('ended', function () {
-                    audio = new Audio('Vell.mp3');
                     audio.volume = ConvertVolume;
                     audio.play();
                     audio.addEventListener('ended', function () {
@@ -474,7 +525,6 @@
                 })
             }
             else {
-                audio = new Audio('Vell.mp3');
                 audio.volume = ConvertVolume;
                 audio.play();
             }
@@ -482,9 +532,9 @@
 
         //Muraka
         function Muraka() {
+            audio = new Audio('Muraka.mp3');
             if (!audio.paused) {
                 audio.addEventListener('ended', function () {
-                    audio = new Audio('Muraka.mp3');
                     audio.volume = ConvertVolume;
                     audio.play();
                     audio.addEventListener('ended', function () {
@@ -494,7 +544,6 @@
                 })
             }
             else {
-                audio = new Audio('Muraka.mp3');
                 audio.volume = ConvertVolume;
                 audio.play();
             }
@@ -502,9 +551,9 @@
 
         //Quint
         function Quint() {
+            audio = new Audio('Quint.mp3');
             if (!audio.paused) {
                 audio.addEventListener('ended', function () {
-                    audio = new Audio('Quint.mp3');
                     audio.volume = ConvertVolume;
                     audio.play();
                     audio.addEventListener('ended', function () {
@@ -514,7 +563,6 @@
                 })
             }
             else {
-                audio = new Audio('Quint.mp3');
                 audio.volume = ConvertVolume;
                 audio.play();
             }

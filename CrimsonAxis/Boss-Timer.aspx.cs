@@ -35,6 +35,8 @@ namespace CrimsonAxis
                     chk_Kutum.Checked = Request.Cookies["check"].Values["Kutum"] != "False" ? true : false;
                     chk_Quint_Muraka.Checked = Request.Cookies["check"].Values["Quint"] != "False" ? true : false;
                     chk_Vell.Checked = Request.Cookies["check"].Values["Vell"] != "False" ? true : false;
+                    chk_Imperial.Checked = Request.Cookies["check"].Values["Imperial"] != "False" ? true : false;
+                    chk_TradeBartering.Checked = Request.Cookies["check"].Values["TradeBartering"] != "False" ? true : false;
                 }
 
                 //Load Lịch Boss
@@ -150,6 +152,8 @@ namespace CrimsonAxis
                 check.Values["Kutum"] = chk_Kutum.Checked.ToString();
                 check.Values["Quint"] = chk_Quint_Muraka.Checked.ToString();
                 check.Values["Vell"] = chk_Vell.Checked.ToString();
+                check.Values["Imperial"] = chk_Imperial.Checked.ToString();
+                check.Values["TradeBartering"] = chk_TradeBartering.Checked.ToString();
             check.Expires = DateTime.UtcNow.AddDays(365);
             Response.Cookies.Add(check);
         }
@@ -258,15 +262,17 @@ namespace CrimsonAxis
             DateTime Next = DateTime.Parse(Time, System.Globalization.CultureInfo.CurrentCulture);
             return new DateTime(Now.Year, Now.Month, Now.Day, Next.Hour, Next.Minute, Next.Second);
         }
-        public static String GetImperialTradeTime()
+        public static int GetImperialTradeTime()
         {
             DateTime FirstTimeLine = GetThisDay("00:00:00");
-            return ConvertSecondToClock(GetValidImperialTradeTimeLine(FirstTimeLine));
+            int TimeLeft = GetValidImperialTradeTimeLine(FirstTimeLine);
+            
+            return GetValidImperialTradeTimeLine(FirstTimeLine);
         }
-        public static String GetImperialTime()
+        public static int GetImperialTime()
         {
             DateTime FirstTimeLine = GetThisDay("00:00:00");
-            return ConvertSecondToClock(GetValidImperialTimeLine(FirstTimeLine));
+            return GetValidImperialTimeLine(FirstTimeLine);
         }
 
 
@@ -274,9 +280,10 @@ namespace CrimsonAxis
         {
             TimeNow.Text = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.UtcNow, "SE Asia Standard Time").ToString();
             TimeNow24h.Text = "(" + TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.UtcNow, "SE Asia Standard Time").ToString("HH:mm:ss") + ")";
-            ImperialTrade.Text = GetImperialTradeTime();
-            Bartering.Text = GetImperialTradeTime();
-            Imperial.Text = GetImperialTime();
+            ImperialTrade.Text = ConvertSecondToClock(GetImperialTradeTime());
+            Bartering.Text = ConvertSecondToClock(GetImperialTradeTime());
+            Imperial.Text = ConvertSecondToClock(GetImperialTime());
+
 
             if (Store1.Text == string.Empty && Store2.Text == string.Empty)
             {
@@ -581,8 +588,26 @@ namespace CrimsonAxis
                 }
             }
 
+            if (GetImperialTradeTime() <= 600 && GetImperialTradeTime() > 599 && chk_TradeBartering.Checked)
+            {
+                ScriptManager.RegisterClientScriptBlock(this, GetType(), "ImperialTradeBartering10min", "ImperialTradeBartering10min();", true);
+                ImperialTrade.CssClass = "glow";
+                Bartering.CssClass = "glow";
+            }
+            if (GetImperialTime() <= 600 && GetImperialTime() > 599 && chk_Imperial.Checked)
+            {
+                ScriptManager.RegisterClientScriptBlock(this, GetType(), "Imperial10min", "Imperial10min();", true);
+                Imperial.CssClass = "glow";
+            }
 
-
+            if (GetImperialTradeTime() <= 10 && GetImperialTradeTime() > 9 && chk_TradeBartering.Checked)
+            {
+                ScriptManager.RegisterClientScriptBlock(this, GetType(), "ImperialTradeBartering", "ImperialTradeBartering();", true);
+            }
+            if (GetImperialTime() <= 10 && GetImperialTime() > 9 && chk_Imperial.Checked)
+            {
+                ScriptManager.RegisterClientScriptBlock(this, GetType(), "Imperial", "Imperial();", true);
+            }
 
             if (Total < 300)
             {
@@ -627,8 +652,6 @@ namespace CrimsonAxis
             {
                 Label1.Text = ConvertSecondToClock(Total);
                 Label2.Text = ConvertSecondToClock(Total2);
-                //Imperial.Text = ConvertSecondToClock(Total);
-                //Night.Text = ConvertSecondToClock(Total);
             }
         }
     }
