@@ -12,12 +12,11 @@ namespace CrimsonAxis
 {
     public partial class Boss_Timer : System.Web.UI.Page
     {
-        
         protected void Page_Load(object sender, EventArgs e)
         {
-            
             if (!Page.IsPostBack)
             {
+                
                 if (Request.Cookies["check"] != null)
                 {
                     chk_01min.Checked = Request.Cookies["check"].Values["01min"] != "False" ? true : false;
@@ -30,13 +29,14 @@ namespace CrimsonAxis
                     chk_Garmoth.Checked = Request.Cookies["check"].Values["Garmoth"] != "False" ? true : false;
                     chk_Nouver.Checked = Request.Cookies["check"].Values["Nouver"] != "False" ? true : false;
                     chk_Karanda.Checked = Request.Cookies["check"].Values["Karanda"] != "False" ? true : false;
-
                     chk_Offin.Checked = Request.Cookies["check"].Values["Offin"] != "False" ? true : false;
                     chk_Kutum.Checked = Request.Cookies["check"].Values["Kutum"] != "False" ? true : false;
                     chk_Quint_Muraka.Checked = Request.Cookies["check"].Values["Quint"] != "False" ? true : false;
                     chk_Vell.Checked = Request.Cookies["check"].Values["Vell"] != "False" ? true : false;
+
                     chk_Imperial.Checked = Request.Cookies["check"].Values["Imperial"] != "False" ? true : false;
                     chk_TradeBartering.Checked = Request.Cookies["check"].Values["TradeBartering"] != "False" ? true : false;
+                    chk_DayNight.Checked = Request.Cookies["check"].Values["DayNight"] != "False" ? true : false;
                 }
 
                 //Load Lịch Boss
@@ -154,6 +154,7 @@ namespace CrimsonAxis
                 check.Values["Vell"] = chk_Vell.Checked.ToString();
                 check.Values["Imperial"] = chk_Imperial.Checked.ToString();
                 check.Values["TradeBartering"] = chk_TradeBartering.Checked.ToString();
+                check.Values["DayNight"] = chk_TradeBartering.Checked.ToString();
             check.Expires = DateTime.UtcNow.AddDays(365);
             Response.Cookies.Add(check);
         }
@@ -182,56 +183,179 @@ namespace CrimsonAxis
             return new DateTime(date.Year, date.Month, DateTime.DaysInMonth(date.Year, date.Month));
         }
 
-        public static int GetValidImperialTradeTimeLine(DateTime date)
+        public static bool GetGameCurrentState()
         {
-            string Hours = (date.Hour + 3).ToString();
-            date = GetThisDay("0" + Hours + ":00:00");
+            bool Night = false;
+            DateTime date = GetThisDay("02:40:00");
             TimeSpan TimeLeft = date.Subtract(TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.UtcNow, "SE Asia Standard Time"));
-            
-            while (Convert.ToInt32(TimeLeft.TotalSeconds) <= 0)
+
+            while (Convert.ToInt32(TimeLeft.TotalSeconds) < 0)
             {
-                Hours = (date.Hour + 4).ToString();
-                if(Convert.ToInt32(Hours) > 24)
+                if (Night == false)
                 {
-                    date = MoveNextDay((Convert.ToInt32(Hours) - 24), 0,0);
+                    int Gio = date.Hour;
+                    int Phut = date.Minute + 40;
+                    if (Phut >= 60)
+                    {
+                        Phut = Phut - 60;
+                        Gio++;
+                        if (Gio > 24)
+                        {
+                            Gio = Gio - 24;
+                            date = MoveNextDay(Gio, Phut, 0);
+                        }
+                        date = new DateTime(date.Year, date.Month, date.Day, Gio, Phut, 0);
+                    }
+                    else
+                    {
+                        if (Gio > 24)
+                        {
+                            Gio = Gio - 24;
+                            date = MoveNextDay(Gio, Phut, 0);
+                        }
+                        date = new DateTime(date.Year, date.Month, date.Day, Gio, Phut, 0);
+                    }
+                    Night = true;
                     TimeLeft = date.Subtract(TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.UtcNow, "SE Asia Standard Time"));
                 }
-                else if (date.Hour + 4 < 10)
+                else
                 {
-                    date = GetThisDay("0" + Hours + ":00:00");
-                    TimeLeft = GetThisDay("0"+ Hours + ":00:00").Subtract(TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.UtcNow, "SE Asia Standard Time"));
-                } else
+                    int Gio = date.Hour + 3;
+                    int Phut = date.Minute + 20;
+                    if (Phut >= 60)
+                    {
+                        Phut = Phut - 60;
+                        Gio++;
+                        if (Gio > 24)
+                        {
+                            Gio = Gio - 24;
+                            date = MoveNextDay(Gio, Phut, 0);
+                        }
+                        date = new DateTime(date.Year, date.Month, date.Day, Gio, Phut, 0);
+                    }
+                    else
+                    {
+                        if (Gio > 24)
+                        {
+                            Gio = Gio - 24;
+                            date = MoveNextDay(Gio, Phut, 0);
+                        }
+                        date = new DateTime(date.Year, date.Month, date.Day, Gio, Phut, 0);
+                    }
+                    Night = false;
+                    TimeLeft = date.Subtract(TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.UtcNow, "SE Asia Standard Time"));
+                }
+            }
+            return Night;
+        }
+
+        public static int GetValidDayAndNightTimeLine()
+        {
+            bool Night = false; 
+            DateTime date = GetThisDay("02:40:00");
+            TimeSpan TimeLeft = date.Subtract(TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.UtcNow, "SE Asia Standard Time"));
+
+            while (Convert.ToInt32(TimeLeft.TotalSeconds) < 0)
+            {
+                if(Night == false)
                 {
-                    date = GetThisDay(Hours + ":00:00");
-                    TimeLeft = GetThisDay(Hours + ":00:00").Subtract(TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.UtcNow, "SE Asia Standard Time"));
+                    int Gio = date.Hour;
+                    int Phut = date.Minute + 40;
+                    if (Phut >= 60)
+                    {
+                        Phut = Phut - 60;
+                        Gio++;
+                        if (Gio > 24)
+                        {
+                            Gio = Gio - 24;
+                            date = MoveNextDay(Gio, Phut, 0);
+                        }
+                        date = new DateTime(date.Year, date.Month, date.Day, Gio, Phut, 0);
+                    } else
+                    {
+                        if (Gio > 24)
+                        {
+                            Gio = Gio - 24;
+                            date = MoveNextDay(Gio, Phut, 0);
+                        }
+                        date = new DateTime(date.Year, date.Month, date.Day, Gio, Phut, 0);
+                    }
+                    Night = true;
+                    TimeLeft = date.Subtract(TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.UtcNow, "SE Asia Standard Time"));
+                }
+                else
+                {
+                    int Gio = date.Hour + 3;
+                    int Phut = date.Minute + 20;
+                    if (Phut >= 60)
+                    {
+                        Phut = Phut - 60;
+                        Gio++;
+                        if (Gio > 24)
+                        {
+                            Gio = Gio - 24;
+                            date = MoveNextDay(Gio, Phut, 0);
+                        }
+                        date = new DateTime(date.Year, date.Month, date.Day, Gio, Phut, 0);
+                    }
+                    else
+                    {
+                        if (Gio > 24)
+                        {
+                            Gio = Gio - 24;
+                            date = MoveNextDay(Gio, Phut, 0);
+                        }
+                        date = new DateTime(date.Year, date.Month, date.Day, Gio, Phut, 0);
+                    }
+                    Night = false;
+                    TimeLeft = date.Subtract(TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.UtcNow, "SE Asia Standard Time"));
+                }
+                
+            }
+            return Convert.ToInt32(TimeLeft.TotalSeconds);
+        }
+
+        public static int GetValidImperialTradeTimeLine()
+        {
+            DateTime date = GetThisDay("03:00:00");
+            int Hours = date.Hour;
+            TimeSpan TimeLeft = date.Subtract(TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.UtcNow, "SE Asia Standard Time"));
+            
+            while (Convert.ToInt32(TimeLeft.TotalSeconds) < 0)
+            {
+                Hours = date.Hour + 4;
+                if(Hours > 24)
+                {
+                    date = MoveNextDay((Hours - 24), 0,0);
+                    TimeLeft = date.Subtract(TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.UtcNow, "SE Asia Standard Time"));
+                }
+                else
+                {
+                    date = new DateTime(date.Year, date.Month, date.Day,Hours, 0, 0);
+                    TimeLeft = date.Subtract(TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.UtcNow, "SE Asia Standard Time"));
                 }
             }
             return Convert.ToInt32(TimeLeft.TotalSeconds);
         }
 
-        public static int GetValidImperialTimeLine(DateTime date)
+        public static int GetValidImperialTimeLine()
         {
-            string Hours = (date.Hour + 1).ToString();
-            date = GetThisDay("0" + Hours + ":00:00");
+            DateTime date = GetThisDay("01:00:00");
+            int Hours = date.Hour;
             TimeSpan TimeLeft = date.Subtract(TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.UtcNow, "SE Asia Standard Time"));
 
-            while (Convert.ToInt32(TimeLeft.TotalSeconds) <= 0)
+            while (Convert.ToInt32(TimeLeft.TotalSeconds) < 0)
             {
-                Hours = (date.Hour + 3).ToString();
-                if (Convert.ToInt32(Hours) > 24)
+                Hours = date.Hour + 3;
+                if (Hours > 24)
                 {
-                    date = MoveNextDay((Convert.ToInt32(Hours) - 24), 0, 0);
+                    date = MoveNextDay((Hours - 24), 0, 0);
                     TimeLeft = date.Subtract(TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.UtcNow, "SE Asia Standard Time"));
-                }
-                else if (date.Hour + 3 < 10)
-                {
-                    date = GetThisDay("0" + Hours + ":00:00");
-                    TimeLeft = GetThisDay("0" + Hours + ":00:00").Subtract(TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.UtcNow, "SE Asia Standard Time"));
                 }
                 else
                 {
-                    date = GetThisDay(Hours + ":00:00");
-                    TimeLeft = GetThisDay(Hours + ":00:00").Subtract(TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.UtcNow, "SE Asia Standard Time"));
+                    date = new DateTime(date.Year, date.Month, date.Day, Hours, 0, 0);
+                    TimeLeft = date.Subtract(TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.UtcNow, "SE Asia Standard Time"));
                 }
             }
             return Convert.ToInt32(TimeLeft.TotalSeconds);
@@ -264,17 +388,29 @@ namespace CrimsonAxis
         }
         public static int GetImperialTradeTime()
         {
-            DateTime FirstTimeLine = GetThisDay("00:00:00");
-            int TimeLeft = GetValidImperialTradeTimeLine(FirstTimeLine);
-            
-            return GetValidImperialTradeTimeLine(FirstTimeLine);
+            return GetValidImperialTradeTimeLine();
         }
         public static int GetImperialTime()
         {
-            DateTime FirstTimeLine = GetThisDay("00:00:00");
-            return GetValidImperialTimeLine(FirstTimeLine);
+            return GetValidImperialTimeLine();
         }
 
+        public static int GetDayAndNightTime()
+        {
+            return GetValidDayAndNightTimeLine();
+        }
+        public static String GetGameTime()
+        {
+            if(GetGameCurrentState() == true)
+            {
+                return "Sáng bắt đầu vào";
+            }
+            else
+            {
+                return "Đêm bắt đầu vào";
+            }
+
+        }
 
         protected void Timer1_Tick(object sender, EventArgs e)
         {
@@ -283,6 +419,8 @@ namespace CrimsonAxis
             ImperialTrade.Text = ConvertSecondToClock(GetImperialTradeTime());
             Bartering.Text = ConvertSecondToClock(GetImperialTradeTime());
             Imperial.Text = ConvertSecondToClock(GetImperialTime());
+            DayNight.Text = ConvertSecondToClock(GetDayAndNightTime());
+            DayOrNight.Text = GetGameTime();
 
 
             if (Store1.Text == string.Empty && Store2.Text == string.Empty)
@@ -481,6 +619,7 @@ namespace CrimsonAxis
             {
                 Array.Resize(ref CheckedBoss, CheckedBoss.Length + 1);
                 CheckedBoss[CheckedBoss.Length - 1] = "Quint";
+                CheckedBoss[CheckedBoss.Length - 1] = "Muraka";
             } if(chk_Offin.Checked)
             {
                 Array.Resize(ref CheckedBoss, CheckedBoss.Length + 1);
@@ -588,16 +727,29 @@ namespace CrimsonAxis
                 }
             }
 
-            if (GetImperialTradeTime() <= 600 && GetImperialTradeTime() > 599 && chk_TradeBartering.Checked)
+            if (GetImperialTradeTime() <= 600 && chk_TradeBartering.Checked)
             {
-                ScriptManager.RegisterClientScriptBlock(this, GetType(), "ImperialTradeBartering10min", "ImperialTradeBartering10min();", true);
+                if(GetImperialTradeTime() > 599)
+                    ScriptManager.RegisterClientScriptBlock(this, GetType(), "ImperialTradeBartering10min", "ImperialTradeBartering10min();", true);
                 ImperialTrade.CssClass = "glow";
                 Bartering.CssClass = "glow";
             }
-            if (GetImperialTime() <= 600 && GetImperialTime() > 599 && chk_Imperial.Checked)
+            if (GetImperialTime() <= 600 && chk_Imperial.Checked)
             {
-                ScriptManager.RegisterClientScriptBlock(this, GetType(), "Imperial10min", "Imperial10min();", true);
+                if(GetImperialTime() > 599)
+                    ScriptManager.RegisterClientScriptBlock(this, GetType(), "Imperial10min", "Imperial10min();", true);
                 Imperial.CssClass = "glow";
+            }
+            if (GetDayAndNightTime() <= 600  && chk_DayNight.Checked)
+            {
+                if (GetGameCurrentState() == true)
+                {
+                    DayNight.CssClass = "glow";
+                }
+                else
+                {
+                    DayNight.CssClass = "glow";
+                }
             }
 
             if (GetImperialTradeTime() <= 10 && GetImperialTradeTime() > 9 && chk_TradeBartering.Checked)
@@ -607,6 +759,27 @@ namespace CrimsonAxis
             if (GetImperialTime() <= 10 && GetImperialTime() > 9 && chk_Imperial.Checked)
             {
                 ScriptManager.RegisterClientScriptBlock(this, GetType(), "Imperial", "Imperial();", true);
+            }
+            if (GetImperialTradeTime() <= 0 && chk_TradeBartering.Checked)
+            {
+                ImperialTrade.CssClass = "";
+                Bartering.CssClass = "";
+            }
+            if (GetImperialTime() <= 0 && chk_Imperial.Checked)
+            {
+                Imperial.CssClass = "";
+            }
+            if (GetDayAndNightTime() <= 0 && GetDayAndNightTime() > -1 && chk_DayNight.Checked)
+            {
+                if(GetGameCurrentState() == true)
+                {
+                    ScriptManager.RegisterClientScriptBlock(this, GetType(), "Night", "Night();", true);
+                    DayNight.CssClass = "";
+                } else
+                {
+                    ScriptManager.RegisterClientScriptBlock(this, GetType(), "Day", "Day();", true);
+                    DayNight.CssClass = "";
+                }
             }
 
             if (Total < 300)
@@ -635,7 +808,7 @@ namespace CrimsonAxis
                 {
                     Store1.Text = "";
                     Store2.Text = "";
-                    Response.Redirect("Boss-Timer.aspx");
+                    Server.TransferRequest(Request.Url.AbsolutePath, false);
                 }
                 
             }

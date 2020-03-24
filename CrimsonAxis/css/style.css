@@ -72,6 +72,7 @@
 	display: inline-block;
 	text-align: center;
 	background-color: rgba(0, 0, 0,0.3);
+	transition: background-color 0.15s ease-in-out;
 
 }
 .BoxedText:hover {
@@ -83,7 +84,6 @@
 
 
 html {
-  scroll-behavior: smooth;
   font-family: sans-serif;
   line-height: 1.15;
   -webkit-text-size-adjust: 100%;

@@ -196,11 +196,18 @@
         		</div>
                 <div class="pricing-entry d-flex ftco-animate">
 	        			<div class="d-flex text align-items-center">
+	        				<h3>Thông báo Ngày đêm</h3>
+	        				<label class="SettingCheck"><asp:CheckBox ID="chk_DayNight" OnCheckedChanged="Save" Checked="true" runat="server" /><span class="Checkmark"></span></label>
+	        			</div>
+        		</div>
+                <div class="pricing-entry d-flex ftco-animate">
+	        			<div class="d-flex text align-items-center">
 	        				<h3>Âm lượng</h3>
                              <div class="slidecontainer">
 	        				<input type="range" min="0" max="100" value="50" class="slider" id="Volume"> </div>
 	        			</div>
         		</div>
+
         	</div>
 
         	<div class="col-md-6 mb-5 pb-3">
@@ -257,7 +264,6 @@
         </div>
     	</div>
     </section>
-
       
     <script>
         function getCookie(cname) {
@@ -276,11 +282,8 @@
             return "";
         }
         var j = 0;
-        var playlist = new Array();
-
-        var Skip = false;
         var audio = new Audio('Hello.mp3');
-        var audio2 = new Audio('Hello.mp3');
+        var TimeAudio = new Audio('Hello.mp3');
         var AudioVolume = document.getElementById("Volume");
         var Cookie = getCookie("Volume");
         if(Cookie != "")
@@ -303,42 +306,47 @@
         }
 
         function MIN30(a) {
-            audio2 = new Audio('30min.mp3');
+            TimeAudio = new Audio('30min.mp3');
             if (a == "1") {
                 audio.addEventListener('ended', function () {
-                    audio2.play();
+                    TimeAudio.volume = ConvertVolume;
+                    TimeAudio.play();
                 })
             }
         }
         function MIN15(a) {
-            audio2 = new Audio('15min.mp3');
+            TimeAudio = new Audio('15min.mp3');
             if (a == "1") {
                 audio.addEventListener('ended', function () {
-                    audio2.play();
+                    TimeAudio.volume = ConvertVolume;
+                    TimeAudio.play();
                 })
             }
         }
         function MIN5(a) {
-            audio2 = new Audio('5min.mp3');
+            TimeAudio = new Audio('5min.mp3');
             if (a == "1") {
                 audio.addEventListener('ended', function () {
-                    audio2.play();
+                    TimeAudio.volume = ConvertVolume;
+                    TimeAudio.play();
                 })
             }
         }
         function MIN1(a) {
-            audio2 = new Audio('1min.mp3');
+            TimeAudio = new Audio('1min.mp3');
             if (a == "1") {
                 audio.addEventListener('ended', function () {
-                    audio2.play();
+                    TimeAudio.volume = ConvertVolume;
+                    TimeAudio.play();
                 })
             }
         }
         function SUMMON(a) {
-            audio2 = new Audio('Summoning.mp3');
+            TimeAudio = new Audio('Summoning.mp3');
             if (a == "1") {
                 audio.addEventListener('ended', function () {
-                    audio2.play();
+                    TimeAudio.volume = ConvertVolume;
+                    TimeAudio.play();
                 })
             }
         }
@@ -358,6 +366,32 @@
         }
         function Imperial() {
             audio = new Audio('Imperial.mp3');
+            if (!audio.paused) {
+                audio.addEventListener('ended', function () {
+                    audio.volume = ConvertVolume;
+                    audio.play();
+                })
+            }
+            else {
+                audio.volume = ConvertVolume;
+                audio.play();
+            }
+        }
+        function Night() {
+            audio = new Audio('Night.mp3');
+            if (!audio.paused) {
+                audio.addEventListener('ended', function () {
+                    audio.volume = ConvertVolume;
+                    audio.play();
+                })
+            }
+            else {
+                audio.volume = ConvertVolume;
+                audio.play();
+            }
+        }
+        function Day() {
+            audio = new Audio('Day.mp3');
             if (!audio.paused) {
                 audio.addEventListener('ended', function () {
                     audio.volume = ConvertVolume;
@@ -405,8 +439,8 @@
                     audio.volume = ConvertVolume;
                     audio.play();
                     audio.addEventListener('ended', function () {
-                        audio2.volume = ConvertVolume;
-                        audio2.play();
+                        TimeAudio.volume = ConvertVolume;
+                        TimeAudio.play();
                     })
                 })
             }
@@ -424,8 +458,8 @@
                     audio.volume = ConvertVolume;
                     audio.play();
                     audio.addEventListener('ended', function () {
-                        audio2.volume = ConvertVolume;
-                        audio2.play();
+                        TimeAudio.volume = ConvertVolume;
+                        TimeAudio.play();
                     })
                 })
             }
@@ -443,8 +477,8 @@
                     audio.volume = ConvertVolume;
                     audio.play();
                     audio.addEventListener('ended', function () {
-                        audio2.volume = ConvertVolume;
-                        audio2.play();
+                        TimeAudio.volume = ConvertVolume;
+                        TimeAudio.play();
                     })
                 })
             }
@@ -462,8 +496,8 @@
                     audio.volume = ConvertVolume;
                     audio.play();
                     audio.addEventListener('ended', function () {
-                        audio2.volume = ConvertVolume;
-                        audio2.play();
+                        TimeAudio.volume = ConvertVolume;
+                        TimeAudio.play();
                     })
                 })
             }
@@ -481,8 +515,8 @@
                     audio.volume = ConvertVolume;
                     audio.play();
                     audio.addEventListener('ended', function () {
-                        audio2.volume = ConvertVolume;
-                        audio2.play();
+                        TimeAudio.volume = ConvertVolume;
+                        TimeAudio.play();
                     })
                 })
             }
@@ -500,8 +534,8 @@
                     audio.volume = ConvertVolume;
                     audio.play();
                     audio.addEventListener('ended', function () {
-                        audio2.volume = ConvertVolume;
-                        audio2.play();
+                        TimeAudio.volume = ConvertVolume;
+                        TimeAudio.play();
                     })
                 })
             }
@@ -519,8 +553,8 @@
                     audio.volume = ConvertVolume;
                     audio.play();
                     audio.addEventListener('ended', function () {
-                        audio2.volume = ConvertVolume;
-                        audio2.play();
+                        TimeAudio.volume = ConvertVolume;
+                        TimeAudio.play();
                     })
                 })
             }
@@ -538,8 +572,8 @@
                     audio.volume = ConvertVolume;
                     audio.play();
                     audio.addEventListener('ended', function () {
-                        audio2.volume = ConvertVolume;
-                        audio2.play();
+                        TimeAudio.volume = ConvertVolume;
+                        TimeAudio.play();
                     })
                 })
             }
@@ -557,8 +591,8 @@
                     audio.volume = ConvertVolume;
                     audio.play();
                     audio.addEventListener('ended', function () {
-                        audio2.volume = ConvertVolume;
-                        audio2.play();
+                        TimeAudio.volume = ConvertVolume;
+                        TimeAudio.play();
                     })
                 })
             }
@@ -620,15 +654,17 @@
             </asp:Label>
         </div>
         <div id="Time4" style="padding-bottom: 8px;display:block;">
-            <asp:Label ID="Night_Text" runat="server" Style="width: 200px; height: 70px;" CssClass="BoxedText ftco-animate px-xl-4">Đêm bắt đầu vào
+            <asp:Label ID="DayNight_Text" runat="server" Style="width: 200px; height: 70px;" CssClass="BoxedText ftco-animate px-xl-4">
                 <div>
                     <asp:UpdatePanel ID="Life4" runat="server" UpdateMode="Conditional">
                         <Triggers>
                             <asp:AsyncPostBackTrigger ControlID="Timer1" EventName="Tick" />
                         </Triggers>
-
                         <ContentTemplate>
-                            <asp:Label Style="color: #fff;" ID="Night" runat="server" Text="..."></asp:Label>
+                            <div>
+                            <asp:Label Style="color: #fff;" ID="DayOrNight" runat="server" Text="None"></asp:Label>
+                                </div>
+                            <asp:Label Style="color: #fff;" ID="DayNight" runat="server" Text="..."></asp:Label>
                         </ContentTemplate>
                     </asp:UpdatePanel>
                 </div>
@@ -641,16 +677,30 @@
     
     <div class="sidenav MobileRightRemove" style="right: 25px;">
         <div style="padding-bottom: 8px;">
-            <button onclick="location.href='#Timer';return false" style="width: 70px; height: 70px;" class="btn btn-primary ftco-animate icon-clock-o "></button>
+            <button onclick="BossTimer();return false" id="btn1" style="width: 70px; height: 70px;" class="btn btn-primary ftco-animate icon-clock-o "></button>
         </div>
         <div style="padding-bottom: 8px;">
-            <button onclick="location.href='#Calendar';return false" style="width: 70px; height: 70px;" class="btn btn-primary ftco-animate icon-calendar"></button>
+            <button onclick="BossSchedule();return false" id="btn2" style="width: 70px; height: 70px;" class="btn btn-primary ftco-animate icon-calendar"></button>
         </div>
         <div style="padding-bottom: 8px;">
-            <button onclick="location.href='#Setting';return false" style="width: 70px; height: 70px;" class="btn btn-primary ftco-animate icon-settings "></button>
+            <button onclick="Setting();return false" id="btn3" style="width: 70px; height: 70px;" class="btn btn-primary ftco-animate icon-settings "></button>
         </div>
     </div>
     <script>
+        function BossTimer() {
+            const btn = document.getElementById('elem');
+            var elmnt = document.getElementById("Timer");
+            elmnt.scrollIntoView({ behavior: 'smooth' });
+        }
+        function BossSchedule() {
+            var elmnt = document.getElementById("Calendar");
+            elmnt.scrollIntoView({ behavior: 'smooth' });
+        }
+        function Setting() {
+            var elmnt = document.getElementById("Setting");
+            elmnt.scrollIntoView({ behavior: 'smooth' });
+        }
+
         var Label0 = document.getElementById("Time1");
         var Label1 = document.getElementById("Time2");
         var Label2 = document.getElementById("Time3");

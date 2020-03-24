@@ -265,6 +265,15 @@ namespace CrimsonAxis {
         protected global::System.Web.UI.WebControls.CheckBox chk_TradeBartering;
         
         /// <summary>
+        /// chk_DayNight control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox chk_DayNight;
+        
+        /// <summary>
         /// chk_Kzarka control.
         /// </summary>
         /// <remarks>
@@ -418,13 +427,13 @@ namespace CrimsonAxis {
         protected global::System.Web.UI.WebControls.Label Bartering;
         
         /// <summary>
-        /// Night_Text control.
+        /// DayNight_Text control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Night_Text;
+        protected global::System.Web.UI.WebControls.Label DayNight_Text;
         
         /// <summary>
         /// Life4 control.
@@ -436,12 +445,21 @@ namespace CrimsonAxis {
         protected global::System.Web.UI.UpdatePanel Life4;
         
         /// <summary>
-        /// Night control.
+        /// DayOrNight control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Night;
+        protected global::System.Web.UI.WebControls.Label DayOrNight;
+        
+        /// <summary>
+        /// DayNight control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label DayNight;
     }
 }
