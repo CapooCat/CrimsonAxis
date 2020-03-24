@@ -247,6 +247,24 @@ namespace CrimsonAxis {
         protected global::System.Web.UI.WebControls.CheckBox chk_live;
         
         /// <summary>
+        /// chk_Imperial control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox chk_Imperial;
+        
+        /// <summary>
+        /// chk_TradeBartering control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox chk_TradeBartering;
+        
+        /// <summary>
         /// chk_Kzarka control.
         /// </summary>
         /// <remarks>
