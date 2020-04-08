@@ -30,6 +30,25 @@ namespace DAO
         }
 
 
+        public static DataTable ExecuteSelectQuery(string query)
+        {
+            SqlCommand cmd = new SqlCommand();
+            DataTable dtbKetQua = new DataTable();
+            try
+            {
+                cmd.Connection = OpenConnection();
+                cmd.CommandText = query;
+                adapter.SelectCommand = cmd;
+                adapter.Fill(dtbKetQua);
+                conn.Close();
+            }
+            catch (SqlException e)
+            {
+                return null;
+            }
+            return dtbKetQua;
+        }
+
         public static DataTable ExecuteSelectQuery(string query, SqlParameter[] param)
         {
             SqlCommand cmd = new SqlCommand();

@@ -13,6 +13,12 @@
 	          <li class="nav-item"><a href="http://crimsonaxis.somee.com/" class="nav-link">Trang chủ</a></li>
 	          <li class="nav-item active"><a href="ThuVien.aspx" class="nav-link">Thư viện</a></li>
               <li class="nav-item"><a href="Boss-Timer.aspx" class="nav-link">World Boss</a></li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Tools</a>
+                    <div class="dropdown-menu" aria-labelledby="dropdown">
+                        <a class="dropdown-item active" href="CalculatorEXP.aspx">Life Skill EXP</a>
+                    </div>
+                </li>
 	        </ul>
 	      </div>
 		  </div>

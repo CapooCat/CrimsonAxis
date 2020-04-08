@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Security;
 using System.Web.SessionState;
+using BUS;
 
 namespace CrimsonAxis
 {
@@ -18,6 +19,7 @@ namespace CrimsonAxis
         protected void Session_Start(object sender, EventArgs e)
         {
             currentNumberOfUsers += 1;
+            WorldBossBUS.UpodateTotalVisitors(1);
         }
 
         protected void Application_BeginRequest(object sender, EventArgs e)
@@ -32,7 +34,10 @@ namespace CrimsonAxis
 
         protected void Application_Error(object sender, EventArgs e)
         {
+            Exception ex = Server.GetLastError().InnerException;
 
+            Application["Ex"] = ex;
+            Response.Redirect("Boss-Timer.aspx");
         }
 
         protected void Session_End(object sender, EventArgs e)

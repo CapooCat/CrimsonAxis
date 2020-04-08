@@ -58,6 +58,15 @@ namespace CrimsonAxis {
         protected global::System.Web.UI.WebControls.Label UserCount;
         
         /// <summary>
+        /// TotalVisit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label TotalVisit;
+        
+        /// <summary>
         /// ReCountUser control.
         /// </summary>
         /// <remarks>

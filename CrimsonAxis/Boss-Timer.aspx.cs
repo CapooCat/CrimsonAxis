@@ -16,7 +16,6 @@ namespace CrimsonAxis
         {
             if (!Page.IsPostBack)
             {
-                
                 if (Request.Cookies["check"] != null)
                 {
                     chk_01min.Checked = Request.Cookies["check"].Values["01min"] != "False" ? true : false;
@@ -414,6 +413,7 @@ namespace CrimsonAxis
 
         protected void Timer1_Tick(object sender, EventArgs e)
         {
+            FirstSecond.Text = (Convert.ToInt32(FirstSecond.Text) + 1).ToString();
             TimeNow.Text = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.UtcNow, "SE Asia Standard Time").ToString();
             TimeNow24h.Text = "(" + TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.UtcNow, "SE Asia Standard Time").ToString("HH:mm:ss") + ")";
             ImperialTrade.Text = ConvertSecondToClock(GetImperialTradeTime());
@@ -591,7 +591,6 @@ namespace CrimsonAxis
 
             int Total = Convert.ToInt32(TimeLeft.TotalSeconds);
             int Total2 = Convert.ToInt32(TimeLeft2.TotalSeconds);
-            Timer1.Interval = 1000;
 
             string[] CheckedBoss = new string[0];
             
@@ -619,6 +618,7 @@ namespace CrimsonAxis
             {
                 Array.Resize(ref CheckedBoss, CheckedBoss.Length + 1);
                 CheckedBoss[CheckedBoss.Length - 1] = "Quint";
+                Array.Resize(ref CheckedBoss, CheckedBoss.Length + 1);
                 CheckedBoss[CheckedBoss.Length - 1] = "Muraka";
             } if(chk_Offin.Checked)
             {
@@ -633,154 +633,325 @@ namespace CrimsonAxis
             {
                 if (CheckedBoss[y] == BossName.Text || CheckedBoss[y] == BossName3.Text)
                 {
-                    if (Total <= 1800 && Total > 1799 && chk_30min.Checked)
+                    if (Total < 1900 && Total > 1800)
                     {
-                        int Number = 0;
-                        for (int f = 0; f < CheckedBoss.Length; f++)
-                        {
-                            if (CheckedBoss[f] == BossName.Text)
-                            {
-                                ScriptManager.RegisterClientScriptBlock(this, GetType(), BossName.Text, BossName.Text + "();", true);
-                                Number++;
-                            }
-                            else if (CheckedBoss[f] == BossName3.Text)
-                            {
-                                ScriptManager.RegisterClientScriptBlock(this, GetType(), BossName3.Text, BossName3.Text + "();", true);
-                                Number++;
-                            }
-                        }
-                        ScriptManager.RegisterClientScriptBlock(this, GetType(), "MIN30", "MIN30("+Number.ToString()+");", true);
+                        ScriptManager.RegisterStartupScript(this, GetType(), "stopRefresh", "stopRefresh();", true);
                     }
-                    if (Total <= 900 && Total > 899 && chk_15min.Checked)
+                    else if (Total < 1000)
                     {
-                        int Number = 0;
-                        for (int f = 0; f < CheckedBoss.Length; f++)
-                        {
-                            if (CheckedBoss[f] == BossName.Text)
-                            {
-                                ScriptManager.RegisterClientScriptBlock(this, GetType(), BossName.Text, BossName.Text + "();", true);
-                                Number++;
-                            }
-                            else if (CheckedBoss[f] == BossName3.Text)
-                            {
-                                ScriptManager.RegisterClientScriptBlock(this, GetType(), BossName3.Text, BossName3.Text + "();", true);
-                                Number++;
-                            }
-                        }
-                        ScriptManager.RegisterClientScriptBlock(this, GetType(), "MIN15", "MIN15(" + Number.ToString() + ");", true);
+                        ScriptManager.RegisterStartupScript(this, GetType(), "stopRefresh", "stopRefresh();", true);
                     }
-                    if (Total <= 300 && Total > 299 && chk_05min.Checked)
+
+                    if (Total <= 1800 && Total > 1790 && chk_30min.Checked && LockTime1.Text == string.Empty)
                     {
-                        int Number = 0;
-                        for (int f = 0; f < CheckedBoss.Length; f++)
+                        if (Convert.ToInt32(FirstSecond.Text) > 1)
                         {
-                            if (CheckedBoss[f] == BossName.Text)
+                            int Number = 0;
+                            for (int f = 0; f < CheckedBoss.Length; f++)
                             {
-                                ScriptManager.RegisterClientScriptBlock(this, GetType(), BossName.Text, BossName.Text + "();", true);
-                                Number++;
+                                if (CheckedBoss[f] == BossName.Text)
+                                {
+                                    ScriptManager.RegisterStartupScript(this, GetType(), BossName.Text, BossName.Text + "();", true);
+                                    Number++;
+                                }
+                                else if (CheckedBoss[f] == BossName3.Text)
+                                {
+                                    ScriptManager.RegisterStartupScript(this, GetType(), BossName3.Text, BossName3.Text + "();", true);
+                                    Number++;
+                                }
                             }
-                            else if (CheckedBoss[f] == BossName3.Text)
-                            {
-                                ScriptManager.RegisterClientScriptBlock(this, GetType(), BossName3.Text, BossName3.Text + "();", true);
-                                Number++;
-                            }
+                            ScriptManager.RegisterStartupScript(this, GetType(), "MIN30", "MIN30(" + Number.ToString() + ");", true);
+                            ScriptManager.RegisterStartupScript(this, GetType(), "startRefresh", "startRefresh();", true);
                         }
-                        ScriptManager.RegisterClientScriptBlock(this, GetType(), "MIN5", "MIN5(" + Number.ToString() + ");", true);
+                        LockTime1.Text = "true";
+                        LockTime5.Text = string.Empty;
                     }
-                    if (Total <= 60 && Total > 59 && chk_01min.Checked)
+                    else if (Total <= 900 && Total > 890 && chk_15min.Checked && LockTime2.Text == string.Empty)
                     {
-                        int Number = 0;
-                        for (int f = 0; f < CheckedBoss.Length; f++)
+                        if (Convert.ToInt32(FirstSecond.Text) > 1)
                         {
-                            if (CheckedBoss[f] == BossName.Text)
+                            int Number = 0;
+                            for (int f = 0; f < CheckedBoss.Length; f++)
                             {
-                                ScriptManager.RegisterClientScriptBlock(this, GetType(), BossName.Text, BossName.Text + "();", true);
-                                Number++;
+                                if (CheckedBoss[f] == BossName.Text)
+                                {
+                                    ScriptManager.RegisterStartupScript(this, GetType(), BossName.Text, BossName.Text + "();", true);
+                                    Number++;
+                                }
+                                else if (CheckedBoss[f] == BossName3.Text)
+                                {
+                                    ScriptManager.RegisterStartupScript(this, GetType(), BossName3.Text, BossName3.Text + "();", true);
+                                    Number++;
+                                }
                             }
-                            else if (CheckedBoss[f] == BossName3.Text)
-                            {
-                                ScriptManager.RegisterClientScriptBlock(this, GetType(), BossName3.Text, BossName3.Text + "();", true);
-                                Number++;
-                            }
+                            ScriptManager.RegisterStartupScript(this, GetType(), "MIN15", "MIN15(" + Number.ToString() + ");", true);
+
                         }
-                        ScriptManager.RegisterClientScriptBlock(this, GetType(), "MIN1", "MIN1(" + Number.ToString() + ");", true);
+                            LockTime1.Text = string.Empty;
+                            LockTime2.Text = "true";
                     }
-                    if (Total <= 0 && Total > -1 && chk_live.Checked)
+                    else if (Total <= 300 && Total > 290 && chk_05min.Checked && LockTime3.Text == string.Empty)
                     {
-                        int Number = 0;
-                        for (int f = 0; f < CheckedBoss.Length; f++)
+                        if (Convert.ToInt32(FirstSecond.Text) > 1)
                         {
-                            if (CheckedBoss[f] == BossName.Text)
+                            int Number = 0;
+                            for (int f = 0; f < CheckedBoss.Length; f++)
                             {
-                                ScriptManager.RegisterClientScriptBlock(this, GetType(), BossName.Text, BossName.Text + "();", true);
-                                Number++;
+                                if (CheckedBoss[f] == BossName.Text)
+                                {
+                                    ScriptManager.RegisterStartupScript(this, GetType(), BossName.Text, BossName.Text + "();", true);
+                                    Number++;
+                                }
+                                else if (CheckedBoss[f] == BossName3.Text)
+                                {
+                                    ScriptManager.RegisterStartupScript(this, GetType(), BossName3.Text, BossName3.Text + "();", true);
+                                    Number++;
+                                }
                             }
-                            else if (CheckedBoss[f] == BossName3.Text)
-                            {
-                                ScriptManager.RegisterClientScriptBlock(this, GetType(), BossName3.Text, BossName3.Text + "();", true);
-                                Number++;
-                            }
+                            ScriptManager.RegisterStartupScript(this, GetType(), "MIN5", "MIN5(" + Number.ToString() + ");", true);
                         }
-                        ScriptManager.RegisterClientScriptBlock(this, GetType(), "SUMMON", "SUMMON(" + Number.ToString() + ");", true);
+                            LockTime2.Text = string.Empty;
+                            LockTime3.Text = "true";
+                    }
+                    else if (Total <= 60 && Total > 50 && chk_01min.Checked && LockTime4.Text == string.Empty)
+                    {
+                        if (Convert.ToInt32(FirstSecond.Text) > 1)
+                        {
+                            int Number = 0;
+                            for (int f = 0; f < CheckedBoss.Length; f++)
+                            {
+                                if (CheckedBoss[f] == BossName.Text)
+                                {
+                                    ScriptManager.RegisterStartupScript(this, GetType(), BossName.Text, BossName.Text + "();", true);
+                                    Number++;
+                                }
+                                else if (CheckedBoss[f] == BossName3.Text)
+                                {
+                                    ScriptManager.RegisterStartupScript(this, GetType(), BossName3.Text, BossName3.Text + "();", true);
+                                    Number++;
+                                }
+                            }
+                            ScriptManager.RegisterStartupScript(this, GetType(), "MIN1", "MIN1(" + Number.ToString() + ");", true);
+                        }
+                            LockTime3.Text = string.Empty;
+                            LockTime4.Text = "true";
+                    }
+                    else if (Total <= 0 && Total > -10 && chk_live.Checked && LockTime5.Text == string.Empty)
+                    {
+                        if (Convert.ToInt32(FirstSecond.Text) > 1)
+                        {
+                            int Number = 0;
+                            for (int f = 0; f < CheckedBoss.Length; f++)
+                            {
+                                if (CheckedBoss[f] == BossName.Text)
+                                {
+                                    ScriptManager.RegisterStartupScript(this, GetType(), BossName.Text, BossName.Text + "();", true);
+                                    Number++;
+                                }
+                                else if (CheckedBoss[f] == BossName3.Text)
+                                {
+                                    ScriptManager.RegisterStartupScript(this, GetType(), BossName3.Text, BossName3.Text + "();", true);
+                                    Number++;
+                                }
+                            }
+                            ScriptManager.RegisterStartupScript(this, GetType(), "SUMMON", "SUMMON(" + Number.ToString() + ");", true);
+                        }
+                            LockTime4.Text = string.Empty;
+                            LockTime5.Text = "true";
+                    }
+                    if (Total < -10 && Total > -20 && LockTime5.Text != string.Empty)
+                    {
+                        DateTime TimeLine = GetThisDay(Store2.Text);
+                        if (Convert.ToInt32(FirstSecond.Text) > 1)
+                        {
+                            int Number = 0;
+                            for (int f = 0; f < CheckedBoss.Length; f++)
+                            {
+                                if (CheckedBoss[f] == BossName2.Text)
+                                {
+                                    ScriptManager.RegisterStartupScript(this, GetType(), BossName2.Text, BossName2.Text + "();", true);
+                                    Number++;
+                                }
+                                else if (CheckedBoss[f] == BossName4.Text)
+                                {
+                                    ScriptManager.RegisterStartupScript(this, GetType(), BossName4.Text, BossName4.Text + "();", true);
+                                    Number++;
+                                }
+                            }
+                            ScriptManager.RegisterStartupScript(this, GetType(), "NEXTBOSS", "NEXTBOSS(" + Number.ToString() + "," + (TimeLine.Hour).ToString() +");", true);
+                        }
+                        LockTime5.Text = string.Empty;
                     }
                     break;
                 }
             }
 
-            if (GetImperialTradeTime() <= 600 && chk_TradeBartering.Checked)
+
+
+
+            //Imperial Trade and Bartering
+            int ImperialTradeTime = GetImperialTradeTime();
+            if(ImperialTradeTime < 700 && ImperialTradeTime > 15)
             {
-                if(GetImperialTradeTime() > 599)
-                    ScriptManager.RegisterClientScriptBlock(this, GetType(), "ImperialTradeBartering10min", "ImperialTradeBartering10min();", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "stopRefresh", "stopRefresh();", true);
+            }
+            if (ImperialTradeTime <= 600 && GetImperialTradeTime() > 10)
+            {
+                if (ImperialTradeTime > 590 && chk_TradeBartering.Checked)
+                {
+                    if (Convert.ToInt32(FirstSecond.Text) > 1)
+                    {
+                        if (LockTime6.Text == string.Empty)
+                        {
+                            ScriptManager.RegisterStartupScript(this, GetType(), "ImperialTradeBartering10min", "ImperialTradeBartering10min();", true);
+                        }
+                    }
+                }
+                    LockTime6.Text = "true";
+                    LockTime8.Text = string.Empty;
+                    ImperialTrade.CssClass = "glow";
+                    Bartering.CssClass = "glow";
+            }
+            else if (ImperialTradeTime <= 15)
+            {
+                if (ImperialTradeTime > 0 && chk_TradeBartering.Checked)
+                {
+                    if (Convert.ToInt32(FirstSecond.Text) > 1)
+                    {
+                        if (LockTime8.Text == string.Empty)
+                        {
+                            ScriptManager.RegisterStartupScript(this, GetType(), "ImperialTradeBartering", "ImperialTradeBartering();", true);
+                            ScriptManager.RegisterStartupScript(this, GetType(), "startRefresh", "startRefresh();", true);
+                        }
+                    }
+                }
+                LockTime6.Text = string.Empty;
+                LockTime8.Text = "true";
                 ImperialTrade.CssClass = "glow";
                 Bartering.CssClass = "glow";
-            }
-            if (GetImperialTime() <= 600 && chk_Imperial.Checked)
-            {
-                if(GetImperialTime() > 599)
-                    ScriptManager.RegisterClientScriptBlock(this, GetType(), "Imperial10min", "Imperial10min();", true);
-                Imperial.CssClass = "glow";
-            }
-            if (GetDayAndNightTime() <= 600  && chk_DayNight.Checked)
-            {
-                if (GetGameCurrentState() == true)
-                {
-                    DayNight.CssClass = "glow";
-                }
-                else
-                {
-                    DayNight.CssClass = "glow";
-                }
-            }
-
-            if (GetImperialTradeTime() <= 10 && GetImperialTradeTime() > 9 && chk_TradeBartering.Checked)
-            {
-                ScriptManager.RegisterClientScriptBlock(this, GetType(), "ImperialTradeBartering", "ImperialTradeBartering();", true);
-            }
-            if (GetImperialTime() <= 10 && GetImperialTime() > 9 && chk_Imperial.Checked)
-            {
-                ScriptManager.RegisterClientScriptBlock(this, GetType(), "Imperial", "Imperial();", true);
-            }
-            if (GetImperialTradeTime() <= 0 && chk_TradeBartering.Checked)
+            } else
             {
                 ImperialTrade.CssClass = "";
                 Bartering.CssClass = "";
             }
-            if (GetImperialTime() <= 0 && chk_Imperial.Checked)
+
+
+            //Imperial Delivery
+            int ImperialDeliveryTime = GetImperialTime();
+            if(ImperialDeliveryTime < 700 && ImperialDeliveryTime > 15)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "stopRefresh", "stopRefresh();", true);
+            }
+            if (ImperialDeliveryTime <= 600 && GetImperialTime() > 10)
+            {
+                if (ImperialDeliveryTime > 590 && chk_Imperial.Checked)
+                {
+                    if (Convert.ToInt32(FirstSecond.Text) > 1)
+                    {
+                        if (LockTime7.Text == string.Empty)
+                        {
+                            ScriptManager.RegisterStartupScript(this, GetType(), "Imperial10min", "Imperial10min();", true);
+                        }
+                    }
+                }
+                LockTime7.Text = "true";
+                LockTime9.Text = string.Empty;
+                Imperial.CssClass = "glow";
+            }
+            else if (ImperialDeliveryTime <= 15)
+            {
+                if (ImperialDeliveryTime > 0 && chk_Imperial.Checked)
+                {
+                    if (Convert.ToInt32(FirstSecond.Text) > 1)
+                    {
+                        if (LockTime9.Text == string.Empty)
+                        {
+                            ScriptManager.RegisterStartupScript(this, GetType(), "Imperial", "Imperial();", true);
+                            ScriptManager.RegisterStartupScript(this, GetType(), "startRefresh", "startRefresh();", true);
+                        }
+                    }
+                }
+                LockTime7.Text = string.Empty;
+                LockTime9.Text = "true";
+                Imperial.CssClass = "glow";
+            } else
             {
                 Imperial.CssClass = "";
             }
-            if (GetDayAndNightTime() <= 0 && GetDayAndNightTime() > -1 && chk_DayNight.Checked)
+
+
+
+            //Day And Night
+            int DayAndNight = GetDayAndNightTime();
+            bool GameCurrentState = GetGameCurrentState();
+            if (DayAndNight < 700 && DayAndNight > 15)
             {
-                if(GetGameCurrentState() == true)
-                {
-                    ScriptManager.RegisterClientScriptBlock(this, GetType(), "Night", "Night();", true);
-                    DayNight.CssClass = "";
-                } else
-                {
-                    ScriptManager.RegisterClientScriptBlock(this, GetType(), "Day", "Day();", true);
-                    DayNight.CssClass = "";
-                }
+                ScriptManager.RegisterStartupScript(this, GetType(), "stopRefresh", "stopRefresh();", true);
             }
+            if (GameCurrentState == true)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "GoodNight", "GoodNight();", true);
+            } else
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "GoodMorning", "GoodMorning();", true);
+            }
+
+            if (DayAndNight <= 900 && GetDayAndNightTime() > 10)
+            {
+                if (DayAndNight > 890 && chk_DayNight.Checked)
+                {
+                    if (Convert.ToInt32(FirstSecond.Text) > 1)
+                    {
+                        if (LockTime10.Text == string.Empty)
+                        {
+                            if (GameCurrentState == true)
+                            {
+                                ScriptManager.RegisterStartupScript(this, GetType(), "Day15min", "Day15min();", true);
+                            }
+                            else
+                            {
+                                ScriptManager.RegisterStartupScript(this, GetType(), "Night15min", "Night15min();", true);
+                            }
+                        }
+                    }
+                }
+                LockTime10.Text = "true";
+                LockTime11.Text = string.Empty;
+                DayNight.CssClass = "glow";
+            }
+            else if (DayAndNight <= 15)
+            {
+                if (DayAndNight > 0 && chk_DayNight.Checked)
+                {
+                    if (Convert.ToInt32(FirstSecond.Text) > 1)
+                    {
+                        if (LockTime11.Text == string.Empty)
+                        {
+                            if (GameCurrentState == true)
+                            {
+                                ScriptManager.RegisterStartupScript(this, GetType(), "Day", "Day();", true);
+                            }
+                            else
+                            {
+                                ScriptManager.RegisterStartupScript(this, GetType(), "Night", "Night();", true);
+                            }
+                            ScriptManager.RegisterStartupScript(this, GetType(), "startRefresh", "startRefresh();", true);
+                        }
+                    }
+                }
+                LockTime10.Text = string.Empty;
+                LockTime11.Text = "true";
+                DayNight.CssClass = "glow";
+            }
+            else
+            {
+                DayNight.CssClass = "";
+            }
+
+
+
+
+
 
             if (Total < 300)
             {
@@ -808,7 +979,7 @@ namespace CrimsonAxis
                 {
                     Store1.Text = "";
                     Store2.Text = "";
-                    Server.TransferRequest(Request.Url.AbsolutePath, false);
+                    Response.Redirect("Boss-Timer.aspx");
                 }
                 
             }

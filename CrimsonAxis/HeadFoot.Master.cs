@@ -21,6 +21,8 @@ namespace CrimsonAxis
         {
             int currentNumberOfUsers = Global.CurrentNumberOfUsers;
             UserCount.Text = "Đang Online: " + currentNumberOfUsers.ToString();
+            TotalVisit.Text = "Tổng truy cập: " + WorldBossBUS.GetTotalVisitors();
+            ReCountUser.Interval = 30000;
         }
     }
 }

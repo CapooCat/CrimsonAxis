@@ -96,6 +96,7 @@
   <ItemGroup>
     <Content Include="Boss-Timer.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="CalculatorEXP.aspx" />
     <Content Include="ThuVien.aspx" />
     <Content Include="Blog-Single.aspx" />
     <Content Include="Blog.aspx" />
@@ -132,6 +133,13 @@
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="CalculatorEXP.aspx.cs">
+      <DependentUpon>CalculatorEXP.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CalculatorEXP.aspx.designer.cs">
+      <DependentUpon>CalculatorEXP.aspx</DependentUpon>
     </Compile>
     <Compile Include="ThuVien.aspx.cs">
       <DependentUpon>ThuVien.aspx</DependentUpon>

@@ -74,6 +74,7 @@
                             </Triggers>
                       <ContentTemplate>
                   <h2><asp:Label ID="UserCount" runat="server" Text="..."></asp:Label></h2>
+                          <h2><asp:Label ID="TotalVisit" runat="server" Text="..."></asp:Label></h2>
                           </ContentTemplate>
                 </asp:UpdatePanel>
                       <asp:Timer ID="ReCountUser" runat="server" Interval="1000" OnTick="ReCountUser_Tick"></asp:Timer>

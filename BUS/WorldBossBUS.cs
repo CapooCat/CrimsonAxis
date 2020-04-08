@@ -23,5 +23,13 @@ namespace BUS
         {
             return WolrdBossDAO.LichBoss();
         }
+        public static int UpodateTotalVisitors(int i)
+        {
+            return WolrdBossDAO.UpdateTotalVisitors(i);
+        }
+        public static int GetTotalVisitors()
+        {
+            return WolrdBossDAO.GetTotalVisitors();
+        }
     }
 }

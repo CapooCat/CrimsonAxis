@@ -18,10 +18,26 @@
 		  </div>
 	  </nav>
     <section class="video-container">
-        <div id="Timer" style="position: absolute; width: 100%; height: 100%; background-color: black; opacity: 0.5;"></div>
-            <img src="https://lh3.googleusercontent.com/UkWLBD6q1nTRe6ZWVnIzJOdJ5lT9-7FCSdHjFt4hVnQHHqtw1vejjIH_Z76Scy5DqIaWJYNT3bA3rneS8Bc4389xTbSQLm4qC9IPGfnOd2saDHsjcxIlFJefX97_uGoFpOPq0-bX2A=w2400">
+        <div id="Timer" style="position: absolute; width: 100%; height: 100%; background-color: black; opacity: 0.5;">
+        <div id="Day">
+            <img  src="https://lh3.googleusercontent.com/UkWLBD6q1nTRe6ZWVnIzJOdJ5lT9-7FCSdHjFt4hVnQHHqtw1vejjIH_Z76Scy5DqIaWJYNT3bA3rneS8Bc4389xTbSQLm4qC9IPGfnOd2saDHsjcxIlFJefX97_uGoFpOPq0-bX2A=w2400">
+            </div>
+            <div id="Night">
+                <img  src="https://lh3.googleusercontent.com/h6hHyu90C07qTSRN_ApBMxhJShv1oeD4i9xY_b5MzhCBPyddHOnsYwD5QtRIL-a2A6qhSoV3zLRFk3pGOxFxJGaSFtcN60I8gb0PSP2eQ2E68yBoN46lyCy2qubEX9iHyuEJhvqaew=w2400">
+            </div>
+            </div>
     </section>
-        
+
+        <script>
+            function GoodNight() {
+                $('#Day').fadeOut(2000, function () { $('#Night').fadeIn(2000); });
+                
+            }
+            function GoodMorning() {
+                $('#Night').fadeOut(2000, function () { $('#Day').fadeIn(2000); });
+                
+            }
+        </script>
     
     
         
@@ -32,6 +48,18 @@
                     <div class="col-md-7 heading-section ftco-animate text-center">
                         <asp:Label ID="Store1" runat="server" style="display:none;"></asp:Label>
                         <asp:Label ID="Store2" runat="server" style="display:none;"></asp:Label>
+                        <asp:Label ID="LockTime1" runat="server" style="display:none;"></asp:Label>
+                        <asp:Label ID="LockTime2" runat="server" style="display:none;"></asp:Label>
+                        <asp:Label ID="LockTime3" runat="server" style="display:none;"></asp:Label>
+                        <asp:Label ID="LockTime4" runat="server" style="display:none;"></asp:Label>
+                        <asp:Label ID="LockTime5" runat="server" style="display:none;"></asp:Label>
+                        <asp:Label ID="LockTime6" runat="server" style="display:none;"></asp:Label>
+                        <asp:Label ID="LockTime7" runat="server" style="display:none;"></asp:Label>
+                        <asp:Label ID="LockTime8" runat="server" style="display:none;"></asp:Label>
+                        <asp:Label ID="LockTime9" runat="server" style="display:none;"></asp:Label>
+                        <asp:Label ID="LockTime10" runat="server" style="display:none;"></asp:Label>
+                        <asp:Label ID="LockTime11" runat="server" style="display:none;"></asp:Label>
+                        <asp:Label ID="FirstSecond" Text="0" runat="server" style="display:none;"></asp:Label>
                         <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
                         
                         <script type="text/javascript">
@@ -184,13 +212,13 @@
         		</div>
                 <div class="pricing-entry d-flex ftco-animate">
 	        			<div class="d-flex text align-items-center">
-	        				<h3>Thông báo khi Imperial Delivery được reset</h3>
+	        				<h3>Thông báo Imperial Delivery</h3>
 	        				<label class="SettingCheck"><asp:CheckBox ID="chk_Imperial" OnCheckedChanged="Save" Checked="true" runat="server" /><span class="Checkmark"></span></label>
 	        			</div>
         		</div>
                 <div class="pricing-entry d-flex ftco-animate">
 	        			<div class="d-flex text align-items-center">
-	        				<h3>Thông báo khi Imperial Trade và Bartering được reset</h3>
+	        				<h3>Thông báo Imperial Trade và Bartering</h3>
 	        				<label class="SettingCheck"><asp:CheckBox ID="chk_TradeBartering" OnCheckedChanged="Save" Checked="true" runat="server" /><span class="Checkmark"></span></label>
 	        			</div>
         		</div>
@@ -266,6 +294,17 @@
     </section>
       
     <script>
+        var vRefreshId = null;
+        vRefreshId = setInterval("window.location.reload()", 10 * 60 * 1000);
+
+        function stopRefresh() {
+            clearInterval(vRefreshId);
+        }
+
+        function startRefresh() {
+            vRefreshId = setInterval("window.location.reload()", 10 * 60 * 1000);
+        }
+
         function getCookie(cname) {
             var name = cname + "=";
             var decodedCookie = decodeURIComponent(document.cookie);
@@ -283,7 +322,11 @@
         }
         var j = 0;
         var audio = new Audio('Hello.mp3');
+        audio.volume = 0;
+        audio.play();
         var TimeAudio = new Audio('Hello.mp3');
+        TimeAudio.volume = 0;
+        TimeAudio.play();
         var AudioVolume = document.getElementById("Volume");
         var Cookie = getCookie("Volume");
         if(Cookie != "")
@@ -307,7 +350,7 @@
 
         function MIN30(a) {
             TimeAudio = new Audio('30min.mp3');
-            if (a == "1") {
+            if (a == 1) {
                 audio.addEventListener('ended', function () {
                     TimeAudio.volume = ConvertVolume;
                     TimeAudio.play();
@@ -316,7 +359,7 @@
         }
         function MIN15(a) {
             TimeAudio = new Audio('15min.mp3');
-            if (a == "1") {
+            if (a == 1) {
                 audio.addEventListener('ended', function () {
                     TimeAudio.volume = ConvertVolume;
                     TimeAudio.play();
@@ -325,7 +368,7 @@
         }
         function MIN5(a) {
             TimeAudio = new Audio('5min.mp3');
-            if (a == "1") {
+            if (a == 1) {
                 audio.addEventListener('ended', function () {
                     TimeAudio.volume = ConvertVolume;
                     TimeAudio.play();
@@ -334,7 +377,7 @@
         }
         function MIN1(a) {
             TimeAudio = new Audio('1min.mp3');
-            if (a == "1") {
+            if (a == 1) {
                 audio.addEventListener('ended', function () {
                     TimeAudio.volume = ConvertVolume;
                     TimeAudio.play();
@@ -343,7 +386,36 @@
         }
         function SUMMON(a) {
             TimeAudio = new Audio('Summoning.mp3');
-            if (a == "1") {
+            if (a == 1) {
+                audio.addEventListener('ended', function () {
+                    TimeAudio.volume = ConvertVolume;
+                    TimeAudio.play();
+                })
+            }
+        }
+        function NEXTBOSS(a, b) {
+            if (b == 0) {
+                TimeAudio = new Audio('TimeLine1.mp3');
+            }
+            else if (b == 6) {
+                TimeAudio = new Audio('TimeLine2.mp3');
+            }
+            else if (b == 10) {
+                TimeAudio = new Audio('TimeLine3.mp3');
+            }
+            else if (b == 14) {
+                TimeAudio = new Audio('TimeLine4.mp3');
+            }
+            else if (b == 15) {
+                TimeAudio = new Audio('TimeLine5.mp3');
+            }
+            else if (b == 19) {
+                TimeAudio = new Audio('TimeLine6.mp3');
+            }
+            else if (b == 23) {
+                TimeAudio = new Audio('TimeLine7.mp3');
+            }
+            if (a == 1) {
                 audio.addEventListener('ended', function () {
                     TimeAudio.volume = ConvertVolume;
                     TimeAudio.play();
@@ -351,91 +423,128 @@
             }
         }
 
+
         function ImperialTradeBartering() {
-            audio = new Audio('ImperialTradeBartering.mp3');
             if (!audio.paused) {
                 audio.addEventListener('ended', function () {
+                    audio = new Audio('ImperialTradeBartering.mp3');
                     audio.volume = ConvertVolume;
                     audio.play();
                 })
             }
             else {
+                audio = new Audio('ImperialTradeBartering.mp3');
                 audio.volume = ConvertVolume;
                 audio.play();
             }
         }
         function Imperial() {
-            audio = new Audio('Imperial.mp3');
+
             if (!audio.paused) {
                 audio.addEventListener('ended', function () {
+                    audio = new Audio('Imperial.mp3');
                     audio.volume = ConvertVolume;
                     audio.play();
                 })
             }
             else {
+                audio = new Audio('Imperial.mp3');
                 audio.volume = ConvertVolume;
                 audio.play();
             }
         }
         function Night() {
-            audio = new Audio('Night.mp3');
-            if (!audio.paused) {
-                audio.addEventListener('ended', function () {
+                if (!audio.paused) {
+                    audio.addEventListener('ended', function () {
+                        audio = new Audio('Night.mp3');
+                        audio.volume = ConvertVolume;
+                        audio.play();
+                    })
+                }
+                else {
+                    audio = new Audio('Night.mp3');
                     audio.volume = ConvertVolume;
                     audio.play();
-                })
-            }
-            else {
-                audio.volume = ConvertVolume;
-                audio.play();
-            }
+                }
         }
         function Day() {
-            audio = new Audio('Day.mp3');
-            if (!audio.paused) {
-                audio.addEventListener('ended', function () {
+                if (!audio.paused) {
+                    audio.addEventListener('ended', function () {
+                        audio = new Audio('Day.mp3');
+                        audio.volume = ConvertVolume;
+                        audio.play();
+                    })
+                }
+                else {
+                    audio = new Audio('Day.mp3');
                     audio.volume = ConvertVolume;
                     audio.play();
-                })
-            }
-            else {
-                audio.volume = ConvertVolume;
-                audio.play();
-            }
+                }
         }
 
         function ImperialTradeBartering10min() {
-            audio = new Audio('ImperialTradeBartering10min.mp3');
+                if (!audio.paused) {
+                    audio.addEventListener('ended', function () {
+                        audio = new Audio('ImperialTradeBartering10min.mp3');
+                        audio.volume = ConvertVolume;
+                        audio.play();
+                    })
+                }
+                else {
+                    audio = new Audio('ImperialTradeBartering10min.mp3');
+                    audio.volume = ConvertVolume;
+                    audio.play();
+                }
+        }
+        function Imperial10min() {
+                if (!audio.paused) {
+                    audio.addEventListener('ended', function () {
+                        audio = new Audio('Imperial10min.mp3');
+                        audio.volume = ConvertVolume;
+                        audio.play();
+                    })
+                }
+                else {
+                    audio = new Audio('Imperial10min.mp3');
+                    audio.volume = ConvertVolume;
+                    audio.play();
+                }
+        }
+        function Night15min() {
             if (!audio.paused) {
                 audio.addEventListener('ended', function () {
+                    audio = new Audio('Night15min.mp3');
                     audio.volume = ConvertVolume;
                     audio.play();
                 })
             }
             else {
+                audio = new Audio('Night15min.mp3');
                 audio.volume = ConvertVolume;
                 audio.play();
             }
         }
-        function Imperial10min() {
-            audio = new Audio('Imperial10min.mp3');
+        function Day15min() {
             if (!audio.paused) {
                 audio.addEventListener('ended', function () {
+                    audio = new Audio('Day15min.mp3');
                     audio.volume = ConvertVolume;
                     audio.play();
                 })
             }
             else {
+                audio = new Audio('Day15min.mp3');
                 audio.volume = ConvertVolume;
                 audio.play();
             }
         }
 
+
         //Kzarka
         function Kzarka() {
-            audio = new Audio('Kzarka.mp3');
             if (!audio.paused) {
                 audio.addEventListener('ended', function () {
+                    audio = new Audio('Kzarka.mp3');
                     audio.volume = ConvertVolume;
                     audio.play();
                     audio.addEventListener('ended', function () {
@@ -445,6 +554,7 @@
                 })
             }
             else {
+                audio = new Audio('Kzarka.mp3');
                 audio.volume = ConvertVolume;
                 audio.play();
             }
@@ -452,9 +562,9 @@
 
         //Nouver
         function Nouver() {
-            audio = new Audio('Nouver.mp3');
             if (!audio.paused) {
                 audio.addEventListener('ended', function () {
+                    audio = new Audio('Nouver.mp3');
                     audio.volume = ConvertVolume;
                     audio.play();
                     audio.addEventListener('ended', function () {
@@ -464,6 +574,7 @@
                 })
             }
             else {
+                audio = new Audio('Nouver.mp3');
                 audio.volume = ConvertVolume;
                 audio.play();
             }
@@ -471,9 +582,9 @@
 
         //Kutum
         function Kutum() {
-            audio = new Audio('Kutum.mp3');
             if (!audio.paused) {
                 audio.addEventListener('ended', function () {
+                    audio = new Audio('Kutum.mp3');
                     audio.volume = ConvertVolume;
                     audio.play();
                     audio.addEventListener('ended', function () {
@@ -483,6 +594,7 @@
                 })
             }
             else {
+                audio = new Audio('Kutum.mp3');
                 audio.volume = ConvertVolume;
                 audio.play();
             }
@@ -490,9 +602,9 @@
 
         //Garmoth
         function Garmoth() {
-            audio = new Audio('Garmoth.mp3');
             if (!audio.paused) {
                 audio.addEventListener('ended', function () {
+                    audio = new Audio('Garmoth.mp3');
                     audio.volume = ConvertVolume;
                     audio.play();
                     audio.addEventListener('ended', function () {
@@ -502,6 +614,7 @@
                 })
             }
             else {
+                audio = new Audio('Garmoth.mp3');
                 audio.volume = ConvertVolume;
                 audio.play();
             }
@@ -509,9 +622,9 @@
 
         //Karanda
         function Karanda() {
-            audio = new Audio('Karanda.mp3');
             if (!audio.paused) {
                 audio.addEventListener('ended', function () {
+                    audio = new Audio('Karanda.mp3');
                     audio.volume = ConvertVolume;
                     audio.play();
                     audio.addEventListener('ended', function () {
@@ -521,6 +634,7 @@
                 })
             }
             else {
+                audio = new Audio('Karanda.mp3');
                 audio.volume = ConvertVolume;
                 audio.play();
             }
@@ -528,9 +642,9 @@
 
         //Offin
         function Offin() {
-            audio = new Audio('Offin.mp3');
             if (!audio.paused) {
                 audio.addEventListener('ended', function () {
+                    audio = new Audio('Offin.mp3');
                     audio.volume = ConvertVolume;
                     audio.play();
                     audio.addEventListener('ended', function () {
@@ -540,6 +654,7 @@
                 })
             }
             else {
+                audio = new Audio('Offin.mp3');
                 audio.volume = ConvertVolume;
                 audio.play();
             }
@@ -547,9 +662,9 @@
 
         //Vell
         function Vell() {
-            audio = new Audio('Vell.mp3');
             if (!audio.paused) {
                 audio.addEventListener('ended', function () {
+                    audio = new Audio('Vell.mp3');
                     audio.volume = ConvertVolume;
                     audio.play();
                     audio.addEventListener('ended', function () {
@@ -559,6 +674,7 @@
                 })
             }
             else {
+                audio = new Audio('Vell.mp3');
                 audio.volume = ConvertVolume;
                 audio.play();
             }
@@ -566,9 +682,9 @@
 
         //Muraka
         function Muraka() {
-            audio = new Audio('Muraka.mp3');
             if (!audio.paused) {
                 audio.addEventListener('ended', function () {
+                    audio = new Audio('Muraka.mp3');
                     audio.volume = ConvertVolume;
                     audio.play();
                     audio.addEventListener('ended', function () {
@@ -578,6 +694,7 @@
                 })
             }
             else {
+                audio = new Audio('Muraka.mp3');
                 audio.volume = ConvertVolume;
                 audio.play();
             }
@@ -585,9 +702,9 @@
 
         //Quint
         function Quint() {
-            audio = new Audio('Quint.mp3');
             if (!audio.paused) {
                 audio.addEventListener('ended', function () {
+                    audio = new Audio('Quint.mp3');
                     audio.volume = ConvertVolume;
                     audio.play();
                     audio.addEventListener('ended', function () {
@@ -597,6 +714,7 @@
                 })
             }
             else {
+                audio = new Audio('Quint.mp3');
                 audio.volume = ConvertVolume;
                 audio.play();
             }
@@ -687,8 +805,8 @@
         </div>
     </div>
     <script>
+        //scroll animation
         function BossTimer() {
-            const btn = document.getElementById('elem');
             var elmnt = document.getElementById("Timer");
             elmnt.scrollIntoView({ behavior: 'smooth' });
         }

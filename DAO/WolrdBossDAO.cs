@@ -47,6 +47,20 @@ namespace DAO
             return DataProvider.ExecuteSelectQuery(query, param);
         }
 
+        public static int UpdateTotalVisitors(int i)
+        {
+            string query = "UPDATE TotalVisitors SET VisitorNumber = VisitorNumber + @i";
+            SqlParameter[] param = new SqlParameter[1];
+            param[0] = new SqlParameter("@i", i);
+            return DataProvider.ExecuteUpdateQuery(query, param);
+        }
+
+        public static int GetTotalVisitors()
+        {
+            string query = "SELECT VisitorNumber FROM TotalVisitors";
+            SqlParameter[] param = new SqlParameter[1];
+            return Convert.ToInt32(DataProvider.ExecuteSelectQuery(query).Rows[0][0]);
+        }
 
         public static DataTable GetTotal(DateTime Now)
         {
